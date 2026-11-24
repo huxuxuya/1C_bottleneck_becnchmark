@@ -1,0 +1,7 @@
+{
+  "name": "default-smoke",
+  "description": "Базовый smoke-профиль калибровки CPU/запросов бенчмарка",
+  "iterations": 10000,
+  "concurrency": 1,
+  "collectTechLog": true
+}

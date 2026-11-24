@@ -1,0 +1,53 @@
+name: 1C Benchmark CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  lint-bsl:
+    name: Validate EDT & JSON
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check EDT metadata, XML & JSON syntax
+        run: |
+          python3 -c '
+          import glob, json, xml.etree.ElementTree as ET
+          xml_files = sorted(
+              glob.glob("edt/**/*.mdo", recursive=True)
+              + glob.glob("edt/**/.project", recursive=True)
+              + glob.glob("docker/**/*.xml", recursive=True)
+          )
+          for p in xml_files:
+              ET.parse(p)
+          json_files = sorted(
+              glob.glob("tools/*.json")
+              + glob.glob("benchmarks/**/*.json", recursive=True)
+              + [".bsl-language-server.json"]
+          )
+          for p in json_files:
+              with open(p, encoding="utf-8") as f:
+                  json.load(f)
+          print(f"OK: {len(xml_files)} EDT/XML files, {len(json_files)} JSON files")
+          '
+
+  test-ibcmd:
+    name: Export EDT & Run YAxUnit (ibcmd)
+    runs-on: [self-hosted, linux, 1c]
+    needs: lint-bsl
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export EDT projects to XML
+        run: make export-xml || make export-xml-docker
+      - name: Run YAxUnit via Docker (ibcmd profile)
+        run: make test-ibcmd
+      - name: Publish JUnit Report
+        uses: dorny/test-report@v3
+        if: always()
+        with:
+          name: YAxUnit (ibcmd)
+          path: build/reports/junit.xml
+          reporter: java-junit

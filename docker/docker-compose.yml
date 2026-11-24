@@ -1,0 +1,112 @@
+services:
+  # ============================================================================
+  # Этап 0 (профиль edt-export): Конвертация 1C:EDT (edt/) -> XML (build/xml/)
+  # Запуск: docker compose --profile edt-export run --rm edt-export
+  # ============================================================================
+  edt-export:
+    profiles: ["edt-export"]
+    build:
+      context: ..
+      dockerfile: docker/1c-edt/Dockerfile
+    image: ${ONEC_EDT_IMAGE:-onec-benchmark-edt:latest}
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+    environment:
+      - WORKSPACE=/workspace
+      - EDT_VMARGS=${EDT_VMARGS:--Xmx4g}
+
+  # ============================================================================
+  # Вариант 1 (профиль ibcmd): файловая ИБ + ibcmd + тесты YAxUnit
+  # Запуск: docker compose --profile ibcmd run --rm runner-ibcmd
+  # ============================================================================
+  runner-ibcmd:
+    profiles: ["ibcmd"]
+    build:
+      context: ..
+      dockerfile: docker/1c-ibcmd/Dockerfile
+    image: ${ONEC_IBCMD_IMAGE:-onec-benchmark-ibcmd:latest}
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+      - 1c-licenses:/var/1C/licenses
+    environment:
+      - WORKSPACE=/workspace
+      - XML_DIR=/workspace/build/xml
+      - MODE=ibcmd
+    command: ["/workspace/tools/scripts/build-and-test.sh", "--mode", "ibcmd"]
+
+  # ============================================================================
+  # Вариант 2 (профиль postgres): PostgreSQL + Сервер 1С + раннер тестов
+  # Запуск: docker compose --profile postgres run --rm runner-postgres
+  # ============================================================================
+  postgres:
+    profiles: ["postgres"]
+    image: ${POSTGRES_1C_IMAGE:-postgres:16-bookworm}
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    environment:
+      POSTGRES_USER: ${PG_USER:-postgres}
+      POSTGRES_PASSWORD: ${PG_PASSWORD:-postgres}
+      POSTGRES_DB: ${PG_DB:-benchmark_ib}
+      POSTGRES_INITDB_ARGS: "--locale=ru_RU.UTF-8 --encoding=UTF8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  1c-server:
+    profiles: ["postgres"]
+    build:
+      context: ..
+      dockerfile: docker/1c-server/Dockerfile
+    image: ${ONEC_SERVER_IMAGE:-onec-benchmark-server:latest}
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "1540-1541:1540-1541"
+      - "1545:1545"
+      - "1560-1591:1560-1591"
+    volumes:
+      - ..:/workspace
+      - 1c-srvinfo:/var/1C/srvinfo
+      - 1c-licenses:/var/1C/licenses
+
+  runner-postgres:
+    profiles: ["postgres"]
+    image: ${ONEC_IBCMD_IMAGE:-onec-benchmark-ibcmd:latest}
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      1c-server:
+        condition: service_started
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+      - 1c-licenses:/var/1C/licenses
+    environment:
+      - WORKSPACE=/workspace
+      - XML_DIR=/workspace/build/xml
+      - MODE=postgres
+      - PG_HOST=postgres
+      - PG_PORT=${PG_PORT:-5432}
+      - PG_DB=${PG_DB:-benchmark_ib}
+      - PG_USER=${PG_USER:-postgres}
+      - PG_PASSWORD=${PG_PASSWORD:-postgres}
+      - ONEC_SERVER_HOST=1c-server
+      - ONEC_IB_NAME=${PG_DB:-benchmark_ib}
+    command: ["/workspace/tools/scripts/build-and-test.sh", "--mode", "postgres"]
+
+volumes:
+  pg-data:
+  1c-srvinfo:
+  1c-licenses:

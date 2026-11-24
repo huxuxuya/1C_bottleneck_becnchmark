@@ -1,0 +1,14 @@
+{
+  "reportFormat": "jUnit",
+  "reportPath": "/workspace/build/reports/junit.xml",
+  "closeAfterTests": true,
+  "exitCode": "/workspace/build/reports/exitcode.txt",
+  "logging": {
+    "file": "/workspace/build/reports/yaxunit.log"
+  },
+  "filter": {
+    "extensions": [
+      "BenchmarkTests"
+    ]
+  }
+}

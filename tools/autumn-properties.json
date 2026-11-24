@@ -1,0 +1,16 @@
+{
+  "$schema": "https://github.com/vanessa-opensource/vanessa-runner/releases/latest/download/vrunner-settings-schema.json",
+  "vrunner": {
+    "ibconnection": "/F./build/ib",
+    "test": {
+      "yaxunit": {
+        "report-format": [
+          "junit"
+        ],
+        "report-path": "./build/reports/junit.xml",
+        "extension": "YAXUnit",
+        "config": "./tools/yaxunit.json"
+      }
+    }
+  }
+}

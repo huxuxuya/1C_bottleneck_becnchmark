@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="10000000-0000-4000-8000-000000000001">
+  <name>Бенчмарк1С</name>
+  <synonym>
+    <key>ru</key>
+    <value>Бенчмарк узких мест 1С</value>
+  </synonym>
+  <comment>Эталонная конфигурация для воспроизводимого тестирования производительности и узких мест 1С</comment>
+  <containedObjects classId="9cd510cd-abfc-11d4-9434-004095e12fc7" objectId="10000000-0000-4000-8000-000000000011"/>
+  <containedObjects classId="9fcd25a1-b33c-11d4-9434-004095e12fc7" objectId="10000000-0000-4000-8000-000000000012"/>
+  <containedObjects classId="e36848eb-2d0a-4286-92d1-05d62b17b07f" objectId="10000000-0000-4000-8000-000000000013"/>
+  <containedObjects classId="9de14907-ec23-4a07-96f0-858e1cb60f7b" objectId="10000000-0000-4000-8000-000000000014"/>
+  <containedObjects classId="51f2d5d8-ea4d-4064-8892-82951750031e" objectId="10000000-0000-4000-8000-000000000015"/>
+  <containedObjects classId="e68182ea-4237-4383-967f-90c1a337057e" objectId="10000000-0000-4000-8000-000000000016"/>
+  <containedObjects classId="fb282519-d103-4dd3-bc12-cb271beb6311" objectId="10000000-0000-4000-8000-000000000017"/>
+  <configurationExtensionCompatibilityMode>8.3.25</configurationExtensionCompatibilityMode>
+  <defaultRunMode>ManagedApplication</defaultRunMode>
+  <usePurposes>PersonalComputer</usePurposes>
+  <scriptVariant>Russian</scriptVariant>
+  <version>0.1.0</version>
+  <defaultLanguage>Language.Русский</defaultLanguage>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <objectAutonumerationMode>NotAutoFree</objectAutonumerationMode>
+  <modalityUseMode>DontUse</modalityUseMode>
+  <synchronousPlatformExtensionAndAddInCallUseMode>DontUse</synchronousPlatformExtensionAndAddInCallUseMode>
+  <interfaceCompatibilityMode>Taxi</interfaceCompatibilityMode>
+  <compatibilityMode>8.3.25</compatibilityMode>
+  <languages uuid="10000000-0000-4000-8000-000000000101">
+    <name>Русский</name>
+    <synonym>
+      <key>ru</key>
+      <value>Русский</value>
+    </synonym>
+    <languageCode>ru</languageCode>
+  </languages>
+  <commonModules>CommonModule.БенчмаркЯдро</commonModules>
+</mdclass:Configuration>

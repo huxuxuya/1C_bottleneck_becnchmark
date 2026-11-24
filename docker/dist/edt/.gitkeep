@@ -1,0 +1,2 @@
+# Поместите сюда дистрибутив 1C:EDT (.deb или .tar.gz) для сборки docker/1c-edt/Dockerfile
+# (либо укажите готовый образ в .env через ONEC_EDT_IMAGE).

@@ -1,0 +1,39 @@
+# 1C build artifacts & local infobases
+build/
+*.1cd
+*.cf
+*.cfe
+*.epf
+*.erf
+*.dt
+*.cd
+*.lgf
+*.lgp
+*.log
+
+# 1C:EDT / Eclipse local workspace & cache artifacts
+.settings/
+.build/
+.metamodel/
+.metadata/
+bin/
+target/
+edt/*/.settings/
+edt/*/.build/
+
+# Tech log & benchmark outputs
+benchmarks/results/
+docker/volumes/
+!docker/volumes/.gitkeep
+
+# Local env & secrets
+.env
+*.lic
+
+# 1C / OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/*.log
+.idea/
+*.swp
+*~

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+  <dump create="false"/>
+  <!-- Лог технологического журнала для анализа узких мест бенчмарка -->
+  <log location="/workspace/build/techlog" history="24">
+    <event>
+      <eq property="name" value="DBPOSTGRS"/>
+      <ge property="duration" value="10000"/>
+    </event>
+    <event>
+      <eq property="name" value="SDBL"/>
+      <ge property="duration" value="10000"/>
+    </event>
+    <event>
+      <eq property="name" value="TLOCK"/>
+    </event>
+    <event>
+      <eq property="name" value="TTIMEOUT"/>
+    </event>
+    <event>
+      <eq property="name" value="TDEADLOCK"/>
+    </event>
+    <event>
+      <eq property="name" value="CALL"/>
+      <ge property="duration" value="50000"/>
+    </event>
+    <event>
+      <eq property="name" value="EXCP"/>
+    </event>
+    <property name="all"/>
+  </log>
+</config>
