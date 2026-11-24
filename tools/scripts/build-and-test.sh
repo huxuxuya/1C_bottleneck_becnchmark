@@ -122,7 +122,7 @@ install_extension_from_cfe() {
 }
 
 echo "=== [1/5] Создание ИБ (режим: ${MODE}) ==="
-"${IBCMD_BIN}" infobase create "${DB_ARGS[@]}" "${CREATE_EXTRA[@]}"
+"${IBCMD_BIN}" infobase create "${DB_ARGS[@]}" ${CREATE_EXTRA[@]+"${CREATE_EXTRA[@]}"}
 
 echo "=== [2/5] Импорт основной конфигурации из ${XML_DIR}/cf ==="
 "${IBCMD_BIN}" infobase config import "${DB_ARGS[@]}" "${XML_DIR}/cf"
@@ -163,12 +163,15 @@ if [[ -z "${CLIENT_BIN}" ]]; then
   exit 1
 fi
 
+YAXUNIT_RUN_CFG="${REPORTS_DIR}/yaxunit-run.json"
+sed "s|/workspace|${WORKSPACE}|g" "${YAXUNIT_CFG}" > "${YAXUNIT_RUN_CFG}"
+
 CLIENT_ARGS=(
   ENTERPRISE
   "${CLIENT_CONN}"
   /DisableStartupDialogs
   /DisableStartupMessages
-  "/CRunUnitTests=${YAXUNIT_CFG}"
+  "/CRunUnitTests=${YAXUNIT_RUN_CFG}"
 )
 
 if command -v xvfb-run >/dev/null 2>&1; then
@@ -183,9 +186,9 @@ if [[ -f "${REPORTS_DIR}/junit.xml" ]]; then
 fi
 
 if [[ -f "${REPORTS_DIR}/exitcode.txt" ]]; then
-  TEST_CODE="$(tr -d '[:space:]' < "${REPORTS_DIR}/exitcode.txt")"
+  TEST_CODE="$(tr -dc '0-9' < "${REPORTS_DIR}/exitcode.txt")"
   echo "YAxUnit exitcode: ${TEST_CODE}"
-  exit "${TEST_CODE}"
+  exit "${TEST_CODE:-1}"
 fi
 
 echo "Предупреждение: файл ${REPORTS_DIR}/exitcode.txt не создан (проверьте ${REPORTS_DIR}/yaxunit.log)" >&2

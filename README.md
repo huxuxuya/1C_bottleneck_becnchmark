@@ -1,73 +1,25 @@
 # 1C Bottleneck Benchmark
 
-Конфигурация-бенчмарк **1С:Предприятие** для воспроизводимого исследования узких мест (блокировки, планы запросов PostgreSQL/SDBL, конкурентная нагрузка) с разработкой в **1C:EDT**, сборкой и запуском в Docker и модульным тестированием на **YAxUnit**.
+**90 диагностических проб для клиент-серверной 1С.** Каталог помогает обследовать установку до появления жалоб. Каждая проба меняет одно условие и показывает, где возникает задержка, при какой нагрузке она растёт и чем проверить её причину.
 
-## Структура репозитория
+[Каталог проб](docs/tests/README.md) · [Протокол измерений](docs/tests/protocol.md) · [Архитектура](docs/architecture.md) · [Сборка и запуск](docs/development.md)
 
-```text
-├── .github/workflows/ci.yml          # CI-пайплайн (валидация EDT/JSON + экспорт + YAxUnit)
-├── benchmarks/                       # Профили и сценарии нагрузочных замеров
-│   └── profiles/default.json
-├── docker/
-│   ├── 1c-edt/Dockerfile             # Образ 1C:EDT CLI для экспорта edt/ -> build/xml/
-│   ├── 1c-ibcmd/Dockerfile           # Образ для профиля ibcmd (ibcmd + 1cv8c + Xvfb)
-│   ├── 1c-server/Dockerfile          # Образ кластера 1С (ragent + ras + logcfg.xml)
-│   ├── dist/                         # Локальные установщики 1С и EDT (не коммитятся)
-│   ├── techlog/logcfg.xml            # Конфигурация технологического журнала 1С
-│   └── docker-compose.yml            # Профили: edt-export, ibcmd, postgres
-├── edt/                              # Исходный код в формате 1C:EDT (единственный источник правды)
-│   ├── benchmark/                    # Основная конфигурация-бенчмарк (.project, DT-INF, src/)
-│   └── BenchmarkTests/               # Проект расширения с юнит-тестами YAxUnit
-├── tools/
-│   ├── scripts/
-│   │   ├── export-edt-to-xml.sh      # Конвертация edt/ -> build/xml/ через 1cedtcli или ring
-│   │   ├── build-and-test.sh         # Сборка ИБ из build/xml/ и прогон YAxUnit (--mode ibcmd|postgres)
-│   │   └── download-yaxunit.sh       # Загрузка YAxUnit.cfe из релизов GitHub
-│   ├── autumn-properties.json        # Конфиг vanessa-runner 3.x (при использовании vrunner)
-│   └── yaxunit.json                  # Настройки прогона YAxUnit и JUnit-отчёта
-├── .bsl-language-server.json         # Настройки BSL Language Server (edt/benchmark/src)
-├── .env.example                      # Шаблон переменных окружения
-├── Makefile                          # Команды сборки, экспорта и тестирования
-└── packagedef                        # Дескриптор OneScript-проекта
-```
+## Как выбрать пробу
 
-## Разработка в 1C:EDT
+| Что исследуем | Что измерить | С чем сравнить |
+|---|---|---|
+| **Рабочий процесс** | Сколько работы выдерживает [один rphost · 028](docs/tests/rphost/028.md) | Как кластер [распределяет работу по процессам · 029](docs/tests/rphost/029.md) |
+| **Путь фиксации** | Сколько длится [commit в СУБД · 059](docs/tests/transactions/059.md) | Сколько занимает [запись с flush на томе журнала · 038](docs/tests/storage/038.md) |
+| **Сетевой канал** | Каков [RTT малого сообщения в покое · 069](docs/tests/network/069.md) | При какой фоновой передаче [начинает расти RTT · 072](docs/tests/network/072.md) |
 
-1. Откройте 1C:EDT и выполните **File → Import… → General → Existing Projects into Workspace**.
-2. Выберите корневую папку репозитория (или каталог `edt/`) — EDT подхватит оба проекта:
-   - `benchmark` (основная конфигурация, `V8ConfigurationNature`)
-   - `BenchmarkTests` (расширение тестов YAxUnit, `V8ExtensionNature`)
-3. Служебные каталоги `.settings/`, `.build/`, `.metamodel/` исключены в `.gitignore`, в Git коммитятся только `.project`, `DT-INF/PROJECT.PMF` и `src/` (`.mdo`, `.bsl`, `.form`).
+В каталоге также есть пробы CPU, планировщика, NUMA, памяти, планов SQL, блокировок, механизмов платформы и клиента. Результаты отдельных запусков записываются в журнал соответствующей карточки.
 
-## Сборка и запуск в Docker
+## Что уже есть
 
-Пайплайн состоит из двух шагов: **1) экспорт `edt/ → build/xml/`** и **2) загрузка в ИБ через `ibcmd` + прогон YAxUnit**.
+**Методики.** Описаны 90 экспериментов в 10 группах. Журналы карточек пока пусты. [Открыть каталог](docs/tests/README.md)
 
-1. Скопируйте `.env.example` в `.env` и укажите ваши образы (или положите дистрибутивы в `docker/dist/`):
-   ```bash
-   cp .env.example .env
-   ```
-   > На Apple Silicon (`arm64`) с x86_64-бинарниками 1С оставьте `DOCKER_PLATFORM=linux/amd64`.
+**Код.** В конфигурации EDT реализован серверный расчёт BSL с контрольной суммой и замером длительности. Три теста YAxUnit проверяют обычное, нулевое и отрицательное число итераций. [Серверный модуль](edt/benchmark/src/CommonModules/БенчмаркЯдро/Module.bsl) · [Тесты ядра](edt/BenchmarkTests/src/CommonModules/Тест_ТестыБенчмарка/Module.bsl)
 
-2. Конвертируйте проекты EDT в XML (локальной `1cedtcli`/`ring` или в Docker):
-   ```bash
-   make export-xml          # если 1C:EDT установлена локально
-   # или
-   make export-xml-docker   # через профиль edt-export в Docker
-   ```
+**Стенд.** Предусмотрены файловая база через `ibcmd` и клиент-серверный вариант с PostgreSQL. Для запуска нужны дистрибутивы или подготовленные образы и лицензия 1С. Инструкция включает импорт в EDT, экспорт XML и команды Docker. [Подготовить стенд](docs/development.md)
 
-3. **Вариант 1 (`ibcmd` — файловая ИБ и быстрые тесты):**
-   ```bash
-   make test-ibcmd
-   ```
-   JUnit-отчёт появится в `build/reports/junit.xml`.
-
-4. **Вариант 2 (`postgres` — PostgreSQL + кластер 1С):**
-   ```bash
-   make up-postgres
-   make test-postgres
-   ```
-
-## Примечание по лицензиям
-
-Для запуска `1cv8c` / `ragent` в контейнере нужна активная лицензия (например, бесплатная комьюнити-лицензия разработчика 1С). Каталог лицензий монтируется в Docker volume `1c-licenses` (`/var/1C/licenses`), чтобы активация сохранялась между перезапусками контейнеров.
+[Замысел проекта](idea.md) · [Профиль конфигурации](benchmarks/profiles/default.json) · [Лицензия проекта](LICENSE)

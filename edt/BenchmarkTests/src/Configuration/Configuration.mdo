@@ -9,12 +9,12 @@
   </synonym>
   <comment>Расширение с модульными тестами YAxUnit для конфигурации-бенчмарка</comment>
   <containedObjects classId="9cd510cd-abfc-11d4-9434-004095e12fc7" objectId="20000000-0000-4000-8000-000000000011"/>
-  <containedObjects classId="9fcd25a1-b33c-11d4-9434-004095e12fc7" objectId="20000000-0000-4000-8000-000000000012"/>
-  <containedObjects classId="e36848eb-2d0a-4286-92d1-05d62b17b07f" objectId="20000000-0000-4000-8000-000000000013"/>
-  <containedObjects classId="9de14907-ec23-4a07-96f0-858e1cb60f7b" objectId="20000000-0000-4000-8000-000000000014"/>
+  <containedObjects classId="9fcd25a0-4822-11d4-9414-008048da11f9" objectId="20000000-0000-4000-8000-000000000012"/>
+  <containedObjects classId="e3687481-0a87-462c-a166-9f34594f9bba" objectId="20000000-0000-4000-8000-000000000013"/>
+  <containedObjects classId="9de14907-ec23-4a07-96f0-85521cb6b53b" objectId="20000000-0000-4000-8000-000000000014"/>
   <containedObjects classId="51f2d5d8-ea4d-4064-8892-82951750031e" objectId="20000000-0000-4000-8000-000000000015"/>
-  <containedObjects classId="e68182ea-4237-4383-967f-90c1a337057e" objectId="20000000-0000-4000-8000-000000000016"/>
-  <containedObjects classId="fb282519-d103-4dd3-bc12-cb271beb6311" objectId="20000000-0000-4000-8000-000000000017"/>
+  <containedObjects classId="e68182ea-4237-4383-967f-90c1e3370bc7" objectId="20000000-0000-4000-8000-000000000016"/>
+  <containedObjects classId="fb282519-d103-4dd3-bc12-cb271d631dfc" objectId="20000000-0000-4000-8000-000000000017"/>
   <objectBelonging>Adopted</objectBelonging>
   <namePrefix>Тест_</namePrefix>
   <configurationExtensionPurpose>Customization</configurationExtensionPurpose>
@@ -23,16 +23,7 @@
   <usePurposes>PersonalComputer</usePurposes>
   <scriptVariant>Russian</scriptVariant>
   <version>0.1.0</version>
-  <defaultLanguage>Language.Русский</defaultLanguage>
   <interfaceCompatibilityMode>Taxi</interfaceCompatibilityMode>
   <compatibilityMode>8.3.25</compatibilityMode>
-  <languages uuid="20000000-0000-4000-8000-000000000101">
-    <name>Русский</name>
-    <synonym>
-      <key>ru</key>
-      <value>Русский</value>
-    </synonym>
-    <languageCode>ru</languageCode>
-  </languages>
   <commonModules>CommonModule.Тест_ТестыБенчмарка</commonModules>
 </mdclass:Configuration>

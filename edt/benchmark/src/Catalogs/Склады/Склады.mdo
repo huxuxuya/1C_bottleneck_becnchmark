@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="10000000-0000-4000-8000-000000000302">
+  <producedTypes>
+    <objectType typeId="10000000-0000-4000-8000-000000000331" valueTypeId="10000000-0000-4000-8000-000000000332"/>
+    <refType typeId="10000000-0000-4000-8000-000000000333" valueTypeId="10000000-0000-4000-8000-000000000334"/>
+    <selectionType typeId="10000000-0000-4000-8000-000000000335" valueTypeId="10000000-0000-4000-8000-000000000336"/>
+    <listType typeId="10000000-0000-4000-8000-000000000337" valueTypeId="10000000-0000-4000-8000-000000000338"/>
+    <managerType typeId="10000000-0000-4000-8000-000000000339" valueTypeId="10000000-0000-4000-8000-00000000033a"/>
+  </producedTypes>
+  <name>Склады</name>
+  <synonym>
+    <key>ru</key>
+    <value>Склады</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.Склады.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Склады.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <descriptionLength>100</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+</mdclass:Catalog>
