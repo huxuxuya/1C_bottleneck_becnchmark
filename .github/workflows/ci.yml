@@ -33,6 +33,8 @@ jobs:
                   json.load(f)
           print(f"OK: {len(xml_files)} EDT/XML files, {len(json_files)} JSON files")
           '
+      - name: Check benchmark start-button wiring
+        run: python3 -m unittest discover -s tools/tests -p 'test_*.py' -v
 
   test-ibcmd:
     name: Export EDT & Run YAxUnit (ibcmd)
