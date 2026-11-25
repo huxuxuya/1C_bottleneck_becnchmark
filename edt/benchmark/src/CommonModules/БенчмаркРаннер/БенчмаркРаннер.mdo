@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="10000000-0000-4000-8000-000000000204">
+  <name>БенчмаркРаннер</name>
+  <synonym>
+    <key>ru</key>
+    <value>Бенчмарк раннер</value>
+  </synonym>
+  <comment>Оркестратор калиброванных прогонов, скоринга и записи результатов</comment>
+  <server>true</server>
+</mdclass:CommonModule>

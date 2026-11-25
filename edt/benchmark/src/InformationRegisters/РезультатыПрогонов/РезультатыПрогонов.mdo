@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:core="http://g5.1c.ru/v8/dt/mcore"
+    xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="10000000-0000-4000-8000-000000000601">
+  <producedTypes>
+    <selectionType typeId="10000000-0000-4000-8000-000000000611" valueTypeId="10000000-0000-4000-8000-000000000612"/>
+    <listType typeId="10000000-0000-4000-8000-000000000613" valueTypeId="10000000-0000-4000-8000-000000000614"/>
+    <recordSetType typeId="10000000-0000-4000-8000-000000000615" valueTypeId="10000000-0000-4000-8000-000000000616"/>
+    <recordKeyType typeId="10000000-0000-4000-8000-000000000617" valueTypeId="10000000-0000-4000-8000-000000000618"/>
+    <recordType typeId="10000000-0000-4000-8000-000000000619" valueTypeId="10000000-0000-4000-8000-00000000061a"/>
+    <recordManagerType typeId="10000000-0000-4000-8000-00000000061b" valueTypeId="10000000-0000-4000-8000-00000000061c"/>
+  </producedTypes>
+  <name>РезультатыПрогонов</name>
+  <synonym>
+    <key>ru</key>
+    <value>Результаты прогонов</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <resources uuid="10000000-0000-4000-8000-000000000621">
+    <name>ЗначениеМетрики</name>
+    <synonym>
+      <key>ru</key>
+      <value>Значение метрики</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>15</precision>
+        <scale>3</scale>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="10000000-0000-4000-8000-000000000622">
+    <name>ЦелевоеЗначение</name>
+    <synonym>
+      <key>ru</key>
+      <value>Целевое значение</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>15</precision>
+        <scale>3</scale>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="10000000-0000-4000-8000-000000000623">
+    <name>Баллы</name>
+    <synonym>
+      <key>ru</key>
+      <value>Баллы</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>5</precision>
+        <scale>1</scale>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="10000000-0000-4000-8000-000000000624">
+    <name>Статус</name>
+    <synonym>
+      <key>ru</key>
+      <value>Статус</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>20</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <attributes uuid="10000000-0000-4000-8000-000000000631">
+    <name>ДатаПрогона</name>
+    <synonym>
+      <key>ru</key>
+      <value>Дата прогона</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="10000000-0000-4000-8000-000000000632">
+    <name>НаименованиеПробы</name>
+    <synonym>
+      <key>ru</key>
+      <value>Наименование пробы</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>150</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="10000000-0000-4000-8000-000000000633">
+    <name>ЕдиницаИзмерения</name>
+    <synonym>
+      <key>ru</key>
+      <value>Единица измерения</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>20</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="10000000-0000-4000-8000-000000000634">
+    <name>КонтрольнаяСумма</name>
+    <synonym>
+      <key>ru</key>
+      <value>Контрольная сумма</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>15</precision>
+        <scale>0</scale>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="10000000-0000-4000-8000-000000000635">
+    <name>Детали</name>
+    <synonym>
+      <key>ru</key>
+      <value>Детали</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>500</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <dimensions uuid="10000000-0000-4000-8000-000000000641">
+    <name>ИдентификаторПрогона</name>
+    <synonym>
+      <key>ru</key>
+      <value>Идентификатор прогона</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>36</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="10000000-0000-4000-8000-000000000642">
+    <name>КодПробы</name>
+    <synonym>
+      <key>ru</key>
+      <value>Код пробы</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>20</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>
