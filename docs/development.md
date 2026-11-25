@@ -1,62 +1,160 @@
-# Разработка и запуск
+# Проверки и запуск
 
-[Главная](../README.md) · [Команды Make](../Makefile) · [Настройки окружения](../.env.example)
+[Главная](../README.md) · [Команды Make](../Makefile) · [Настройки Docker](../.env.example)
+
+## Как устроен прогон
+
+Исходники конфигурации и расширения тестов лежат в `edt/`. Перед выполнением они экспортируются из EDT в XML-каталоги `build/xml/cf` и `build/xml/cfe/BenchmarkTests`. Затем сценарий создаёт или подключает информационную базу, устанавливает расширение `BenchmarkTests` и YAxUnit, запускает тесты через `/CRunUnitTests` и сохраняет отчёты.
+
+| Команда | Где работает 1С | Тип базы | Для чего подходит |
+|---|---|---|---|
+| `make test-local` | На машине разработчика | Файловая ИБ `build/ib-local-test` | Быстрый прогон без Docker |
+| `make test-ibcmd` | В Docker | Файловая ИБ `build/ib` | Изолированный прогон в контейнере |
+| `make test-postgres` | В Docker: клиент, кластер 1С и PostgreSQL | Клиент-серверная ИБ в PostgreSQL | Проверка пути через кластер 1С и СУБД |
+
+Во всех вариантах тестируется конфигурация из XML-экспорта, а не исходники EDT напрямую. После изменения `.bsl`, `.mdo` или `.form` сначала повторите экспорт. Все три варианта запускают YAxUnit пакетно; вручную открывать форму бенчмарка и нажимать кнопку запуска не нужно.
+
+## 1. Экспорт из EDT в XML
+
+Экспорт нужен перед первым прогоном и после изменения проектов EDT.
+
+Локально, если установлена 1C:EDT:
+
+```bash
+make export-xml
+```
+
+В Docker:
+
+```bash
+make build-edt      # один раз, если образ EDT ещё не собран
+make export-xml-docker
+```
+
+Для Docker-экспорта положите дистрибутив EDT в `docker/dist/edt/` либо используйте образ, в котором доступна `1cedtcli` или `ring`. Для тестов в Docker нужны установленные бинарные файлы платформы 1С: положите необходимые `.deb`-пакеты в `docker/dist/`. Эти дистрибутивы и лицензии в Git не хранятся.
+
+На Apple Silicon с x86_64-бинарниками 1С задайте в `.env`:
+
+```dotenv
+DOCKER_PLATFORM=linux/amd64
+```
+
+Для локального EDT CLI на macOS можно указать путь явно. Если EDT запущена через Rosetta, передайте отдельный ini с путём к совместимой JVM:
+
+```bash
+EDT_CLI="/путь/к/1cedtcli" \
+EDT_INI_FILE="/путь/к/1cedt-x86.ini" \
+make export-xml
+```
+
+## 2. Локальный прогон на файловой ИБ
+
+Требуются локальные `ibcmd` и клиент платформы 1С (`1cv8` или `1cv8c`), доступные через `PATH` или каталог `/opt/1cv8`. Если установлены оба клиента, сценарий предпочитает толстый `1cv8`. Версии `ibcmd` и клиента должны быть совместимы. Для запуска клиенту также нужна доступная лицензия 1С.
+
+```bash
+make export-xml
+make test-local
+```
+
+`make test-local` использует локальные бинарные файлы, Docker не запускается. Команда каждый раз пересоздаёт **только** `build/ib-local-test`; ранее существовавшую `build/ib` она не использует. Она также скачает YAxUnit в `build/deps/YAxUnit.cfe`, если файла ещё нет. Итоговые отчёты находятся в `build/reports/`.
+
+### Запуск в уже подготовленной локальной ИБ без `ibcmd`
+
+Это ручной вариант для файловой базы, в которой уже установлены актуальная конфигурация, расширение `BenchmarkTests` и расширение YAxUnit. Он не обновляет конфигурацию и расширения. Если база ещё не подготовлена, используйте `make test-local` или Docker-вариант.
+
+Сначала создайте локальный файл настроек запуска YAxUnit, чтобы отчёты записывались в `build/reports/`:
+
+```bash
+mkdir -p build/reports
+sed \
+  -e "s|/workspace/build/reports|$PWD/build/reports|g" \
+  -e "s|/workspace|$PWD|g" \
+  tools/yaxunit.json > build/reports/yaxunit-existing-run.json
+```
+
+Затем укажите установленный клиент 1С и путь к готовой файловой ИБ:
+
+```bash
+CLIENT_BIN="/путь/к/1cv8"
+"$CLIENT_BIN" ENTERPRISE "/F/путь/к/файловой/ИБ" \
+  /DisableStartupDialogs /DisableStartupMessages \
+  "/CRunUnitTests=$PWD/build/reports/yaxunit-existing-run.json"
+```
+
+После запуска проверьте `build/reports/exitcode.txt` и `build/reports/junit.xml`. Если на машине нет `ibcmd` и нет подготовленной базы, запустите файловый вариант через Docker (`make test-ibcmd`).
+
+## 3. Файловая ИБ в Docker
+
+Этот вариант использует контейнер с `ibcmd` и клиентом 1С, но сама ИБ остаётся файловой. Docker Compose монтирует репозиторий в контейнер как `/workspace`.
+
+```bash
+cp .env.example .env
+make export-xml              # или make export-xml-docker
+make build-ibcmd             # собрать образ раннера, если он ещё не собран
+make test-ibcmd
+```
+
+Образ раннера должен содержать платформу 1С, `ibcmd` и клиент. Если `docker/dist/` пуст, базовый образ Ubuntu сам по себе этих компонентов не содержит, и запуск остановится с сообщением об отсутствующей `ibcmd`. После подготовки образа Compose передаёт контейнеру лицензионный volume `1c-licenses`.
+
+**Важно:** сценарий `test-ibcmd` удаляет и заново создаёт каталог `build/ib`. Не храните в нём базу, которую нужно сохранить. Для локального прогона, который не затрагивает этот каталог, используйте `make test-local`.
+
+## 4. PostgreSQL и кластер 1С в Docker
+
+Этот вариант запускает отдельные сервисы PostgreSQL и кластера 1С. Тестовый клиент подключается к ИБ через кластер, а `ibcmd` создаёт ИБ в PostgreSQL. Репозиторий сейчас содержит готовый Compose-сценарий для PostgreSQL; другие СУБД отдельными командами проекта не настроены.
+
+Сначала подготовьте `.env`. `PG_DB` — имя тестовой базы, которую создаст `ibcmd`; контейнер PostgreSQL стартует со служебной базой `postgres`. Не задавайте `PG_DB=postgres`.
+
+```dotenv
+DOCKER_PLATFORM=linux/amd64
+PG_HOST=postgres
+PG_PORT=5432
+PG_DB=benchmark_ib
+PG_USER=postgres
+PG_PASSWORD=postgres
+```
+
+Замените тестовый пароль на свой, если это не изолированный локальный стенд. Затем выполните:
+
+```bash
+make export-xml                  # или make export-xml-docker
+make build-ibcmd                 # образ с ibcmd и клиентом для раннера
+make build-postgres              # образ сервера 1С (ragent/rac)
+make up-postgres                 # запустить PostgreSQL и кластер 1С
+make test-postgres
+```
+
+`make test-postgres` создаёт PostgreSQL-базу с именем из `PG_DB`, загружает конфигурацию, регистрирует ИБ в кластере и запускает YAxUnit. Имя ИБ в кластере берётся из `PG_DB`. Для опубликованных портов Compose должны быть свободны `5432`, `1540–1541`, `1545` и диапазон `1560–1591`.
+
+Состояние PostgreSQL и кластера хранится в Docker volumes и переживает `make down`. Повторный `make test-postgres` с тем же `PG_DB` не является сбросом базы: `ibcmd --create-database` ожидает, что такой базы ещё нет. Для следующего независимого прогона задайте новое имя `PG_DB` либо сбросьте весь одноразовый стенд:
+
+```bash
+docker compose -f docker/docker-compose.yml --profile postgres down -v
+```
+
+Команда с `-v` удаляет данные PostgreSQL, состояние кластера и сохранённый лицензионный volume. Используйте её только для тестового стенда, данные которого можно удалить. Обычный `make down` останавливает Compose-сервисы, но сохраняет volumes. Флаг `--create-database` создаёт базу только при её отсутствии; повторное создание существующей базы завершается ошибкой. Это поведение описано в [официальном руководстве администратора 1С](https://1c-dn.com/library/tutorials/1c_enterprise_administrator_guide_file_mode_8_3_27/).
+
+Для контейнеров нужна активная лицензия платформы 1С. Кластер и раннер используют volume `1c-licenses`, поэтому `make down` сохраняет лицензию между запусками, а `down -v` удаляет и её.
+
+## Результаты и диагностика
+
+После запуска проверяйте:
+
+- `build/reports/junit.xml` — результаты тестов в JUnit;
+- `build/reports/exitcode.txt` — код завершения YAxUnit (`0` означает успешный прогон);
+- `build/reports/yaxunit.log` — журнал запуска, список тестов и текст ошибок.
+
+Дополнительные Python-проверки связей формы запускаются отдельно:
+
+```bash
+python3 -m unittest discover -s tools/tests -p 'test_*.py' -v
+```
+
+GitHub Actions запускает проверку EDT/XML/JSON и эти Python-тесты на обычном runner. Они не компилируют BSL. YAxUnit назначен на self-hosted runner с метками `linux` и `1c`; если такой runner не подключён, job остаётся в очереди. Для проверки встроенного языка используйте локальный прогон или Docker-вариант, который действительно запускает платформу 1С.
 
 ## Разработка в 1C:EDT
 
 1. Откройте 1C:EDT и выполните **File → Import… → General → Existing Projects into Workspace**.
-2. Выберите корневую папку репозитория (или каталог `edt/`) — EDT подхватит оба проекта:
-   - `benchmark` (основная конфигурация, `V8ConfigurationNature`)
-   - `BenchmarkTests` (расширение тестов YAxUnit, `V8ExtensionNature`)
-3. Служебные каталоги `.settings/`, `.build/`, `.metamodel/` исключены в `.gitignore`, в Git коммитятся только `.project`, `DT-INF/PROJECT.PMF` и `src/` (`.mdo`, `.bsl`, `.form`).
-
-## Сборка и запуск в Docker
-
-Пайплайн состоит из двух шагов: **1) экспорт `edt/ → build/xml/`** и **2) загрузка в ИБ через `ibcmd` + прогон YAxUnit**. Команды выполняются из корня репозитория.
-
-1. Скопируйте `.env.example` в `.env` и укажите ваши образы (или положите дистрибутивы в `docker/dist/`):
-   ```bash
-   cp .env.example .env
-   ```
-   > На Apple Silicon (`arm64`) с x86_64-бинарниками 1С оставьте `DOCKER_PLATFORM=linux/amd64`.
-
-2. Конвертируйте проекты EDT в XML (локальной `1cedtcli`/`ring` или в Docker):
-   ```bash
-   make export-xml          # если 1C:EDT установлена локально
-   # или
-   make export-xml-docker   # через профиль edt-export в Docker
-   ```
-
-   На macOS скрипт также ищет `1cedtcli` в пользовательской установке EDT. На Apple Silicon для x86_64 EDT может понадобиться отдельная копия `1cedt.ini` с параметром `-vm` и путём к x86_64 `libjvm.dylib`, вставленными перед `-vmargs`. Передайте её через `EDT_INI_FILE`; оригинальный файл установки менять не нужно:
-   ```bash
-   EDT_CLI="/путь/к/1cedt.app/Contents/Eclipse/1cedtcli" \
-   EDT_INI_FILE="/путь/к/1cedt-x86.ini" make export-xml
-   ```
-
-3. **Вариант 1 (`ibcmd` — файловая ИБ и быстрые тесты):**
-   ```bash
-   make test-ibcmd
-   ```
-   JUnit-отчёт появится в `build/reports/junit.xml`.
-
-   Если платформа 1С установлена на машине разработчика, Docker для этого варианта не нужен:
-   ```bash
-   make export-xml
-   make test-local
-   ```
-   Команда использует локальные `ibcmd` и клиент 1С, собирает отдельную файловую ИБ `build/ib-local-test` и пишет отчёт в `build/reports/`. При каждом запуске пересоздаётся только эта тестовая ИБ. Если доступны оба клиента, сначала используется толстый `1cv8`, затем тонкий `1cv8c`.
-
-4. **Вариант 2 (`postgres` — PostgreSQL + кластер 1С):**
-   ```bash
-   make build-ibcmd         # если локального образа раннера ещё нет
-   make up-postgres
-   make test-postgres
-   ```
-
-`make test-ibcmd`, `make test-local` и `make test-postgres` запускают YAxUnit пакетно через клиент 1С с `/CRunUnitTests`; вручную нажимать кнопку бенчмарка не требуется. Для Docker-варианта образ раннера должен содержать `ibcmd`, клиент 1С и подходящие пакеты платформы. В репозитории эти дистрибутивы не хранятся; пустой `docker/dist/` сам по себе не даёт образ с платформой.
-
-В GitHub Actions XML/JSON-проверка и тест Python работают на обычном GitHub runner. Job YAxUnit назначен на self-hosted runner с метками `linux` и `1c`; если такой runner не подключён или недоступен, job остаётся в очереди и результата YAxUnit нет.
-
-## Примечание по лицензиям
-
-Для запуска `1cv8c` / `ragent` в контейнере нужна активная лицензия (например, бесплатная комьюнити-лицензия разработчика 1С). Каталог лицензий монтируется в Docker volume `1c-licenses` (`/var/1C/licenses`), чтобы активация сохранялась между перезапусками контейнеров.
+2. Выберите корень репозитория или каталог `edt/` — EDT подхватит оба проекта:
+   - `benchmark` — основная конфигурация (`V8ConfigurationNature`);
+   - `BenchmarkTests` — расширение тестов YAxUnit (`V8ExtensionNature`).
+3. Служебные каталоги `.settings/`, `.build/`, `.metamodel/` исключены в `.gitignore`; в Git хранятся `.project`, `DT-INF/PROJECT.PMF` и исходники `.mdo`, `.bsl`, `.form`.
