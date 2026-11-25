@@ -74,8 +74,27 @@
     <type>
       <types>Number</types>
       <numberQualifiers>
-        <precision>5</precision>
+      <precision>15</precision>
         <scale>1</scale>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="10000000-0000-4000-8000-000000000625">
+    <name>Индекс</name>
+    <synonym>
+      <key>ru</key>
+      <value>Индекс с полной точностью</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>15</precision>
+        <scale>6</scale>
       </numberQualifiers>
     </type>
     <minValue xsi:type="core:UndefinedValue"/>

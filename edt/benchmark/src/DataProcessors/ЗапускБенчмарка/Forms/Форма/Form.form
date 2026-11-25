@@ -199,9 +199,148 @@
       </extInfo>
     </items>
   </items>
+  <items xsi:type="form:FormGroup">
+    <name>ГруппаПроба042</name>
+    <id>44</id>
+    <visible>true</visible>
+    <enabled>true</enabled>
+    <userVisible><common>true</common></userVisible>
+    <type>UsualGroup</type>
+    <extInfo xsi:type="form:UsualGroupExtInfo">
+      <group>HorizontalIfPossible</group>
+      <showLeftMargin>true</showLeftMargin>
+      <united>true</united>
+      <throughAlign>Auto</throughAlign>
+      <currentRowUse>Auto</currentRowUse>
+    </extInfo>
+    <items xsi:type="form:FormField">
+      <name>ПолеПутьПакета042</name>
+      <id>45</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <dataPath xsi:type="form:DataPath">
+        <segments>ПутьПакета042</segments>
+      </dataPath>
+      <extendedTooltip>
+        <name>ПолеПутьПакета042РасширеннаяПодсказка</name>
+        <id>46</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <contextMenu>
+        <name>ПолеПутьПакета042КонтекстноеМеню</name>
+        <id>47</id>
+        <autoFill>true</autoFill>
+      </contextMenu>
+      <type>InputField</type>
+      <editMode>Enter</editMode>
+      <showInHeader>true</showInHeader>
+      <headerHorizontalAlign>Left</headerHorizontalAlign>
+      <showInFooter>true</showInFooter>
+      <extInfo xsi:type="form:InputFieldExtInfo">
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <wrap>true</wrap>
+        <chooseType>true</chooseType>
+        <typeDomainEnabled>true</typeDomainEnabled>
+        <textEdit>true</textEdit>
+      </extInfo>
+    </items>
+    <items xsi:type="form:Button">
+      <name>КнопкаИмпортироватьПакетПроб042</name>
+      <id>48</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <type>UsualButton</type>
+      <defaultButton>false</defaultButton>
+      <commandName>Form.Command.ИмпортироватьПакетПроб042</commandName>
+      <extendedTooltip>
+        <name>КнопкаИмпортироватьПакетПроб042РасширеннаяПодсказка</name>
+        <id>49</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+    </items>
+    <items xsi:type="form:FormField">
+      <name>ПолеИдентификаторПрогона042</name>
+      <id>50</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <dataPath xsi:type="form:DataPath">
+        <segments>ИдентификаторПрогона042</segments>
+      </dataPath>
+      <extendedTooltip>
+        <name>ПолеИдентификаторПрогона042РасширеннаяПодсказка</name>
+        <id>51</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <contextMenu>
+        <name>ПолеИдентификаторПрогона042КонтекстноеМеню</name>
+        <id>52</id>
+        <autoFill>true</autoFill>
+      </contextMenu>
+      <type>InputField</type>
+      <editMode>Enter</editMode>
+      <showInHeader>true</showInHeader>
+      <headerHorizontalAlign>Left</headerHorizontalAlign>
+      <showInFooter>true</showInFooter>
+      <extInfo xsi:type="form:InputFieldExtInfo">
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <wrap>true</wrap>
+        <chooseType>true</chooseType>
+        <typeDomainEnabled>true</typeDomainEnabled>
+        <textEdit>true</textEdit>
+      </extInfo>
+    </items>
+    <items xsi:type="form:Button">
+      <name>КнопкаПоказатьКривую042</name>
+      <id>53</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <type>UsualButton</type>
+      <defaultButton>false</defaultButton>
+      <commandName>Form.Command.ПоказатьКривуюПроб042</commandName>
+      <extendedTooltip>
+        <name>КнопкаПоказатьКривую042РасширеннаяПодсказка</name>
+        <id>54</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+    </items>
+  </items>
   <items xsi:type="form:Table">
-    <name>Результаты</name>
-    <id>16</id>
+    <name>ТочкиПроб042</name>
+    <id>56</id>
     <visible>true</visible>
     <enabled>true</enabled>
     <readOnly>true</readOnly>
@@ -209,23 +348,23 @@
       <common>true</common>
     </userVisible>
     <dataPath xsi:type="form:DataPath">
-      <segments>Результаты</segments>
+      <segments>ТочкиПроб042</segments>
     </dataPath>
     <titleLocation>None</titleLocation>
     <items xsi:type="form:FormField">
-      <name>РезультатыКодПробы</name>
-      <id>17</id>
+      <name>ТочкиПроб042ИдентификаторТочки</name>
+      <id>57</id>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>Результаты.КодПробы</segments>
+        <segments>ТочкиПроб042.ИдентификаторТочки</segments>
       </dataPath>
       <extendedTooltip>
-        <name>РезультатыКодПробыРасширеннаяПодсказка</name>
-        <id>18</id>
+        <name>ТочкиПроб042ИдентификаторТочкиРасширеннаяПодсказка</name>
+        <id>58</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -234,8 +373,8 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>РезультатыКодПробыКонтекстноеМеню</name>
-        <id>19</id>
+        <name>ТочкиПроб042ИдентификаторТочкиКонтекстноеМеню</name>
+        <id>59</id>
         <autoFill>true</autoFill>
       </contextMenu>
       <type>InputField</type>
@@ -253,19 +392,19 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>РезультатыНаименованиеПробы</name>
-      <id>20</id>
+      <name>ТочкиПроб042НомерПовтора</name>
+      <id>60</id>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>Результаты.НаименованиеПробы</segments>
+        <segments>ТочкиПроб042.НомерПовтора</segments>
       </dataPath>
       <extendedTooltip>
-        <name>РезультатыНаименованиеПробыРасширеннаяПодсказка</name>
-        <id>21</id>
+        <name>ТочкиПроб042НомерПовтораРасширеннаяПодсказка</name>
+        <id>61</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -274,8 +413,8 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>РезультатыНаименованиеПробыКонтекстноеМеню</name>
-        <id>22</id>
+        <name>ТочкиПроб042НомерПовтораКонтекстноеМеню</name>
+        <id>62</id>
         <autoFill>true</autoFill>
       </contextMenu>
       <type>InputField</type>
@@ -293,19 +432,19 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>РезультатыЗначениеМетрики</name>
-      <id>23</id>
+      <name>ТочкиПроб042Фаза</name>
+      <id>63</id>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>Результаты.ЗначениеМетрики</segments>
+        <segments>ТочкиПроб042.Фаза</segments>
       </dataPath>
       <extendedTooltip>
-        <name>РезультатыЗначениеМетрикиРасширеннаяПодсказка</name>
-        <id>24</id>
+        <name>ТочкиПроб042ФазаРасширеннаяПодсказка</name>
+        <id>64</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -314,8 +453,8 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>РезультатыЗначениеМетрикиКонтекстноеМеню</name>
-        <id>25</id>
+        <name>ТочкиПроб042ФазаКонтекстноеМеню</name>
+        <id>65</id>
         <autoFill>true</autoFill>
       </contextMenu>
       <type>InputField</type>
@@ -333,19 +472,19 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>РезультатыЕдиницаИзмерения</name>
-      <id>26</id>
+      <name>ТочкиПроб042ЦелевойТемпЗаписиБайтВСекунду</name>
+      <id>66</id>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>Результаты.ЕдиницаИзмерения</segments>
+        <segments>ТочкиПроб042.ЦелевойТемпЗаписиБайтВСекунду</segments>
       </dataPath>
       <extendedTooltip>
-        <name>РезультатыЕдиницаИзмеренияРасширеннаяПодсказка</name>
-        <id>27</id>
+        <name>ТочкиПроб042ЦелевойТемпЗаписиБайтВСекундуРасширеннаяПодсказка</name>
+        <id>67</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -354,8 +493,8 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>РезультатыЕдиницаИзмеренияКонтекстноеМеню</name>
-        <id>28</id>
+        <name>ТочкиПроб042ЦелевойТемпЗаписиБайтВСекундуКонтекстноеМеню</name>
+        <id>68</id>
         <autoFill>true</autoFill>
       </contextMenu>
       <type>InputField</type>
@@ -373,19 +512,19 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>РезультатыБаллы</name>
-      <id>29</id>
+      <name>ТочкиПроб042ФактическийТемпЗаписиБайтВСекунду</name>
+      <id>69</id>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>Результаты.Баллы</segments>
+        <segments>ТочкиПроб042.ФактическийТемпЗаписиБайтВСекунду</segments>
       </dataPath>
       <extendedTooltip>
-        <name>РезультатыБаллыРасширеннаяПодсказка</name>
-        <id>30</id>
+        <name>ТочкиПроб042ФактическийТемпЗаписиБайтВСекундуРасширеннаяПодсказка</name>
+        <id>70</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -394,8 +533,8 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>РезультатыБаллыКонтекстноеМеню</name>
-        <id>31</id>
+        <name>ТочкиПроб042ФактическийТемпЗаписиБайтВСекундуКонтекстноеМеню</name>
+        <id>71</id>
         <autoFill>true</autoFill>
       </contextMenu>
       <type>InputField</type>
@@ -413,19 +552,19 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>РезультатыСтатус</name>
-      <id>32</id>
+      <name>ТочкиПроб042ЧтениеP95Нс</name>
+      <id>72</id>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>Результаты.Статус</segments>
+        <segments>ТочкиПроб042.ЧтениеP95Нс</segments>
       </dataPath>
       <extendedTooltip>
-        <name>РезультатыСтатусРасширеннаяПодсказка</name>
-        <id>33</id>
+        <name>ТочкиПроб042ЧтениеP95НсРасширеннаяПодсказка</name>
+        <id>73</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -434,8 +573,8 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>РезультатыСтатусКонтекстноеМеню</name>
-        <id>34</id>
+        <name>ТочкиПроб042ЧтениеP95НсКонтекстноеМеню</name>
+        <id>74</id>
         <autoFill>true</autoFill>
       </contextMenu>
       <type>InputField</type>
@@ -453,19 +592,19 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>РезультатыДетали</name>
-      <id>41</id>
+      <name>ТочкиПроб042Статус</name>
+      <id>75</id>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>Результаты.Детали</segments>
+        <segments>ТочкиПроб042.Статус</segments>
       </dataPath>
       <extendedTooltip>
-        <name>РезультатыДеталиРасширеннаяПодсказка</name>
-        <id>42</id>
+        <name>ТочкиПроб042СтатусРасширеннаяПодсказка</name>
+        <id>76</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
@@ -474,8 +613,48 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>РезультатыДеталиКонтекстноеМеню</name>
-        <id>43</id>
+        <name>ТочкиПроб042СтатусКонтекстноеМеню</name>
+        <id>77</id>
+        <autoFill>true</autoFill>
+      </contextMenu>
+      <type>InputField</type>
+      <editMode>EnterOnInput</editMode>
+      <showInHeader>true</showInHeader>
+      <headerHorizontalAlign>Left</headerHorizontalAlign>
+      <showInFooter>true</showInFooter>
+      <extInfo xsi:type="form:InputFieldExtInfo">
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <wrap>true</wrap>
+        <chooseType>true</chooseType>
+        <typeDomainEnabled>true</typeDomainEnabled>
+        <textEdit>true</textEdit>
+      </extInfo>
+    </items>
+    <items xsi:type="form:FormField">
+      <name>ТочкиПроб042Комментарий</name>
+      <id>78</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <dataPath xsi:type="form:DataPath">
+        <segments>ТочкиПроб042.Комментарий</segments>
+      </dataPath>
+      <extendedTooltip>
+        <name>ТочкиПроб042КомментарийРасширеннаяПодсказка</name>
+        <id>79</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <contextMenu>
+        <name>ТочкиПроб042КомментарийКонтекстноеМеню</name>
+        <id>80</id>
         <autoFill>true</autoFill>
       </contextMenu>
       <type>InputField</type>
@@ -493,46 +672,46 @@
       </extInfo>
     </items>
     <autoCommandBar>
-      <name>РезультатыКоманднаяПанель</name>
-      <id>35</id>
+      <name>ТочкиПроб042КоманднаяПанель</name>
+      <id>81</id>
       <horizontalAlign>Left</horizontalAlign>
     </autoCommandBar>
     <searchStringAddition>
-      <name>РезультатыСтрокаПоиска</name>
-      <id>36</id>
-      <source>Результаты</source>
+      <name>ТочкиПроб042СтрокаПоиска</name>
+      <id>82</id>
+      <source>ТочкиПроб042</source>
       <extInfo xsi:type="form:SearchStringAdditionExtInfo">
         <additionSource>
-          <item>Результаты</item>
+          <item>ТочкиПроб042</item>
           <type>SearchStringRepresentation</type>
         </additionSource>
       </extInfo>
     </searchStringAddition>
     <viewStatusAddition>
-      <name>РезультатыСостояниеПросмотра</name>
-      <id>37</id>
-      <source>Результаты</source>
+      <name>ТочкиПроб042СостояниеПросмотра</name>
+      <id>83</id>
+      <source>ТочкиПроб042</source>
       <extInfo xsi:type="form:ViewStatusAdditionExtInfo">
         <additionSource>
-          <item>Результаты</item>
+          <item>ТочкиПроб042</item>
           <type>ViewStatusRepresentation</type>
         </additionSource>
       </extInfo>
     </viewStatusAddition>
     <searchControlAddition>
-      <name>РезультатыУправлениеПоиском</name>
-      <id>38</id>
-      <source>Результаты</source>
+      <name>ТочкиПроб042УправлениеПоиском</name>
+      <id>84</id>
+      <source>ТочкиПроб042</source>
       <extInfo xsi:type="form:SearchControlAdditionExtInfo">
         <additionSource>
-          <item>Результаты</item>
+          <item>ТочкиПроб042</item>
           <type>SearchControl</type>
         </additionSource>
       </extInfo>
     </searchControlAddition>
     <extendedTooltip>
-      <name>РезультатыРасширеннаяПодсказка</name>
-      <id>39</id>
+      <name>ТочкиПроб042РасширеннаяПодсказка</name>
+      <id>85</id>
       <type>Label</type>
       <autoMaxWidth>true</autoMaxWidth>
       <autoMaxHeight>true</autoMaxHeight>
@@ -541,8 +720,8 @@
       </extInfo>
     </extendedTooltip>
     <contextMenu>
-      <name>РезультатыКонтекстноеМеню</name>
-      <id>40</id>
+      <name>ТочкиПроб042КонтекстноеМеню</name>
+      <id>86</id>
       <autoFill>true</autoFill>
     </contextMenu>
     <representation>Table</representation>
@@ -624,13 +803,13 @@
     <name>ОбщийБалл</name>
     <title>
       <key>ru</key>
-      <value>Общий балл (0..100)</value>
+      <value>Индекс к бюджету (100 = бюджет)</value>
     </title>
     <id>3</id>
     <valueType>
       <types>Number</types>
       <numberQualifiers>
-        <precision>5</precision>
+        <precision>15</precision>
         <scale>1</scale>
       </numberQualifiers>
     </valueType>
@@ -658,6 +837,22 @@
     <edit>
       <common>true</common>
     </edit>
+  </attributes>
+  <attributes>
+    <name>ПутьПакета042</name>
+    <title><key>ru</key><value>Путь JSON-пакета на сервере 1С</value></title>
+    <id>6</id>
+    <valueType><types>String</types><stringQualifiers><length>500</length></stringQualifiers></valueType>
+    <view><common>true</common></view>
+    <edit><common>true</common></edit>
+  </attributes>
+  <attributes>
+    <name>ИдентификаторПрогона042</name>
+    <title><key>ru</key><value>ID прогона 042</value></title>
+    <id>7</id>
+    <valueType><types>String</types><stringQualifiers><length>36</length></stringQualifiers></valueType>
+    <view><common>true</common></view>
+    <edit><common>true</common></edit>
   </attributes>
   <attributes>
     <name>Результаты</name>
@@ -760,13 +955,13 @@
       <name>Баллы</name>
       <title>
         <key>ru</key>
-        <value>Баллы</value>
+        <value>Индекс</value>
       </title>
       <id>5</id>
       <valueType>
         <types>Number</types>
         <numberQualifiers>
-          <precision>5</precision>
+          <precision>15</precision>
           <scale>1</scale>
         </numberQualifiers>
       </valueType>
@@ -818,6 +1013,78 @@
       </edit>
     </columns>
   </attributes>
+  <attributes>
+    <name>ТочкиПроб042</name>
+    <title><key>ru</key><value>Кривая чтения под записью</value></title>
+    <id>8</id>
+    <valueType><types>ValueTable</types></valueType>
+    <view><common>true</common></view>
+    <edit><common>true</common></edit>
+    <columns>
+      <name>ИдентификаторТочки</name>
+      <title><key>ru</key><value>Точка</value></title>
+      <id>1</id>
+      <valueType><types>String</types><stringQualifiers><length>50</length></stringQualifiers></valueType>
+      <view><common>true</common></view>
+      <edit><common>true</common></edit>
+    </columns>
+    <columns>
+      <name>НомерПовтора</name>
+      <title><key>ru</key><value>Повтор</value></title>
+      <id>2</id>
+      <valueType><types>Number</types><numberQualifiers><precision>5</precision><scale>0</scale></numberQualifiers></valueType>
+      <view><common>true</common></view>
+      <edit><common>true</common></edit>
+    </columns>
+    <columns>
+      <name>Фаза</name>
+      <title><key>ru</key><value>Фаза</value></title>
+      <id>3</id>
+      <valueType><types>String</types><stringQualifiers><length>12</length></stringQualifiers></valueType>
+      <view><common>true</common></view>
+      <edit><common>true</common></edit>
+    </columns>
+    <columns>
+      <name>ЦелевойТемпЗаписиБайтВСекунду</name>
+      <title><key>ru</key><value>Цель записи, Б/с</value></title>
+      <id>4</id>
+      <valueType><types>Number</types><numberQualifiers><precision>15</precision><scale>0</scale></numberQualifiers></valueType>
+      <view><common>true</common></view>
+      <edit><common>true</common></edit>
+    </columns>
+    <columns>
+      <name>ФактическийТемпЗаписиБайтВСекунду</name>
+      <title><key>ru</key><value>Факт записи, Б/с</value></title>
+      <id>5</id>
+      <valueType><types>Number</types><numberQualifiers><precision>15</precision><scale>0</scale></numberQualifiers></valueType>
+      <view><common>true</common></view>
+      <edit><common>true</common></edit>
+    </columns>
+    <columns>
+      <name>ЧтениеP95Нс</name>
+      <title><key>ru</key><value>P95 чтения, нс</value></title>
+      <id>6</id>
+      <valueType><types>Number</types><numberQualifiers><precision>15</precision><scale>0</scale></numberQualifiers></valueType>
+      <view><common>true</common></view>
+      <edit><common>true</common></edit>
+    </columns>
+    <columns>
+      <name>Статус</name>
+      <title><key>ru</key><value>Статус</value></title>
+      <id>7</id>
+      <valueType><types>String</types><stringQualifiers><length>20</length></stringQualifiers></valueType>
+      <view><common>true</common></view>
+      <edit><common>true</common></edit>
+    </columns>
+    <columns>
+      <name>Комментарий</name>
+      <title><key>ru</key><value>Комментарий</value></title>
+      <id>8</id>
+      <valueType><types>String</types><stringQualifiers><length>500</length></stringQualifiers></valueType>
+      <view><common>true</common></view>
+      <edit><common>true</common></edit>
+    </columns>
+  </attributes>
   <formCommands>
     <name>ВыполнитьПрогон</name>
     <title>
@@ -832,6 +1099,26 @@
       <handler>
         <name>ВыполнитьПрогон</name>
       </handler>
+    </action>
+    <currentRowUse>Auto</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>ИмпортироватьПакетПроб042</name>
+    <title><key>ru</key><value>Импортировать пакет 042</value></title>
+    <id>2</id>
+    <use><common>true</common></use>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler><name>ИмпортироватьПакетПроб042</name></handler>
+    </action>
+    <currentRowUse>Auto</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>ПоказатьКривуюПроб042</name>
+    <title><key>ru</key><value>Показать кривую 042</value></title>
+    <id>3</id>
+    <use><common>true</common></use>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler><name>ПоказатьКривуюПроб042</name></handler>
     </action>
     <currentRowUse>Auto</currentRowUse>
   </formCommands>

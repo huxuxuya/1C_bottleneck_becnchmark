@@ -50,11 +50,13 @@
   <commonModules>CommonModule.БенчмаркПроба011РасчетнаяЭффективностьvCPU</commonModules>
   <commonModules>CommonModule.БенчмаркПробыВычисления</commonModules>
   <commonModules>CommonModule.БенчмаркРаннер</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба042Хранилище</commonModules>
   <catalogs>Catalog.Товары</catalogs>
   <catalogs>Catalog.Склады</catalogs>
   <documents>Document.ДвижениеТоваров</documents>
   <dataProcessors>DataProcessor.ЗапускБенчмарка</dataProcessors>
   <informationRegisters>InformationRegister.РезультатыПрогонов</informationRegisters>
+  <informationRegisters>InformationRegister.РезультатыПроб042</informationRegisters>
   <accumulationRegisters>AccumulationRegister.ОстаткиТоваров</accumulationRegisters>
   <commonModules>CommonModule.БенчмаркПроба012CoStopESXi</commonModules>
   <commonModules>CommonModule.БенчмаркПроба013АсимметрияvCPU</commonModules>
