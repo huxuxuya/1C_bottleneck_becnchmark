@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="794dcb1a-0c64-425b-a9a4-c94a0041c6ab">
+  <name>БенчмаркПроба016ПервичноеРазмещение</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба016ПервичноеРазмещение</value>
+  </synonym>
+  <comment>Анализ чувствительности расчёта к NUMA first-touch</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

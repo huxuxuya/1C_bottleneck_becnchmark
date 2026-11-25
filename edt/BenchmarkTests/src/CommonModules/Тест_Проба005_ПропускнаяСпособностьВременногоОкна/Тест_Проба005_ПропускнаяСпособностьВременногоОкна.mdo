@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="e9edaf51-0f3f-4208-9467-d9e69332f6b4">
+  <name>Тест_Проба005_ПропускнаяСпособностьВременногоОкна</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест Проба005 ПропускнаяСпособностьВременногоОкна</value>
+  </synonym>
+  <comment>YAxUnit-проверка: Проба005_ПропускнаяСпособностьВременногоОкна</comment>
+  <server>true</server>
+</mdclass:CommonModule>

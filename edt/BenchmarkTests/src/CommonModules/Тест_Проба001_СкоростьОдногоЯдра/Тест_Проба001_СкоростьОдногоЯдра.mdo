@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="28a744f4-3e16-4cd3-b390-aa6e5b69825d">
+  <name>Тест_Проба001_СкоростьОдногоЯдра</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест Проба001 СкоростьОдногоЯдра</value>
+  </synonym>
+  <comment>YAxUnit-проверка: Проба001_СкоростьОдногоЯдра</comment>
+  <server>true</server>
+</mdclass:CommonModule>

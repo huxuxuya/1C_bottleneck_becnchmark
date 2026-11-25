@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="bef0dc77-f8df-4e26-b771-cda4a535cf41">
+  <name>БенчмаркПроба011РасчетнаяЭффективностьvCPU</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба011РасчетнаяЭффективностьvCPU</value>
+  </synonym>
+  <comment>Отдельный модуль реализации сценария 011</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

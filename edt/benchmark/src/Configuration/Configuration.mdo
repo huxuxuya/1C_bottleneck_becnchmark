@@ -38,6 +38,17 @@
   <commonModules>CommonModule.БенчмаркЯдро</commonModules>
   <commonModules>CommonModule.БенчмаркГенераторДанных</commonModules>
   <commonModules>CommonModule.БенчмаркПробы</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба002НезависимыеИнструкции</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба003АктивноеОжидание</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба004СервисноеВремяКороткихЗадач</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба005ПропускнаяСпособностьОкна</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба006ПараллельныеЦепочки</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба007РазбросВремениПорций</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба008ПервыйБлок</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба009УстойчиваяСкорость</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба010ВыбросыВремениПорций</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба011РасчетнаяЭффективностьvCPU</commonModules>
+  <commonModules>CommonModule.БенчмаркПробыВычисления</commonModules>
   <commonModules>CommonModule.БенчмаркРаннер</commonModules>
   <catalogs>Catalog.Товары</catalogs>
   <catalogs>Catalog.Склады</catalogs>
@@ -45,4 +56,10 @@
   <dataProcessors>DataProcessor.ЗапускБенчмарка</dataProcessors>
   <informationRegisters>InformationRegister.РезультатыПрогонов</informationRegisters>
   <accumulationRegisters>AccumulationRegister.ОстаткиТоваров</accumulationRegisters>
+  <commonModules>CommonModule.БенчмаркПроба012CoStopESXi</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба013АсимметрияvCPU</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба014УдаленнаяNUMAПамять</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба015ПолосаNUMA</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба016ПервичноеРазмещение</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба017ВытеснениеПамятиХостом</commonModules>
 </mdclass:Configuration>

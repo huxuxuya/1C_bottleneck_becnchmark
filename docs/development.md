@@ -27,6 +27,12 @@
    make export-xml-docker   # через профиль edt-export в Docker
    ```
 
+   На macOS скрипт также ищет `1cedtcli` в пользовательской установке EDT. На Apple Silicon для x86_64 EDT может понадобиться отдельная копия `1cedt.ini` с параметром `-vm` и путём к x86_64 `libjvm.dylib`, вставленными перед `-vmargs`. Передайте её через `EDT_INI_FILE`; оригинальный файл установки менять не нужно:
+   ```bash
+   EDT_CLI="/путь/к/1cedt.app/Contents/Eclipse/1cedtcli" \
+   EDT_INI_FILE="/путь/к/1cedt-x86.ini" make export-xml
+   ```
+
 3. **Вариант 1 (`ibcmd` — файловая ИБ и быстрые тесты):**
    ```bash
    make test-ibcmd

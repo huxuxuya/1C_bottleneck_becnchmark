@@ -16,6 +16,14 @@
     <key>ru</key>
     <value>Результаты прогонов</value>
   </synonym>
+  <recordPresentation>
+    <key>ru</key>
+    <value>Результат прогона</value>
+  </recordPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Результаты прогонов</value>
+  </listPresentation>
   <useStandardCommands>true</useStandardCommands>
   <editType>InDialog</editType>
   <dataLockControlMode>Managed</dataLockControlMode>

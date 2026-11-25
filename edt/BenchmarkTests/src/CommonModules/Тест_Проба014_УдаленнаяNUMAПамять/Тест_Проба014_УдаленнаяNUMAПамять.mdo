@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="0527af09-cc67-4f65-b3e0-0305477a031d">
+  <name>Тест_Проба014_УдаленнаяNUMAПамять</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба014_УдаленнаяNUMAПамять</value>
+  </synonym>
+  <comment>YAxUnit-проверка внешней аналитики теста Проба014_УдаленнаяNUMAПамять</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

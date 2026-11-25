@@ -74,12 +74,16 @@ rm -f "${REPORTS_DIR}/junit.xml" "${REPORTS_DIR}/exitcode.txt" "${REPORTS_DIR}/y
 case "${MODE}" in
   ibcmd)
     rm -rf "${IB_DIR}"
-    DB_ARGS=(--db-path="${IB_DIR}")
+    mkdir -p "${IB_DIR}/server-data"
+    DB_ARGS=(--db-path="${IB_DIR}" --data="${IB_DIR}/server-data")
     CREATE_EXTRA=()
     CLIENT_CONN="/F${IB_DIR}"
     ;;
   postgres)
+    SERVER_DATA_DIR="${WORKSPACE}/build/ibcmd-server-data/postgres"
+    mkdir -p "${SERVER_DATA_DIR}"
     DB_ARGS=(
+      --data="${SERVER_DATA_DIR}"
       --dbms=PostgreSQL
       --db-server="${PG_HOST} port=${PG_PORT}"
       --db-name="${PG_DB}"
@@ -157,14 +161,17 @@ if [[ "${MODE}" == "postgres" ]]; then
 fi
 
 echo "=== [5/5] Запуск тестов YAxUnit ==="
-CLIENT_BIN="$(find_1c_bin 1cv8c || find_1c_bin 1cv8 || true)"
+CLIENT_BIN="${CLIENT_BIN:-$(find_1c_bin 1cv8c || find_1c_bin 1cv8 || true)}"
 if [[ -z "${CLIENT_BIN}" ]]; then
   echo "Ошибка: не найден 1cv8c или 1cv8 для выполнения RunUnitTests" >&2
   exit 1
 fi
 
 YAXUNIT_RUN_CFG="${REPORTS_DIR}/yaxunit-run.json"
-sed "s|/workspace|${WORKSPACE}|g" "${YAXUNIT_CFG}" > "${YAXUNIT_RUN_CFG}"
+sed \
+  -e "s|/workspace/build/reports|${REPORTS_DIR}|g" \
+  -e "s|/workspace|${WORKSPACE}|g" \
+  "${YAXUNIT_CFG}" > "${YAXUNIT_RUN_CFG}"
 
 CLIENT_ARGS=(
   ENTERPRISE

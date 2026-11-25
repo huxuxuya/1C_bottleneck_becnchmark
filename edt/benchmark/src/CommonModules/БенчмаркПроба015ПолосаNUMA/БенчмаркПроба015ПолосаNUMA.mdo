@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="a34ea0b0-6871-4dbf-8938-2a9ead6519f0">
+  <name>БенчмаркПроба015ПолосаNUMA</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба015ПолосаNUMA</value>
+  </synonym>
+  <comment>Анализ полосы чтения для пар NUMA-узлов</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

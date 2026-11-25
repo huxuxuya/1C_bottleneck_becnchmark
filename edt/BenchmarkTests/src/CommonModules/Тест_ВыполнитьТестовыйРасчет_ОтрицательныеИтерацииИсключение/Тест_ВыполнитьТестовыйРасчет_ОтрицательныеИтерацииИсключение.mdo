@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="164c237d-56c1-45c3-a0b0-dd1b42d73fed">
+  <name>Тест_ВыполнитьТестовыйРасчет_ОтрицательныеИтерацииИсключение</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест ВыполнитьТестовыйРасчет ОтрицательныеИтерацииИсключение</value>
+  </synonym>
+  <comment>YAxUnit-проверка: ВыполнитьТестовыйРасчет_ОтрицательныеИтерацииИсключение</comment>
+  <server>true</server>
+</mdclass:CommonModule>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="184c9cc2-505d-4cb9-bf75-a7722336b443">
+  <name>БенчмаркПроба014УдаленнаяNUMAПамять</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба014УдаленнаяNUMAПамять</value>
+  </synonym>
+  <comment>Анализ матрицы локальной и удалённой NUMA-задержки</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

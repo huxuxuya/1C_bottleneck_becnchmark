@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="9b71061a-6310-4967-bc0d-bee605239c69">
+  <name>БенчмаркПроба012CoStopESXi</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба012CoStopESXi</value>
+  </synonym>
+  <comment>Анализ сравнения размеров ВМ по внешним счётчикам ESXi</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

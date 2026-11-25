@@ -14,6 +14,14 @@
     <key>ru</key>
     <value>Склады</value>
   </synonym>
+  <objectPresentation>
+    <key>ru</key>
+    <value>Склад</value>
+  </objectPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Склады</value>
+  </listPresentation>
   <useStandardCommands>true</useStandardCommands>
   <inputByString>Catalog.Склады.StandardAttribute.Description</inputByString>
   <inputByString>Catalog.Склады.StandardAttribute.Code</inputByString>

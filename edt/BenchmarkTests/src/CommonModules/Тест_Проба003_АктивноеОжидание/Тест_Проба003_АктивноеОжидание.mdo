@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="452bbae6-f4e3-43ed-9132-3ec6ee847bb9">
+  <name>Тест_Проба003_АктивноеОжидание</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест Проба003 АктивноеОжидание</value>
+  </synonym>
+  <comment>YAxUnit-проверка: Проба003_АктивноеОжидание</comment>
+  <server>true</server>
+</mdclass:CommonModule>

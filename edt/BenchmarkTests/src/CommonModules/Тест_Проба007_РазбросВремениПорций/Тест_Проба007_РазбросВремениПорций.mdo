@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="197a2596-43de-4890-a081-b90f2f407115">
+  <name>Тест_Проба007_РазбросВремениПорций</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест Проба007 РазбросВремениПорций</value>
+  </synonym>
+  <comment>YAxUnit-проверка: Проба007_РазбросВремениПорций</comment>
+  <server>true</server>
+</mdclass:CommonModule>
