@@ -205,9 +205,11 @@
     <visible>true</visible>
     <enabled>true</enabled>
     <userVisible><common>true</common></userVisible>
+    <title><key>ru</key><value>Импорт результатов дисковой пробы 042</value></title>
     <type>UsualGroup</type>
     <extInfo xsi:type="form:UsualGroupExtInfo">
       <group>HorizontalIfPossible</group>
+      <showTitle>true</showTitle>
       <showLeftMargin>true</showLeftMargin>
       <united>true</united>
       <throughAlign>Auto</throughAlign>
@@ -278,7 +280,7 @@
     <items xsi:type="form:FormField">
       <name>ПолеИдентификаторПрогона042</name>
       <id>50</id>
-      <visible>true</visible>
+      <visible>false</visible>
       <enabled>true</enabled>
       <userVisible>
         <common>true</common>
@@ -318,7 +320,7 @@
     <items xsi:type="form:Button">
       <name>КнопкаПоказатьКривую042</name>
       <id>53</id>
-      <visible>true</visible>
+      <visible>false</visible>
       <enabled>true</enabled>
       <userVisible>
         <common>true</common>
@@ -803,7 +805,7 @@
     <name>ОбщийБалл</name>
     <title>
       <key>ru</key>
-      <value>Индекс к бюджету (100 = бюджет)</value>
+      <value>Сводный индекс (100 = целевой уровень)</value>
     </title>
     <id>3</id>
     <valueType>
@@ -840,7 +842,7 @@
   </attributes>
   <attributes>
     <name>ПутьПакета042</name>
-    <title><key>ru</key><value>Путь JSON-пакета на сервере 1С</value></title>
+    <title><key>ru</key><value>Путь к файлу пакета 042 на сервере 1С</value></title>
     <id>6</id>
     <valueType><types>String</types><stringQualifiers><length>500</length></stringQualifiers></valueType>
     <view><common>true</common></view>
@@ -1015,7 +1017,7 @@
   </attributes>
   <attributes>
     <name>ТочкиПроб042</name>
-    <title><key>ru</key><value>Кривая чтения под записью</value></title>
+    <title><key>ru</key><value>Точки пробы 042: чтение при записи</value></title>
     <id>8</id>
     <valueType><types>ValueTable</types></valueType>
     <view><common>true</common></view>
