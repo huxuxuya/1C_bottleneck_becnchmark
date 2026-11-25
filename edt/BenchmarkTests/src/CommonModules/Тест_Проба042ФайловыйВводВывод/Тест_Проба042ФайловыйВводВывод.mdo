@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="4d751be3-ffe2-4b3d-b0ae-f1a4836da727">
+  <name>Тест_Проба042ФайловыйВводВывод</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест файлового ввода-вывода 042</value>
+  </synonym>
+  <comment>YAxUnit-проверка BSL-пробы последовательного файлового ввода-вывода 042</comment>
+  <server>true</server>
+</mdclass:CommonModule>

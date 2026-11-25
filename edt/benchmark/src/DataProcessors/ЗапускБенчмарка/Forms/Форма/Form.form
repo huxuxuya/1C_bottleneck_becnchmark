@@ -213,39 +213,39 @@
     </dataPath>
     <titleLocation>Top</titleLocation>
     <autoCommandBar>
-      <name>ТочкиПроб042КоманднаяПанель</name>
+      <name>РезультатыКоманднаяПанель</name>
       <id>113</id>
       <horizontalAlign>Left</horizontalAlign>
     </autoCommandBar>
     <searchStringAddition>
-      <name>ТочкиПроб042СтрокаПоиска</name>
+      <name>РезультатыСтрокаПоиска</name>
       <id>114</id>
-      <source>ТочкиПроб042</source>
+      <source>Результаты</source>
       <extInfo xsi:type="form:SearchStringAdditionExtInfo">
         <additionSource>
-          <item>ТочкиПроб042</item>
+          <item>Результаты</item>
           <type>SearchStringRepresentation</type>
         </additionSource>
       </extInfo>
     </searchStringAddition>
     <viewStatusAddition>
-      <name>ТочкиПроб042СостояниеПросмотра</name>
+      <name>РезультатыСостояниеПросмотра</name>
       <id>115</id>
-      <source>ТочкиПроб042</source>
+      <source>Результаты</source>
       <extInfo xsi:type="form:ViewStatusAdditionExtInfo">
         <additionSource>
-          <item>ТочкиПроб042</item>
+          <item>Результаты</item>
           <type>ViewStatusRepresentation</type>
         </additionSource>
       </extInfo>
     </viewStatusAddition>
     <searchControlAddition>
-      <name>ТочкиПроб042УправлениеПоиском</name>
+      <name>РезультатыУправлениеПоиском</name>
       <id>116</id>
-      <source>ТочкиПроб042</source>
+      <source>Результаты</source>
       <extInfo xsi:type="form:SearchControlAdditionExtInfo">
         <additionSource>
-          <item>ТочкиПроб042</item>
+          <item>Результаты</item>
           <type>SearchControl</type>
         </additionSource>
       </extInfo>

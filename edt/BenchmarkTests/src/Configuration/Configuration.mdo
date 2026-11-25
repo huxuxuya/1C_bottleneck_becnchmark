@@ -63,4 +63,5 @@
   <commonModules>CommonModule.Тест_Проба025_ВозвратИзSwap</commonModules>
   <commonModules>CommonModule.Тест_Проба026_СкоростьBSL</commonModules>
   <commonModules>CommonModule.Тест_Проба027_БазоваяЦенаСерверногоВызова</commonModules>
+  <commonModules>CommonModule.Тест_Проба042ФайловыйВводВывод</commonModules>
 </mdclass:Configuration>

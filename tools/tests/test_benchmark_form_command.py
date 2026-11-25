@@ -69,6 +69,46 @@ class BenchmarkFormCommandTests(unittest.TestCase):
         self.assertIn("Форма.ОбщийБалл", source)
         self.assertIn("Форма.Результаты.Количество()", source)
 
+    def test_file_probe_button_is_bound_to_server_runner(self) -> None:
+        root = ET.parse(FORM_PATH).getroot()
+        buttons = [
+            element
+            for element in root.iter()
+            if element.tag.rsplit("}", 1)[-1] == "items"
+            and child_text(element, "name") == "КнопкаВыполнитьПробу042"
+        ]
+        self.assertEqual(len(buttons), 1, "the form must have exactly one 042 button")
+        self.assertEqual(
+            child_text(buttons[0], "commandName"),
+            "Form.Command.ВыполнитьПробу042",
+        )
+
+        commands = [
+            element
+            for element in root.iter()
+            if element.tag.rsplit("}", 1)[-1] == "formCommands"
+            and child_text(element, "name") == "ВыполнитьПробу042"
+        ]
+        self.assertEqual(len(commands), 1, "the 042 form command must be declared once")
+        handlers = [
+            element
+            for element in commands[0].iter()
+            if element.tag.rsplit("}", 1)[-1] == "handler"
+        ]
+        self.assertEqual(len(handlers), 1)
+        self.assertEqual(child_text(handlers[0], "name"), "ВыполнитьПробу042")
+
+        module = MODULE_PATH.read_text(encoding="utf-8")
+        self.assertRegex(
+            module,
+            r"Процедура\s+ВыполнитьПробу042\s*\(Команда\)\s+Экспорт(?s:.*?)"
+            r"ВыполнитьПробу042НаСервере\(\);",
+        )
+        self.assertIn(
+            "БенчмаркПроба042Хранилище.ВыполнитьПрогон()",
+            module,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
