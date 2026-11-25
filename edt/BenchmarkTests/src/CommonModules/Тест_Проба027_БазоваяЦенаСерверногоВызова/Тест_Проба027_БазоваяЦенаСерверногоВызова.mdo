@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="30769fa5-6ff3-4d6d-b85f-4fec1f71e4aa">
+  <name>Тест_Проба027_БазоваяЦенаСерверногоВызова</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба027_БазоваяЦенаСерверногоВызова</value>
+  </synonym>
+  <comment>Клиентская YAxUnit-проверка RTT базового серверного вызова</comment>
+  <clientManagedApplication>true</clientManagedApplication>
+</mdclass:CommonModule>

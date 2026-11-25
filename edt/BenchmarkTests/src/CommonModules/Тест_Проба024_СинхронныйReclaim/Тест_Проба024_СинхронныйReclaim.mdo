@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="34feaa74-5e0d-4764-8f2c-551f57250eea">
+  <name>Тест_Проба024_СинхронныйReclaim</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба024_СинхронныйReclaim</value>
+  </synonym>
+  <comment>YAxUnit-проверка пробы Тест_Проба024_СинхронныйReclaim</comment>
+  <server>true</server>
+</mdclass:CommonModule>

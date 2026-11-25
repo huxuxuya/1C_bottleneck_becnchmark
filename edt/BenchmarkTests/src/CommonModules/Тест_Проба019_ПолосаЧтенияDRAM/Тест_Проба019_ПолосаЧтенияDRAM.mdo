@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="ace7e928-2ecd-4bde-8e21-da471bea0c06">
+  <name>Тест_Проба019_ПолосаЧтенияDRAM</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба019_ПолосаЧтенияDRAM</value>
+  </synonym>
+  <comment>YAxUnit-проверка внешней аналитики теста Тест_Проба019_ПолосаЧтенияDRAM</comment>
+  <server>true</server>
+</mdclass:CommonModule>

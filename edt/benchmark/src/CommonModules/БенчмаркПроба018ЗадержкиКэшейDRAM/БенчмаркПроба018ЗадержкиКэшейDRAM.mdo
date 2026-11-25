@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="5f7d7062-4fb0-45d2-bddd-6af81792d8c8">
+  <name>БенчмаркПроба018ЗадержкиКэшейDRAM</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба018ЗадержкиКэшейDRAM</value>
+  </synonym>
+  <comment>Кривая задержек зависимого случайного доступа по размерам рабочего набора</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

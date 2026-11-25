@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="98157f48-3503-41f9-8d22-410785097ad2">
+  <name>БенчмаркПроба026СкоростьBSL</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба026СкоростьBSL</value>
+  </synonym>
+  <comment>Измерение времени BSL-пакета с проверкой результата и сравнением с пробой 001</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

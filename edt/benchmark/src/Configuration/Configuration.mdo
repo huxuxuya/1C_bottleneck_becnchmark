@@ -62,4 +62,14 @@
   <commonModules>CommonModule.БенчмаркПроба015ПолосаNUMA</commonModules>
   <commonModules>CommonModule.БенчмаркПроба016ПервичноеРазмещение</commonModules>
   <commonModules>CommonModule.БенчмаркПроба017ВытеснениеПамятиХостом</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба018ЗадержкиКэшейDRAM</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба019ПолосаЧтенияDRAM</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба020ПолосаЗаписиDRAM</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба021ЗадержкаПамятиПодНагрузкой</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба022ДавлениеНаTLB</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба023ЛожноеСовместноеИспользование</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба024СинхронныйReclaim</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба025ВозвратИзSwap</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба026СкоростьBSL</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба027БазоваяЦенаСерверногоВызова</commonModules>
 </mdclass:Configuration>

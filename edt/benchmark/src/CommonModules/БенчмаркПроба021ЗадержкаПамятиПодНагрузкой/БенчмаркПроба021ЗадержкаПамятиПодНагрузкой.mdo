@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="38097166-9cd9-469a-b678-243efb07cb12">
+  <name>БенчмаркПроба021ЗадержкаПамятиПодНагрузкой</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба021ЗадержкаПамятиПодНагрузкой</value>
+  </synonym>
+  <comment>Задержка зависимого чтения при фоновой нагрузке на память</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="bccc23e3-52ac-4d96-853f-752e7b818677">
+  <name>БенчмаркПроба025ВозвратИзSwap</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба025ВозвратИзSwap</value>
+  </synonym>
+  <comment>Сравнение времени обхода и swap-in до и после давления памяти</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

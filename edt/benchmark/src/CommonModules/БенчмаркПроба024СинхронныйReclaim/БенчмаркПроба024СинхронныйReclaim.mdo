@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="e3878736-297f-4b8c-83f9-5a9cc4d16074">
+  <name>БенчмаркПроба024СинхронныйReclaim</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба024СинхронныйReclaim</value>
+  </synonym>
+  <comment>Анализ direct reclaim и memory PSI по размерам ограниченного набора</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

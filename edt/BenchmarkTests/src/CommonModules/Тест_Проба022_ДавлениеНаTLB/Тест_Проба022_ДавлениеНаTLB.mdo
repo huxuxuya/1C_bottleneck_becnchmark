@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="b80572ca-8c38-4ee4-8492-046eccefd2a2">
+  <name>Тест_Проба022_ДавлениеНаTLB</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба022_ДавлениеНаTLB</value>
+  </synonym>
+  <comment>YAxUnit-проверка внешней аналитики теста Тест_Проба022_ДавлениеНаTLB</comment>
+  <server>true</server>
+</mdclass:CommonModule>

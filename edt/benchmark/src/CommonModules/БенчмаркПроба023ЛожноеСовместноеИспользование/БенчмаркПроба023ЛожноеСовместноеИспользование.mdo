@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="88e06fb9-7d91-43ae-893a-478debd4d4db">
+  <name>БенчмаркПроба023ЛожноеСовместноеИспользование</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба023ЛожноеСовместноеИспользование</value>
+  </synonym>
+  <comment>Расчёт влияния расположения независимых счётчиков на пропускную способность</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

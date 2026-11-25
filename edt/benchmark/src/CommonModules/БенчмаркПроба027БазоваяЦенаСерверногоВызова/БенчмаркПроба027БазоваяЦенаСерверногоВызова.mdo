@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="ec30c23f-e840-4e8f-8a8c-78a3012f06c3">
+  <name>БенчмаркПроба027БазоваяЦенаСерверногоВызова</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба027БазоваяЦенаСерверногоВызова</value>
+  </synonym>
+  <comment>Серверный обработчик и анализ RTT клиент-серверного вызова</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <serverCall>true</serverCall>
+</mdclass:CommonModule>

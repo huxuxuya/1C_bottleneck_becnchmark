@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="9b1662f5-810d-4eb4-b219-fe429a76ad03">
+  <name>Тест_Проба026_СкоростьBSL</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба026_СкоростьBSL</value>
+  </synonym>
+  <comment>YAxUnit-проверка пробы Тест_Проба026_СкоростьBSL</comment>
+  <server>true</server>
+</mdclass:CommonModule>

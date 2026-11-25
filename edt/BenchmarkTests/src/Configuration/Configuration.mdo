@@ -53,4 +53,14 @@
   <commonModules>CommonModule.Тест_Проба015_МежузловаяПолосаNUMA</commonModules>
   <commonModules>CommonModule.Тест_Проба016_ПервичноеРазмещение</commonModules>
   <commonModules>CommonModule.Тест_Проба017_ВытеснениеПамятиХостом</commonModules>
+  <commonModules>CommonModule.Тест_Проба018_ЗадержкиКэшейDRAM</commonModules>
+  <commonModules>CommonModule.Тест_Проба019_ПолосаЧтенияDRAM</commonModules>
+  <commonModules>CommonModule.Тест_Проба020_ПолосаЗаписиDRAM</commonModules>
+  <commonModules>CommonModule.Тест_Проба021_ЗадержкаПодНагрузкой</commonModules>
+  <commonModules>CommonModule.Тест_Проба022_ДавлениеНаTLB</commonModules>
+  <commonModules>CommonModule.Тест_Проба023_ЛожноеСовместноеИспользование</commonModules>
+  <commonModules>CommonModule.Тест_Проба024_СинхронныйReclaim</commonModules>
+  <commonModules>CommonModule.Тест_Проба025_ВозвратИзSwap</commonModules>
+  <commonModules>CommonModule.Тест_Проба026_СкоростьBSL</commonModules>
+  <commonModules>CommonModule.Тест_Проба027_БазоваяЦенаСерверногоВызова</commonModules>
 </mdclass:Configuration>

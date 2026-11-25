@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="6c487715-109e-4272-818a-7abb76afc643">
+  <name>БенчмаркПроба022ДавлениеНаTLB</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба022ДавлениеНаTLB</value>
+  </synonym>
+  <comment>Сравнение page walks и задержки при разных фактических размерах страниц</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

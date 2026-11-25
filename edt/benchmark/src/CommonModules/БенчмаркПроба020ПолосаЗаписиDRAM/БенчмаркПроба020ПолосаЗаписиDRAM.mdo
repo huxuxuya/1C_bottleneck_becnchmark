@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="e13f462f-9240-42fb-9a3f-3cf329ffca04">
+  <name>БенчмаркПроба020ПолосаЗаписиDRAM</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба020ПолосаЗаписиDRAM</value>
+  </synonym>
+  <comment>Анализ полосы записи локальной DRAM с предварительным касанием</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>
