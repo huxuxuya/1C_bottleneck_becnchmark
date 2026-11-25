@@ -89,6 +89,23 @@
         </extInfo>
       </extendedTooltip>
     </items>
+    <items xsi:type="form:Button">
+      <name>КнопкаВыполнитьВсеДиагностикиBSL</name>
+      <id>143</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible><common>true</common></userVisible>
+      <type>UsualButton</type>
+      <commandName>Form.Command.ВыполнитьВсеДиагностикиBSL</commandName>
+      <extendedTooltip>
+        <name>КнопкаВыполнитьВсеДиагностикиBSLПодсказка</name>
+        <id>144</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo"><horizontalAlign>Left</horizontalAlign></extInfo>
+      </extendedTooltip>
+    </items>
   </items>
   <items xsi:type="form:FormGroup">
     <name>ГруппаИтоги</name>
@@ -1512,6 +1529,16 @@
       <handler>
         <name>ВыполнитьПрогон</name>
       </handler>
+    </action>
+    <currentRowUse>Auto</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>ВыполнитьВсеДиагностикиBSL</name>
+    <title><key>ru</key><value>Запустить все BSL-диагностики</value></title>
+    <id>3</id>
+    <use><common>true</common></use>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler><name>ВыполнитьВсеДиагностикиBSL</name></handler>
     </action>
     <currentRowUse>Auto</currentRowUse>
   </formCommands>

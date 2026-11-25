@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="2e57554a-c388-419a-adca-a0ccfa65d1dd">
+  <name>Тест_ДиагностикиBSL_ИсполнениеПоКодам</name>
+  <synonym><key>ru</key><value>Тест ДиагностикиBSL ИсполнениеПоКодам</value></synonym>
+  <comment>Отдельный YAxUnit-сценарий для каждого кода диагностики 028–090 и сквозная проверка сохранения</comment>
+  <server>true</server>
+</mdclass:CommonModule>

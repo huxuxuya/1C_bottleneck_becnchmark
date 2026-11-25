@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="8d806a5f-2c66-4af0-a670-33b1cfcb19d4">
+  <name>БенчмаркДиагностикиBSL</name>
+  <synonym><key>ru</key><value>Каталог BSL-диагностик</value></synonym>
+  <comment>Исполняемые BSL-диагностики с явным указанием прямого измерения, прокси или недоступного источника</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <serverCall>true</serverCall>
+</mdclass:CommonModule>

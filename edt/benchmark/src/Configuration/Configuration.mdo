@@ -75,4 +75,5 @@
   <commonModules>CommonModule.БенчмаркПроба025ВозвратИзSwap</commonModules>
   <commonModules>CommonModule.БенчмаркПроба026СкоростьBSL</commonModules>
   <commonModules>CommonModule.БенчмаркПроба027БазоваяЦенаСерверногоВызова</commonModules>
+  <commonModules>CommonModule.БенчмаркДиагностикиBSL</commonModules>
 </mdclass:Configuration>

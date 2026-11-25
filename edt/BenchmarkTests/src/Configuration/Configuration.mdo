@@ -64,4 +64,5 @@
   <commonModules>CommonModule.Тест_Проба026_СкоростьBSL</commonModules>
   <commonModules>CommonModule.Тест_Проба027_БазоваяЦенаСерверногоВызова</commonModules>
   <commonModules>CommonModule.Тест_Проба042ФайловыйВводВывод</commonModules>
+  <commonModules>CommonModule.Тест_ДиагностикиBSL_ИсполнениеПоКодам</commonModules>
 </mdclass:Configuration>

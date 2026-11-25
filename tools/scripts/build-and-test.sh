@@ -195,7 +195,39 @@ fi
 if [[ -f "${REPORTS_DIR}/exitcode.txt" ]]; then
   TEST_CODE="$(tr -dc '0-9' < "${REPORTS_DIR}/exitcode.txt")"
   echo "YAxUnit exitcode: ${TEST_CODE}"
-  exit "${TEST_CODE:-1}"
+  if [[ -z "${TEST_CODE}" || "${TEST_CODE}" != "0" ]]; then
+    exit "${TEST_CODE:-1}"
+  fi
+
+  python3 - "${REPORTS_DIR}/junit.xml" "${REPORTS_DIR}/yaxunit.log" "${MIN_YAXUNIT_TESTS:-102}" <<'PY'
+import sys
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+report_path, log_path, minimum_text = sys.argv[1:]
+minimum = int(minimum_text)
+report = Path(report_path)
+log = Path(log_path)
+if not report.is_file():
+    raise SystemExit(f"Ошибка: YAxUnit не создал JUnit-отчёт: {report}")
+
+root = ET.parse(report).getroot()
+suites = list(root.iter("testsuite"))
+tests = sum(int(suite.attrib.get("tests", 0)) for suite in suites)
+failures = sum(int(suite.attrib.get("failures", 0)) for suite in suites)
+errors = sum(int(suite.attrib.get("errors", 0)) for suite in suites)
+log_text = log.read_text(encoding="utf-8", errors="replace") if log.is_file() else ""
+compile_markers = ("Ошибка инициализации модуля", "[ОшибкаКомпиляцииВстроенногоЯзыка]")
+if any(marker in log_text for marker in compile_markers):
+    raise SystemExit("Ошибка: YAxUnit зарегистрировал ошибку инициализации/компиляции модуля; см. yaxunit.log")
+if tests < minimum:
+    raise SystemExit(f"Ошибка: выполнено {tests} тестов; требуется не менее {minimum}")
+if failures or errors:
+    raise SystemExit(f"Ошибка: JUnit содержит failures={failures}, errors={errors}")
+
+print(f"Проверено тестов по JUnit: {tests}; failures: {failures}; errors: {errors}")
+PY
+  exit 0
 fi
 
 echo "Предупреждение: файл ${REPORTS_DIR}/exitcode.txt не создан (проверьте ${REPORTS_DIR}/yaxunit.log)" >&2
