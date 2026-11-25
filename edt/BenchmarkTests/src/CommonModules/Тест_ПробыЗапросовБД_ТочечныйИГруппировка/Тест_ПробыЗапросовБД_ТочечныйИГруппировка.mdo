@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="2d212559-55eb-4146-90d0-276d53daf0fd">
+  <name>Тест_ПробыЗапросовБД_ТочечныйИГруппировка</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест ПробыЗапросовБД ТочечныйИГруппировка</value>
+  </synonym>
+  <comment>YAxUnit-проверка: ПробыЗапросовБД_ТочечныйИГруппировка</comment>
+  <server>true</server>
+</mdclass:CommonModule>

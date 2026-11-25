@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="8a37e755-cc6f-4c4f-bd89-37e2856bea8c">
+  <name>Тест_Проба004_СервисноеВремяКороткихЗадач</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест Проба004 СервисноеВремяКороткихЗадач</value>
+  </synonym>
+  <comment>YAxUnit-проверка: Проба004_СервисноеВремяКороткихЗадач</comment>
+  <server>true</server>
+</mdclass:CommonModule>

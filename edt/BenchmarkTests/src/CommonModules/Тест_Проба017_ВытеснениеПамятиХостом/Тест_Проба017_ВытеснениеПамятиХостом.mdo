@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="fd83097c-000f-409a-a6d2-bbead470bd38">
+  <name>Тест_Проба017_ВытеснениеПамятиХостом</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба017_ВытеснениеПамятиХостом</value>
+  </synonym>
+  <comment>YAxUnit-проверка внешней аналитики теста Проба017_ВытеснениеПамятиХостом</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

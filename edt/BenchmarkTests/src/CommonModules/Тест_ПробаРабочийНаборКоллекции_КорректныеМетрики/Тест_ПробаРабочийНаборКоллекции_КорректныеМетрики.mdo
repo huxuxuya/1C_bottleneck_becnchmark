@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="8d1a2e9a-f257-40b1-ad58-22bd758510c7">
+  <name>Тест_ПробаРабочийНаборКоллекции_КорректныеМетрики</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест ПробаРабочийНаборКоллекции КорректныеМетрики</value>
+  </synonym>
+  <comment>YAxUnit-проверка: ПробаРабочийНаборКоллекции_КорректныеМетрики</comment>
+  <server>true</server>
+</mdclass:CommonModule>

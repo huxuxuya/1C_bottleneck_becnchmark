@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="e9c68259-3b7d-48b7-8151-7e8de92c113f">
+  <name>БенчмаркПроба006ПараллельныеЦепочки</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба006ПараллельныеЦепочки</value>
+  </synonym>
+  <comment>Отдельный модуль реализации сценария 006</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

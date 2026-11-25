@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="6b178778-e6e1-4b2e-85a2-e9b1a27f2171">
+  <name>Тест_Проба016_ПервичноеРазмещение</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба016_ПервичноеРазмещение</value>
+  </synonym>
+  <comment>YAxUnit-проверка внешней аналитики теста Проба016_ПервичноеРазмещение</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

@@ -15,6 +15,14 @@
     <key>ru</key>
     <value>Товары</value>
   </synonym>
+  <objectPresentation>
+    <key>ru</key>
+    <value>Товар</value>
+  </objectPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Товары</value>
+  </listPresentation>
   <useStandardCommands>true</useStandardCommands>
   <inputByString>Catalog.Товары.StandardAttribute.Description</inputByString>
   <inputByString>Catalog.Товары.StandardAttribute.Code</inputByString>

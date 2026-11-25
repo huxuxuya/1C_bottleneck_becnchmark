@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="f31daf5e-e846-4466-b501-269acb2ceb94">
+  <name>БенчмаркПроба004СервисноеВремяКороткихЗадач</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба004СервисноеВремяКороткихЗадач</value>
+  </synonym>
+  <comment>Отдельный модуль реализации сценария 004</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

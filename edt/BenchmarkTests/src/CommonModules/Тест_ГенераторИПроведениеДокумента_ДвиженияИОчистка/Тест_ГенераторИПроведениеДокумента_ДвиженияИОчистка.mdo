@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="0813e048-7bb6-4825-8d01-b3aa2edab9fd">
+  <name>Тест_ГенераторИПроведениеДокумента_ДвиженияИОчистка</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест ГенераторИПроведениеДокумента ДвиженияИОчистка</value>
+  </synonym>
+  <comment>YAxUnit-проверка: ГенераторИПроведениеДокумента_ДвиженияИОчистка</comment>
+  <server>true</server>
+</mdclass:CommonModule>

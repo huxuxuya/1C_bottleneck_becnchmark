@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="1971a3c7-5c95-4418-964c-2b8e8f4b4c27">
+  <name>Тест_Проба015_МежузловаяПолосаNUMA</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба015_МежузловаяПолосаNUMA</value>
+  </synonym>
+  <comment>YAxUnit-проверка внешней аналитики теста Проба015_МежузловаяПолосаNUMA</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

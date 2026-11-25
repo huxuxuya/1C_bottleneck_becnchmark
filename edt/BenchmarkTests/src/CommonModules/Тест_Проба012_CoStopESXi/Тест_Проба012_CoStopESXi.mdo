@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="8faa7bb5-3203-4e58-9342-48b60df97a97">
+  <name>Тест_Проба012_CoStopESXi</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_Проба012_CoStopESXi</value>
+  </synonym>
+  <comment>YAxUnit-проверка внешней аналитики теста Проба012_CoStopESXi</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

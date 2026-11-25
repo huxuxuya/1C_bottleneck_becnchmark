@@ -25,6 +25,32 @@
   <version>0.1.0</version>
   <interfaceCompatibilityMode>Taxi</interfaceCompatibilityMode>
   <compatibilityMode>8.3.24</compatibilityMode>
-  <commonModules>CommonModule.Тест_ТестыБенчмарка</commonModules>
-  <commonModules>CommonModule.Тест_КлиентскиеТесты</commonModules>
+  <commonModules>CommonModule.Тест_ВыполнитьТестовыйРасчет_КорректнаяСумма</commonModules>
+  <commonModules>CommonModule.Тест_ВыполнитьТестовыйРасчет_НулевыеИтерации</commonModules>
+  <commonModules>CommonModule.Тест_ВыполнитьТестовыйРасчет_ОтрицательныеИтерацииИсключение</commonModules>
+  <commonModules>CommonModule.Тест_ГенераторИПроведениеДокумента_ДвиженияИОчистка</commonModules>
+  <commonModules>CommonModule.Тест_Проба001_СкоростьОдногоЯдра</commonModules>
+  <commonModules>CommonModule.Тест_Проба002_НезависимыеИнструкции</commonModules>
+  <commonModules>CommonModule.Тест_Проба003_АктивноеОжидание</commonModules>
+  <commonModules>CommonModule.Тест_Проба004_СервисноеВремяКороткихЗадач</commonModules>
+  <commonModules>CommonModule.Тест_Проба005_ПропускнаяСпособностьВременногоОкна</commonModules>
+  <commonModules>CommonModule.Тест_Проба006_ПараллельныеЦепочки</commonModules>
+  <commonModules>CommonModule.Тест_Проба007_РазбросВремениПорций</commonModules>
+  <commonModules>CommonModule.Тест_Проба008_ПервыйБлокПослеПаузы</commonModules>
+  <commonModules>CommonModule.Тест_Проба009_УстойчиваяСкорость</commonModules>
+  <commonModules>CommonModule.Тест_Проба010_ВыбросыВремениПорций</commonModules>
+  <commonModules>CommonModule.Тест_Проба011_РасчетнаяЭффективностьvCPU</commonModules>
+  <commonModules>CommonModule.Тест_ПробаОдинПотокBSL_ДетерминированныйРезультат</commonModules>
+  <commonModules>CommonModule.Тест_ПробаРабочийНаборКоллекции_КорректныеМетрики</commonModules>
+  <commonModules>CommonModule.Тест_ПробаФиксацияТранзакции_ПакетИРаздельно</commonModules>
+  <commonModules>CommonModule.Тест_ПробыЗапросовБД_ТочечныйИГруппировка</commonModules>
+  <commonModules>CommonModule.Тест_Раннер_ОценкаПоказателяИБаллы</commonModules>
+  <commonModules>CommonModule.Тест_Раннер_ПолныйПрогонСЗаписьюВРегистр</commonModules>
+  <commonModules>CommonModule.Тест_ФормаЗапускБенчмарка_ОткрытиеИЗапуск</commonModules>
+  <commonModules>CommonModule.Тест_Проба012_CoStopESXi</commonModules>
+  <commonModules>CommonModule.Тест_Проба013_АсимметрияvCPU</commonModules>
+  <commonModules>CommonModule.Тест_Проба014_УдаленнаяNUMAПамять</commonModules>
+  <commonModules>CommonModule.Тест_Проба015_МежузловаяПолосаNUMA</commonModules>
+  <commonModules>CommonModule.Тест_Проба016_ПервичноеРазмещение</commonModules>
+  <commonModules>CommonModule.Тест_Проба017_ВытеснениеПамятиХостом</commonModules>
 </mdclass:Configuration>

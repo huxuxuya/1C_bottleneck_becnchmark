@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="1b131661-9f48-4454-aa69-64f5c21a1501">
+  <name>БенчмаркПробыВычисления</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПробыВычисления</value>
+  </synonym>
+  <comment>Общие вычислительные помощники BSL-проб</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>true</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>
