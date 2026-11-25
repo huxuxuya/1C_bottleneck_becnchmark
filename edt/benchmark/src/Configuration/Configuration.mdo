@@ -57,6 +57,7 @@
   <dataProcessors>DataProcessor.ЗапускБенчмарка</dataProcessors>
   <informationRegisters>InformationRegister.РезультатыПрогонов</informationRegisters>
   <informationRegisters>InformationRegister.РезультатыПроб042</informationRegisters>
+  <informationRegisters>InformationRegister.РезультатыФайловойПроб042</informationRegisters>
   <accumulationRegisters>AccumulationRegister.ОстаткиТоваров</accumulationRegisters>
   <commonModules>CommonModule.БенчмаркПроба012CoStopESXi</commonModules>
   <commonModules>CommonModule.БенчмаркПроба013АсимметрияvCPU</commonModules>

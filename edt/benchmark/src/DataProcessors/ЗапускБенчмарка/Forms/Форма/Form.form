@@ -613,7 +613,7 @@
     <visible>true</visible>
     <enabled>true</enabled>
     <userVisible><common>true</common></userVisible>
-    <title><key>ru</key><value>Импорт результатов дисковой пробы 042</value></title>
+    <title><key>ru</key><value>Файловый ввод-вывод BSL на сервере 1С (проба 042)</value></title>
     <type>UsualGroup</type>
     <extInfo xsi:type="form:UsualGroupExtInfo">
       <group>HorizontalIfPossible</group>
@@ -624,18 +624,19 @@
       <currentRowUse>Auto</currentRowUse>
     </extInfo>
     <items xsi:type="form:FormField">
-      <name>ПолеПутьПакета042</name>
+      <name>ПолеПутьВременногоФайла042</name>
       <id>45</id>
       <visible>true</visible>
       <enabled>true</enabled>
+      <readOnly>true</readOnly>
       <userVisible>
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>ПутьПакета042</segments>
+        <segments>ПутьВременногоФайла042</segments>
       </dataPath>
       <extendedTooltip>
-        <name>ПолеПутьПакета042РасширеннаяПодсказка</name>
+        <name>ПолеПутьВременногоФайла042РасширеннаяПодсказка</name>
         <id>46</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
@@ -645,7 +646,7 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>ПолеПутьПакета042КонтекстноеМеню</name>
+        <name>ПолеПутьВременногоФайла042КонтекстноеМеню</name>
         <id>47</id>
         <autoFill>true</autoFill>
       </contextMenu>
@@ -664,7 +665,7 @@
       </extInfo>
     </items>
     <items xsi:type="form:Button">
-      <name>КнопкаИмпортироватьПакетПроб042</name>
+      <name>КнопкаВыполнитьПробу042</name>
       <id>48</id>
       <visible>true</visible>
       <enabled>true</enabled>
@@ -673,9 +674,9 @@
       </userVisible>
       <type>UsualButton</type>
       <defaultButton>false</defaultButton>
-      <commandName>Form.Command.ИмпортироватьПакетПроб042</commandName>
+      <commandName>Form.Command.ВыполнитьПробу042</commandName>
       <extendedTooltip>
-        <name>КнопкаИмпортироватьПакетПроб042РасширеннаяПодсказка</name>
+        <name>КнопкаВыполнитьПробу042РасширеннаяПодсказка</name>
         <id>49</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
@@ -724,28 +725,6 @@
         <typeDomainEnabled>true</typeDomainEnabled>
         <textEdit>true</textEdit>
       </extInfo>
-    </items>
-    <items xsi:type="form:Button">
-      <name>КнопкаПоказатьКривую042</name>
-      <id>53</id>
-      <visible>false</visible>
-      <enabled>true</enabled>
-      <userVisible>
-        <common>true</common>
-      </userVisible>
-      <type>UsualButton</type>
-      <defaultButton>false</defaultButton>
-      <commandName>Form.Command.ПоказатьКривуюПроб042</commandName>
-      <extendedTooltip>
-        <name>КнопкаПоказатьКривую042РасширеннаяПодсказка</name>
-        <id>54</id>
-        <type>Label</type>
-        <autoMaxWidth>true</autoMaxWidth>
-        <autoMaxHeight>true</autoMaxHeight>
-        <extInfo xsi:type="form:LabelDecorationExtInfo">
-          <horizontalAlign>Left</horizontalAlign>
-        </extInfo>
-      </extendedTooltip>
     </items>
   </items>
   <items xsi:type="form:Table">
@@ -842,7 +821,7 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>ТочкиПроб042Фаза</name>
+      <name>ТочкиПроб042Операция</name>
       <id>63</id>
       <visible>true</visible>
       <enabled>true</enabled>
@@ -850,10 +829,10 @@
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>ТочкиПроб042.Фаза</segments>
+        <segments>ТочкиПроб042.Операция</segments>
       </dataPath>
       <extendedTooltip>
-        <name>ТочкиПроб042ФазаРасширеннаяПодсказка</name>
+        <name>ТочкиПроб042ОперацияРасширеннаяПодсказка</name>
         <id>64</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
@@ -863,7 +842,7 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>ТочкиПроб042ФазаКонтекстноеМеню</name>
+        <name>ТочкиПроб042ОперацияКонтекстноеМеню</name>
         <id>65</id>
         <autoFill>true</autoFill>
       </contextMenu>
@@ -882,7 +861,7 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>ТочкиПроб042ЦелевойТемпЗаписиБайтВСекунду</name>
+      <name>ТочкиПроб042ОбъемБайт</name>
       <id>66</id>
       <visible>true</visible>
       <enabled>true</enabled>
@@ -890,10 +869,10 @@
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>ТочкиПроб042.ЦелевойТемпЗаписиБайтВСекунду</segments>
+        <segments>ТочкиПроб042.ОбъемБайт</segments>
       </dataPath>
       <extendedTooltip>
-        <name>ТочкиПроб042ЦелевойТемпЗаписиБайтВСекундуРасширеннаяПодсказка</name>
+        <name>ТочкиПроб042ОбъемБайтРасширеннаяПодсказка</name>
         <id>67</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
@@ -903,7 +882,7 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>ТочкиПроб042ЦелевойТемпЗаписиБайтВСекундуКонтекстноеМеню</name>
+        <name>ТочкиПроб042ОбъемБайтКонтекстноеМеню</name>
         <id>68</id>
         <autoFill>true</autoFill>
       </contextMenu>
@@ -922,7 +901,7 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>ТочкиПроб042ФактическийТемпЗаписиБайтВСекунду</name>
+      <name>ТочкиПроб042МиБайтВСекунду</name>
       <id>69</id>
       <visible>true</visible>
       <enabled>true</enabled>
@@ -930,10 +909,10 @@
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>ТочкиПроб042.ФактическийТемпЗаписиБайтВСекунду</segments>
+        <segments>ТочкиПроб042.МиБайтВСекунду</segments>
       </dataPath>
       <extendedTooltip>
-        <name>ТочкиПроб042ФактическийТемпЗаписиБайтВСекундуРасширеннаяПодсказка</name>
+        <name>ТочкиПроб042МиБайтВСекундуРасширеннаяПодсказка</name>
         <id>70</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
@@ -943,7 +922,7 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>ТочкиПроб042ФактическийТемпЗаписиБайтВСекундуКонтекстноеМеню</name>
+        <name>ТочкиПроб042МиБайтВСекундуКонтекстноеМеню</name>
         <id>71</id>
         <autoFill>true</autoFill>
       </contextMenu>
@@ -962,7 +941,7 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>ТочкиПроб042ЧтениеP95Нс</name>
+      <name>ТочкиПроб042ДлительностьМс</name>
       <id>72</id>
       <visible>true</visible>
       <enabled>true</enabled>
@@ -970,10 +949,10 @@
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:DataPath">
-        <segments>ТочкиПроб042.ЧтениеP95Нс</segments>
+        <segments>ТочкиПроб042.ДлительностьМс</segments>
       </dataPath>
       <extendedTooltip>
-        <name>ТочкиПроб042ЧтениеP95НсРасширеннаяПодсказка</name>
+        <name>ТочкиПроб042ДлительностьМсРасширеннаяПодсказка</name>
         <id>73</id>
         <type>Label</type>
         <autoMaxWidth>true</autoMaxWidth>
@@ -983,7 +962,7 @@
         </extInfo>
       </extendedTooltip>
       <contextMenu>
-        <name>ТочкиПроб042ЧтениеP95НсКонтекстноеМеню</name>
+        <name>ТочкиПроб042ДлительностьМсКонтекстноеМеню</name>
         <id>74</id>
         <autoFill>true</autoFill>
       </contextMenu>
@@ -1249,8 +1228,8 @@
     </edit>
   </attributes>
   <attributes>
-    <name>ПутьПакета042</name>
-    <title><key>ru</key><value>Путь к файлу пакета 042 на сервере 1С</value></title>
+    <name>ПутьВременногоФайла042</name>
+    <title><key>ru</key><value>Последний временный файл сервера 1С (удаляется после пробы)</value></title>
     <id>6</id>
     <valueType><types>String</types><stringQualifiers><length>500</length></stringQualifiers></valueType>
     <view><common>true</common></view>
@@ -1449,7 +1428,7 @@
   </attributes>
   <attributes>
     <name>ТочкиПроб042</name>
-    <title><key>ru</key><value>Точки пробы 042: чтение при записи</value></title>
+    <title><key>ru</key><value>Результаты файловой пробы 042</value></title>
     <id>8</id>
     <valueType><types>ValueTable</types></valueType>
     <view><common>true</common></view>
@@ -1471,32 +1450,32 @@
       <edit><common>true</common></edit>
     </columns>
     <columns>
-      <name>Фаза</name>
-      <title><key>ru</key><value>Фаза</value></title>
+      <name>Операция</name>
+      <title><key>ru</key><value>Операция</value></title>
       <id>3</id>
       <valueType><types>String</types><stringQualifiers><length>12</length></stringQualifiers></valueType>
       <view><common>true</common></view>
       <edit><common>true</common></edit>
     </columns>
     <columns>
-      <name>ЦелевойТемпЗаписиБайтВСекунду</name>
-      <title><key>ru</key><value>Цель записи, Б/с</value></title>
+      <name>ОбъемБайт</name>
+      <title><key>ru</key><value>Объём данных, байт</value></title>
       <id>4</id>
       <valueType><types>Number</types><numberQualifiers><precision>15</precision><scale>0</scale></numberQualifiers></valueType>
       <view><common>true</common></view>
       <edit><common>true</common></edit>
     </columns>
     <columns>
-      <name>ФактическийТемпЗаписиБайтВСекунду</name>
-      <title><key>ru</key><value>Факт записи, Б/с</value></title>
+      <name>МиБайтВСекунду</name>
+      <title><key>ru</key><value>Скорость, МиБ/с</value></title>
       <id>5</id>
-      <valueType><types>Number</types><numberQualifiers><precision>15</precision><scale>0</scale></numberQualifiers></valueType>
+      <valueType><types>Number</types><numberQualifiers><precision>15</precision><scale>3</scale></numberQualifiers></valueType>
       <view><common>true</common></view>
       <edit><common>true</common></edit>
     </columns>
     <columns>
-      <name>ЧтениеP95Нс</name>
-      <title><key>ru</key><value>P95 чтения, нс</value></title>
+      <name>ДлительностьМс</name>
+      <title><key>ru</key><value>Время операции, мс</value></title>
       <id>6</id>
       <valueType><types>Number</types><numberQualifiers><precision>15</precision><scale>0</scale></numberQualifiers></valueType>
       <view><common>true</common></view>
@@ -1512,7 +1491,7 @@
     </columns>
     <columns>
       <name>Комментарий</name>
-      <title><key>ru</key><value>Комментарий</value></title>
+      <title><key>ru</key><value>Проверка или ошибка</value></title>
       <id>8</id>
       <valueType><types>String</types><stringQualifiers><length>500</length></stringQualifiers></valueType>
       <view><common>true</common></view>
@@ -1537,22 +1516,12 @@
     <currentRowUse>Auto</currentRowUse>
   </formCommands>
   <formCommands>
-    <name>ИмпортироватьПакетПроб042</name>
-    <title><key>ru</key><value>Импортировать пакет 042</value></title>
+    <name>ВыполнитьПробу042</name>
+    <title><key>ru</key><value>Выполнить файловую пробу 042</value></title>
     <id>2</id>
     <use><common>true</common></use>
     <action xsi:type="form:FormCommandHandlerContainer">
-      <handler><name>ИмпортироватьПакетПроб042</name></handler>
-    </action>
-    <currentRowUse>Auto</currentRowUse>
-  </formCommands>
-  <formCommands>
-    <name>ПоказатьКривуюПроб042</name>
-    <title><key>ru</key><value>Показать кривую 042</value></title>
-    <id>3</id>
-    <use><common>true</common></use>
-    <action xsi:type="form:FormCommandHandlerContainer">
-      <handler><name>ПоказатьКривуюПроб042</name></handler>
+      <handler><name>ВыполнитьПробу042</name></handler>
     </action>
     <currentRowUse>Auto</currentRowUse>
   </formCommands>

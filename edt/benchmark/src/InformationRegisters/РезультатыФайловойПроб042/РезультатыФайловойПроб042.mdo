@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:core="http://g5.1c.ru/v8/dt/mcore"
+    xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="20000000-0000-4000-8000-000000000650">
+  <producedTypes>
+    <selectionType typeId="20000000-0000-4000-8000-000000000651" valueTypeId="20000000-0000-4000-8000-000000000652"/>
+    <listType typeId="20000000-0000-4000-8000-000000000653" valueTypeId="20000000-0000-4000-8000-000000000654"/>
+    <recordSetType typeId="20000000-0000-4000-8000-000000000655" valueTypeId="20000000-0000-4000-8000-000000000656"/>
+    <recordKeyType typeId="20000000-0000-4000-8000-000000000657" valueTypeId="20000000-0000-4000-8000-000000000658"/>
+    <recordType typeId="20000000-0000-4000-8000-000000000659" valueTypeId="20000000-0000-4000-8000-00000000065a"/>
+    <recordManagerType typeId="20000000-0000-4000-8000-00000000065b" valueTypeId="20000000-0000-4000-8000-00000000065c"/>
+  </producedTypes>
+  <name>РезультатыФайловойПроб042</name>
+  <synonym><key>ru</key><value>Результаты файловой пробы 042</value></synonym>
+  <recordPresentation><key>ru</key><value>Результат файловой пробы 042</value></recordPresentation>
+  <listPresentation><key>ru</key><value>Результаты файловой пробы 042</value></listPresentation>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <resources uuid="20000000-0000-4000-8000-000000000661">
+    <name>ОбъемБайт</name>
+    <synonym><key>ru</key><value>Объём обработанных данных, байт</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>15</precision><scale>0</scale></numberQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="20000000-0000-4000-8000-000000000662">
+    <name>ДлительностьМс</name>
+    <synonym><key>ru</key><value>Длительность, мс</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>15</precision><scale>0</scale></numberQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="20000000-0000-4000-8000-000000000663">
+    <name>МиБайтВСекунду</name>
+    <synonym><key>ru</key><value>Пропускная способность, МиБ/с</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>15</precision><scale>3</scale></numberQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="20000000-0000-4000-8000-000000000664">
+    <name>КонтрольнаяСумма</name>
+    <synonym><key>ru</key><value>Контрольная сумма выбранных байтов</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>15</precision><scale>0</scale></numberQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <attributes uuid="20000000-0000-4000-8000-000000000671">
+    <name>НомерПовтора</name>
+    <synonym><key>ru</key><value>Номер повтора</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>5</precision><scale>0</scale></numberQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="20000000-0000-4000-8000-000000000672">
+    <name>Операция</name>
+    <synonym><key>ru</key><value>Операция</value></synonym>
+    <type><types>String</types><stringQualifiers><length>10</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <attributes uuid="20000000-0000-4000-8000-000000000673">
+    <name>Статус</name>
+    <synonym><key>ru</key><value>Статус</value></synonym>
+    <type><types>String</types><stringQualifiers><length>40</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <attributes uuid="20000000-0000-4000-8000-000000000674">
+    <name>ПутьФайла</name>
+    <synonym><key>ru</key><value>Путь к временному файлу сервера</value></synonym>
+    <type><types>String</types><stringQualifiers><length>500</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <attributes uuid="20000000-0000-4000-8000-000000000675">
+    <name>Параметры</name>
+    <synonym><key>ru</key><value>Параметры измерения</value></synonym>
+    <type><types>String</types><stringQualifiers><length>250</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <attributes uuid="20000000-0000-4000-8000-000000000676">
+    <name>Комментарий</name>
+    <synonym><key>ru</key><value>Комментарий или причина ошибки</value></synonym>
+    <type><types>String</types><stringQualifiers><length>500</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <attributes uuid="20000000-0000-4000-8000-000000000677">
+    <name>ИдентификаторРеализации</name>
+    <synonym><key>ru</key><value>Идентификатор реализации</value></synonym>
+    <type><types>String</types><stringQualifiers><length>40</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <attributes uuid="20000000-0000-4000-8000-000000000678">
+    <name>КлючСопоставимости</name>
+    <synonym><key>ru</key><value>Ключ сопоставимости</value></synonym>
+    <type><types>String</types><stringQualifiers><length>250</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <dimensions uuid="20000000-0000-4000-8000-000000000681">
+    <name>ИдентификаторПрогона</name>
+    <synonym><key>ru</key><value>Идентификатор прогона</value></synonym>
+    <type><types>String</types><stringQualifiers><length>36</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="20000000-0000-4000-8000-000000000682">
+    <name>ИдентификаторТочки</name>
+    <synonym><key>ru</key><value>Идентификатор точки</value></synonym>
+    <type><types>String</types><stringQualifiers><length>50</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

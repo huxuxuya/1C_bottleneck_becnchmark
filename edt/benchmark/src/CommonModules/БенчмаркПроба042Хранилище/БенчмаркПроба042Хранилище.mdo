@@ -4,9 +4,9 @@
   <name>БенчмаркПроба042Хранилище</name>
   <synonym>
     <key>ru</key>
-    <value>Импорт пробы 042</value>
+    <value>Файловый ввод-вывод BSL, проба 042</value>
   </synonym>
-  <comment>Проверка пакетов fio, идемпотентный импорт и выборка кривых пробы 042</comment>
+  <comment>Последовательная запись и чтение временного файла средствами BSL, хранение и сравнение результатов пробы 042</comment>
   <clientManagedApplication>false</clientManagedApplication>
   <clientOrdinaryApplication>true</clientOrdinaryApplication>
   <server>true</server>

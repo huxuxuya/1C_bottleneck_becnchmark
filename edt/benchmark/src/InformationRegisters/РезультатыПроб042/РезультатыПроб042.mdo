@@ -12,9 +12,9 @@
     <recordManagerType typeId="20000000-0000-4000-8000-00000000061b" valueTypeId="20000000-0000-4000-8000-00000000061c"/>
   </producedTypes>
   <name>РезультатыПроб042</name>
-  <synonym><key>ru</key><value>Точки пробы 042</value></synonym>
-  <recordPresentation><key>ru</key><value>Точка пробы 042</value></recordPresentation>
-  <listPresentation><key>ru</key><value>Точки пробы 042</value></listPresentation>
+  <synonym><key>ru</key><value>Архив импортированных результатов 042</value></synonym>
+  <recordPresentation><key>ru</key><value>Архивная точка прежней 042</value></recordPresentation>
+  <listPresentation><key>ru</key><value>Архив импортированных результатов 042</value></listPresentation>
   <useStandardCommands>true</useStandardCommands>
   <editType>InDialog</editType>
   <dataLockControlMode>Managed</dataLockControlMode>
