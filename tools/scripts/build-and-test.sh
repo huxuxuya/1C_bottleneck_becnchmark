@@ -161,7 +161,7 @@ if [[ "${MODE}" == "postgres" ]]; then
 fi
 
 echo "=== [5/5] Запуск тестов YAxUnit ==="
-CLIENT_BIN="${CLIENT_BIN:-$(find_1c_bin 1cv8c || find_1c_bin 1cv8 || true)}"
+CLIENT_BIN="${CLIENT_BIN:-$(find_1c_bin 1cv8 || find_1c_bin 1cv8c || true)}"
 if [[ -z "${CLIENT_BIN}" ]]; then
   echo "Ошибка: не найден 1cv8c или 1cv8 для выполнения RunUnitTests" >&2
   exit 1

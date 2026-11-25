@@ -1,4 +1,4 @@
-.PHONY: help download-yaxunit export-xml export-xml-docker build-edt build-ibcmd test-ibcmd build-postgres up-postgres test-postgres down clean
+.PHONY: help download-yaxunit export-xml export-xml-docker build-edt build-ibcmd test-ibcmd test-local build-postgres up-postgres test-postgres down clean
 
 COMPOSE := docker compose -f docker/docker-compose.yml
 
@@ -10,6 +10,7 @@ help:
 	@echo "  make build-edt          - Собрать Docker-образ 1C:EDT CLI"
 	@echo "  make build-ibcmd        - Собрать Docker-образ для профиля ibcmd"
 	@echo "  make test-ibcmd         - Создать файловую ИБ через ibcmd и прогнать тесты YAxUnit"
+	@echo "  make test-local         - Собрать отдельную локальную ИБ и прогнать тесты через установленную платформу 1С"
 	@echo "  make build-postgres     - Собрать Docker-образы для профиля postgres"
 	@echo "  make up-postgres        - Поднять PostgreSQL и Сервер 1С в фоне"
 	@echo "  make test-postgres      - Создать ИБ в PostgreSQL и прогнать тесты YAxUnit"
@@ -33,6 +34,9 @@ build-ibcmd:
 
 test-ibcmd: download-yaxunit
 	$(COMPOSE) --profile ibcmd run --rm runner-ibcmd
+
+test-local: download-yaxunit
+	WORKSPACE="$(CURDIR)" IB_DIR="$(CURDIR)/build/ib-local-test" ./tools/scripts/build-and-test.sh --mode ibcmd
 
 build-postgres:
 	$(COMPOSE) --profile postgres build
