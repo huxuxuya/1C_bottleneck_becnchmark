@@ -77,6 +77,7 @@ sed \
 ```bash
 CLIENT_BIN="/путь/к/1cv8"
 "$CLIENT_BIN" ENTERPRISE "/F/путь/к/файловой/ИБ" \
+  /Out "$PWD/build/reports/platform.log" -NoTruncate \
   /DisableStartupDialogs /DisableStartupMessages \
   "/CRunUnitTests=$PWD/build/reports/yaxunit-existing-run.json"
 ```
@@ -141,7 +142,8 @@ docker compose -f docker/docker-compose.yml --profile postgres down -v
 
 - `build/reports/junit.xml` — результаты тестов в JUnit;
 - `build/reports/exitcode.txt` — код завершения YAxUnit (`0` означает успешный прогон);
-- `build/reports/yaxunit.log` — журнал запуска, список тестов и текст ошибок.
+- `build/reports/yaxunit.log` — журнал запуска, список тестов и текст ошибок;
+- `build/reports/platform.log` — сообщения платформы из `/Out`, включая маркер фактических значений CPU-пробы.
 
 Дополнительные Python-проверки связей формы запускаются отдельно:
 

@@ -69,7 +69,7 @@ if [[ ! -f "${XML_DIR}/cf/Configuration.xml" ]]; then
 fi
 
 mkdir -p "${REPORTS_DIR}"
-rm -f "${REPORTS_DIR}/junit.xml" "${REPORTS_DIR}/exitcode.txt" "${REPORTS_DIR}/yaxunit.log"
+rm -f "${REPORTS_DIR}/junit.xml" "${REPORTS_DIR}/exitcode.txt" "${REPORTS_DIR}/yaxunit.log" "${REPORTS_DIR}/platform.log"
 
 case "${MODE}" in
   ibcmd)
@@ -176,6 +176,7 @@ sed \
 CLIENT_ARGS=(
   ENTERPRISE
   "${CLIENT_CONN}"
+  /Out "${REPORTS_DIR}/platform.log" -NoTruncate
   /DisableStartupDialogs
   /DisableStartupMessages
   "/CRunUnitTests=${YAXUNIT_RUN_CFG}"
