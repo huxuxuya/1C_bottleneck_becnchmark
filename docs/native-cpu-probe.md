@@ -1,6 +1,6 @@
 # Нативный замер CPU через Native API 1С
 
-[Главная](../README.md) · [Сборка и запуск](development.md) · [Проба 001](tests/cpu/001.md)
+[Главная](../README.md) · [Скачать Native API ZIP 0.1.0](../releases/CpuFrequencyProbe-0.1.0.zip) · [SHA-256](../releases/CpuFrequencyProbe-0.1.0.zip.sha256) · [Сборка и запуск](development.md) · [Проба 001](tests/cpu/001.md)
 
 ## Назначение
 
@@ -10,7 +10,7 @@
 
 В отличие от двух реализаций BSL, нативный измеритель не включает стоимость виртуальной машины встроенного языка и BSL-цикла. Вызов из BSL всё равно включает небольшие накладные расходы до и после измеренного участка, но они не входят в `elapsedNs`.
 
-Компонента следует Native API: объект реализует `IComponentBase`, а библиотека экспортирует четыре функции загрузки. ABI зависит от ОС и разрядности, поэтому собираются отдельные варианты; строки API преобразуются в двухбайтовый `WCHAR_T` независимо от системного размера `wchar_t`. См. [официальное описание Native API](https://1c-dn.com/library/add_in_creation_technology_creating_add_ins_using_native_api_technology/) и [рекомендации по переносимости](https://1c-dn.com/library/add_in_creation_technology_specifics_of_add-in_development_using_native_api/).
+Компонента следует Native API: объект реализует `IComponentBase`, библиотека экспортирует функции создания и освобождения объектов, а также `GetAttachType`, требуемую актуальным комплектом SDK. ABI зависит от ОС и разрядности, поэтому собираются отдельные варианты; строки API преобразуются в двухбайтовый `WCHAR_T` независимо от системного размера `wchar_t`. См. [официальное описание Native API](https://1c-dn.com/library/add_in_creation_technology_creating_add_ins_using_native_api_technology/) и [рекомендации по переносимости](https://1c-dn.com/library/add_in_creation_technology_specifics_of_add-in_development_using_native_api/).
 
 ## Формула и устойчивость
 
@@ -28,7 +28,8 @@ estimatedMHz = operationsPerSecond / 1 000 000
 
 ## Интерфейс компоненты
 
-- Имя расширения: `CpuBenchmark`.
+- Имя объекта из `RegisterExtensionAs`: `CpuProbe`.
+- Псевдоним подключения компоненты: `CpuBenchmark`.
 - ProgID объекта: `AddIn.CpuBenchmark.CpuProbe`.
 - Функция: `Measure(BlocksPerSample, Warmups, Samples)`.
 - Возвращаемое значение: JSON-строка в UTF-8.
@@ -78,34 +79,35 @@ JSONРезультата = ИзмерительCPU.Measure(1000000, 2, 7);
 
 ## Сборка
 
-Нужен официальный комплект разработки внешних компонент 1С: каталог `VNCOMP83/include` с `ComponentBase.h`, `AddInDefBase.h`, `IMemoryManager.h` и зависимыми заголовками. Заголовки не скопированы в Git. На этой машине такой каталог пока не найден, поэтому Native API библиотека и ZIP для 1С ещё не собраны; C++ ядро и CLI можно собрать без SDK.
+Нужен официальный комплект разработки внешних компонент 1С — `include` из архива VNCOMPS, с `ComponentBase.h`, `AddInDefBase.h`, `IMemoryManager.h` и зависимыми заголовками. Заголовки не хранятся в Git. Скрипты ожидают путь к этому каталогу в `NATIVEAPI_INCLUDE_DIR`.
 
 ```bash
 make native-core
-NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-linux-arm64
-NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-linux-x86_64
-NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-linux-i386
-NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-windows-x86_64
-NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-windows-i386
-NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-macos-x86_64
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMPS/include" make native-linux-arm64
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMPS/include" make native-linux-x86_64
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMPS/include" make native-linux-i386
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMPS/include" make native-windows-x86_64
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMPS/include" make native-windows-i386
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMPS/include" make native-macos-x86_64
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMPS/include" make native-macos-arm64
 ```
 
 Пути сборки:
 
 - Linux ARM64, x86 и x86_64 и Windows x86/x86_64 — контейнер `docker/native-builder/Dockerfile` с кросс-компиляторами.
-- macOS x86_64 — локальная сборка на macOS с Xcode SDK; Linux Docker не может линковать macOS библиотеку.
+- macOS x86_64 и ARM64 — локальная сборка на macOS с Xcode SDK; Linux Docker не может линковать macOS библиотеку.
 - Linux E2K — отдельный runner с компилятором и sysroot Эльбруса; он не входит в стандартный образ.
 
-Переносимое ядро и CLI собраны на macOS ARM64 и в Linux ARM64 Docker. Статическое ядро также успешно кросс-компилировано в Docker для Linux i386/x86_64/ARM64 и Windows i386/x86_64, а на macOS — для x86_64. Это подтверждает переносимость C++ ядра, но не Native API ABI, загрузку DLL/so/dylib в 1С или результаты замера на этих системах.
+Соберите нужные архитектуры и упакуйте уже собранные DLL/SO/dylib в ZIP с `MANIFEST.XML`:
 
 После сборки можно упаковать доступные архитектуры:
 
 ```bash
-make native-package NATIVE_TARGETS="linux-arm64 linux-x86_64 windows-x86_64 macos-x86_64"
+make native-package NATIVE_TARGETS="linux-arm64 linux-i386 linux-x86_64 windows-i386 windows-x86_64 macos-x86_64 macos-arm64"
 ```
 
-Скрипт добавляет только запрошенные бинарные файлы и создаёт `MANIFEST.XML` в ZIP `build/native/CpuFrequencyProbe.zip` по [формату 1С](https://1c-dn.com/library/add_in_creation_technology_manifest_xml_file_description/). Он не подменяет runtime-проверку: Linux ARM64 нужно запускать на Linux ARM64, Windows DLL — в Windows 1С соответствующей разрядности, macOS-библиотеку — в поддерживаемой macOS-платформе.
+Скрипт добавляет только запрошенные бинарные файлы и создаёт `MANIFEST.XML` в ZIP `build/native/CpuFrequencyProbe.zip` по [формату 1С](https://1c-dn.com/library/add_in_creation_technology_manifest_xml_file_description/). Сборка всех библиотек и проверка таблиц экспортов не заменяют запуск каждого файла в 1С на соответствующей ОС и архитектуре.
 
 ## Состояние интеграции
 
-В репозитории есть исходный код алгоритма, Native API-адаптера, Docker-среда, CMake toolchain-файлы и упаковщик ZIP. На текущем хосте отсутствует официальный Native API SDK, поэтому адаптер нельзя пока скомпилировать и проверить загрузкой в 1С. Нативная оценка ещё не включена в сценарий полного бенчмарка и реестр результатов; текущие результаты 001 и 026 остаются BSL-измерениями.
+На 26 ноября 2026 года собраны семь вариантов Native API: Linux x86/x86_64/ARM64, Windows x86/x86_64 и macOS x86_64/ARM64; ZIP-манифест проверен. В локальной 1С 8.5.1 на macOS x86_64 прошёл сфокусированный клиентский smoke-тест YAxUnit: компоненту подключили, создали `AddIn.CpuBenchmark.CpuProbe`, вызвали `Measure` и проверили поля `estimatedMHz` и `sampleElapsedNs` в JSON. Причина прежней ошибки была в несовпадении имени: третья часть ProgID должна совпадать с именем, которое возвращает `RegisterExtensionAs`; компонент теперь возвращает `CpuProbe`. Это подтверждает runtime только для клиентской 1С на macOS x86_64. Запуск бинарников Linux, Windows и macOS ARM64, серверный контекст и включение пробы в полный прогон/реестр/CF остаются отдельной работой. BSL-пробы 001 и 026 продолжают работать независимо.

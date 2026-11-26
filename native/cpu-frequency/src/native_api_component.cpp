@@ -9,6 +9,7 @@
 #include <cstring>
 #include <limits>
 #include <new>
+#include <stdexcept>
 #include <string>
 #include <string_view>
 
@@ -23,7 +24,7 @@
 namespace {
 
 constexpr WCHAR_T kClassName[] = {'C', 'p', 'u', 'P', 'r', 'o', 'b', 'e', 0};
-constexpr char16_t kExtensionName[] = u"CpuBenchmark";
+constexpr char16_t kExtensionName[] = u"CpuProbe";
 constexpr char16_t kMethodNameEnglish[] = u"Measure";
 constexpr char16_t kMethodNameLocal[] = u"Измерить";
 constexpr char16_t kErrorSource[] = u"CpuFrequencyProbe";
@@ -158,7 +159,7 @@ public:
         return memory_manager_ != nullptr;
     }
 
-    long ADDIN_API GetInfo() override { return 1000; }
+    long ADDIN_API GetInfo() override { return 2000; }
 
     void ADDIN_API Done() override {
         connection_ = nullptr;
@@ -281,6 +282,7 @@ public:
     }
 
     void ADDIN_API SetLocale(const WCHAR_T*) override {}
+    void ADDIN_API SetUserInterfaceLanguageCode(const WCHAR_T*) override {}
 
 private:
     bool ReportError(const char16_t* description) noexcept {
@@ -330,4 +332,8 @@ extern "C" CPU_API_EXPORT long DestroyObject(IComponentBase** component) {
 
 extern "C" CPU_API_EXPORT AppCapabilities SetPlatformCapabilities(const AppCapabilities capabilities) {
     return capabilities >= eAppCapabilities1 ? eAppCapabilities1 : eAppCapabilitiesInvalid;
+}
+
+extern "C" CPU_API_EXPORT AttachType GetAttachType() {
+    return eCanAttachAny;
 }

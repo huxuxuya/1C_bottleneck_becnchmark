@@ -1,4 +1,4 @@
-.PHONY: help download-yaxunit export-xml export-xml-docker build-edt build-ibcmd test-ibcmd test-local build-postgres up-postgres test-postgres native-core native-linux-i386 native-linux-x86_64 native-linux-arm64 native-windows-i386 native-windows-x86_64 native-macos-x86_64 native-package down clean
+.PHONY: help download-yaxunit export-xml export-xml-docker build-edt build-ibcmd test-ibcmd test-local build-postgres up-postgres test-postgres native-core native-linux-i386 native-linux-x86_64 native-linux-arm64 native-windows-i386 native-windows-x86_64 native-macos-x86_64 native-macos-arm64 native-package down clean
 
 COMPOSE := docker compose -f docker/docker-compose.yml
 
@@ -18,6 +18,7 @@ help:
 	@echo "  make native-linux-*     - Собрать Native API под Linux (нужен SDK 1С)"
 	@echo "  make native-windows-*   - Кросс-собрать Native API под Windows (нужен SDK 1С)"
 	@echo "  make native-macos-x86_64 - Собрать Native API под macOS x86_64 (нужны Xcode и SDK 1С)"
+	@echo "  make native-macos-arm64 - Собрать Native API под macOS ARM64 (нужны Xcode и SDK 1С)"
 	@echo "  make native-package NATIVE_TARGETS=... - Упаковать готовые варианты в ZIP для 1С"
 	@echo "  make down               - Остановить контейнеры"
 	@echo "  make clean              - Удалить артефакты сборки в build/"
@@ -72,6 +73,9 @@ native-windows-x86_64:
 
 native-macos-x86_64:
 	@./native/scripts/build-native.sh macos-x86_64
+
+native-macos-arm64:
+	@./native/scripts/build-native.sh macos-arm64
 
 native-package:
 	python3 native/cpu-frequency/package_component.py --root "$(CURDIR)" $(foreach target,$(NATIVE_TARGETS),--target $(target))

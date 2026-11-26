@@ -8,7 +8,7 @@ SDK_INCLUDE="${NATIVEAPI_INCLUDE_DIR:-}"
 DOCKER_PLATFORM="${NATIVE_DOCKER_PLATFORM:-}"
 
 if [[ -z "$TARGET" ]]; then
-    echo "Usage: $0 <core|linux-i386|linux-x86_64|linux-arm64|windows-i386|windows-x86_64|macos-x86_64>" >&2
+    echo "Usage: $0 <core|linux-i386|linux-x86_64|linux-arm64|windows-i386|windows-x86_64|macos-x86_64|macos-arm64>" >&2
     exit 2
 fi
 
@@ -21,7 +21,7 @@ case "$TARGET" in
         ;;
     linux-i386|linux-x86_64|linux-arm64|windows-i386|windows-x86_64)
         if [[ -z "$SDK_INCLUDE" || ! -f "$SDK_INCLUDE/ComponentBase.h" ]]; then
-            echo "Set NATIVEAPI_INCLUDE_DIR to the official 1C VNCOMP83/include directory." >&2
+            echo "Set NATIVEAPI_INCLUDE_DIR to the include directory from the official 1C VNCOMPS SDK." >&2
             exit 2
         fi
         case "$TARGET" in
@@ -32,22 +32,26 @@ case "$TARGET" in
             windows-x86_64) TOOLCHAIN="windows-x86_64" ;;
         esac
         ;;
-    macos-x86_64)
+    macos-x86_64|macos-arm64)
         if [[ "$(uname -s)" != "Darwin" ]]; then
             echo "macOS binaries must be built with Apple's SDK on a macOS host." >&2
             exit 2
         fi
         if [[ -z "$SDK_INCLUDE" || ! -f "$SDK_INCLUDE/ComponentBase.h" ]]; then
-            echo "Set NATIVEAPI_INCLUDE_DIR to the official 1C VNCOMP83/include directory." >&2
+            echo "Set NATIVEAPI_INCLUDE_DIR to the include directory from the official 1C VNCOMPS SDK." >&2
             exit 2
         fi
         mkdir -p "$ROOT/$BUILD_DIR"
+        MACOS_ARCH=x86_64
+        if [[ "$TARGET" == "macos-arm64" ]]; then
+            MACOS_ARCH=arm64
+        fi
         cmake -S "$ROOT/$SOURCE_DIR" -B "$ROOT/$BUILD_DIR" \
             -DBUILD_NATIVEAPI_COMPONENT=ON \
             -DBUILD_BENCHMARK_CLI=OFF \
             -DONEC_NATIVEAPI_INCLUDE_DIR="$SDK_INCLUDE" \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_OSX_ARCHITECTURES=x86_64
+            -DCMAKE_OSX_ARCHITECTURES="$MACOS_ARCH"
         cmake --build "$ROOT/$BUILD_DIR" --config Release
         exit 0
         ;;

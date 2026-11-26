@@ -18,6 +18,7 @@ TARGETS = {
     "linux-arm64": ("Linux", "ARM64", ".so", "CpuFrequencyProbe_LinARM64.so"),
     "linux-e2k": ("Linux", "E2K", ".so", "CpuFrequencyProbe_LinE2K.so"),
     "macos-x86_64": ("MacOS", "x86_64", ".dylib", "CpuFrequencyProbe_MacOS64.dylib"),
+    "macos-arm64": ("MacOS", "ARM64", ".dylib", "CpuFrequencyProbe_MacOSARM64.dylib"),
 }
 
 

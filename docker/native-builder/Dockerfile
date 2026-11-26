@@ -14,6 +14,7 @@ RUN apt-get update \
         g++-mingw-w64-i686 \
         g++-mingw-w64-x86-64 \
         g++-x86-64-linux-gnu \
+        uuid-dev \
         ninja-build \
         python3 \
     && rm -rf /var/lib/apt/lists/*

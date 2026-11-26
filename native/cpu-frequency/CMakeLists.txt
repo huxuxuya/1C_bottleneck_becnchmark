@@ -12,7 +12,10 @@ add_library(cpu_frequency_core STATIC
 target_include_directories(cpu_frequency_core PUBLIC include)
 target_compile_features(cpu_frequency_core PUBLIC cxx_std_17)
 target_compile_definitions(cpu_frequency_core PRIVATE CPU_FREQUENCY_VERSION="${PROJECT_VERSION}")
-set_target_properties(cpu_frequency_core PROPERTIES POSITION_INDEPENDENT_CODE ON)
+set_target_properties(cpu_frequency_core PROPERTIES
+    POSITION_INDEPENDENT_CODE ON
+    CXX_VISIBILITY_PRESET hidden
+    VISIBILITY_INLINES_HIDDEN YES)
 
 if(MSVC)
     target_compile_options(cpu_frequency_core PRIVATE /W4 /permissive- /EHsc)
@@ -27,7 +30,7 @@ endif()
 
 if(BUILD_NATIVEAPI_COMPONENT)
     if(NOT ONEC_NATIVEAPI_INCLUDE_DIR)
-        message(FATAL_ERROR "Set ONEC_NATIVEAPI_INCLUDE_DIR to the include directory from 1C VNCOMP83.")
+        message(FATAL_ERROR "Set ONEC_NATIVEAPI_INCLUDE_DIR to the include directory from the official 1C VNCOMPS SDK.")
     endif()
     foreach(required_header ComponentBase.h AddInDefBase.h IMemoryManager.h)
         if(NOT EXISTS "${ONEC_NATIVEAPI_INCLUDE_DIR}/${required_header}")
@@ -61,6 +64,7 @@ if(BUILD_NATIVEAPI_COMPONENT)
         set_target_properties(cpu_frequency_addin PROPERTIES PREFIX "" SUFFIX ".dylib")
     else()
         set_target_properties(cpu_frequency_addin PROPERTIES PREFIX "" SUFFIX ".so")
+        target_link_options(cpu_frequency_addin PRIVATE -Wl,--exclude-libs,ALL)
         if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
             target_link_options(cpu_frequency_addin PRIVATE -static-libgcc -static-libstdc++)
         endif()
