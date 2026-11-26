@@ -158,3 +158,37 @@ GitHub Actions запускает проверку EDT/XML/JSON и эти Python
    - `benchmark` — основная конфигурация (`V8ConfigurationNature`);
    - `BenchmarkTests` — расширение тестов YAxUnit (`V8ExtensionNature`).
 3. Служебные каталоги `.settings/`, `.build/`, `.metamodel/` исключены в `.gitignore`; в Git хранятся `.project`, `DT-INF/PROJECT.PMF` и исходники `.mdo`, `.bsl`, `.form`.
+
+## Нативная компонента CPU в Docker
+
+Код Native API измерителя расположен в `native/cpu-frequency/`. Контейнер сборки содержит CMake и кросс-компиляторы для Linux x86/x86_64/ARM64 и Windows x86/x86_64. Сам SDK 1С контейнер и репозиторий не содержат: официальный каталог `VNCOMP83/include` монтируется в контейнер только для чтения. Частотный алгоритм и CLI можно собрать без SDK.
+
+```bash
+make native-core
+```
+
+Команда создаёт `build/native/core/` и запускает сборку внутри Docker. Для Native API задайте путь к официальным заголовкам SDK:
+
+```bash
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-linux-arm64
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-linux-x86_64
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-linux-i386
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-windows-x86_64
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-windows-i386
+```
+
+Для macOS x86_64 используйте Xcode SDK на macOS-хосте:
+
+```bash
+NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMP83/include" make native-macos-x86_64
+```
+
+Эльбрус требует совместимый E2K компилятор и sysroot; в общий Docker-образ они не включены. Windows cross-build проверяет компоновку, но итоговый DLL нужно запускать в соответствующей Windows 1С. Для Linux цель x86_64 можно собрать кросс-компилятором в контейнере; выполнение и замеры нужно подтверждать на Linux x86_64. Сборка для платформ, которые пользователь не предоставил как runner, не считается runtime-проверкой.
+
+Соберите нужные архитектуры, затем упакуйте только уже существующие бинарные файлы в ZIP с `manifest.xml`:
+
+```bash
+make native-package NATIVE_TARGETS="linux-arm64 linux-x86_64 windows-x86_64 macos-x86_64"
+```
+
+Итоговый архив создаётся в `build/native/CpuFrequencyProbe.zip`. Подробно о составе результата, методе оценки и вызове из BSL: [Нативный замер CPU](native-cpu-probe.md).
