@@ -4,10 +4,16 @@
   "release": {
     "version": "0.0.1-alpha",
     "channel": "alpha",
-    "status": "draft"
+    "configurationVersion": "0.0.1"
   },
   "components": {
-    "configuration": "edt/benchmark",
-    "testExtension": "edt/BenchmarkTests"
+    "configurationSource": "edt/benchmark",
+    "testExtensionSource": "edt/BenchmarkTests"
+  },
+  "artifact": {
+    "path": "releases/1C-Bottleneck-Benchmark-0.0.1-alpha.cf",
+    "format": "cf",
+    "builtWithPlatform": "8.5.1.1529",
+    "sha256": "c55c75c56a7a8a411a090a45d2a0a3e3034c1a4ef3d82bb1608b9ca7a337b6a5"
   }
 }

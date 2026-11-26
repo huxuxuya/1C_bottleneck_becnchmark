@@ -2,6 +2,7 @@
 build/
 *.1cd
 *.cf
+!releases/*.cf
 *.cfe
 *.epf
 *.erf
