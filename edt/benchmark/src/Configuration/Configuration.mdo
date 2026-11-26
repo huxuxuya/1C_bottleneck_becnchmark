@@ -76,4 +76,5 @@
   <commonModules>CommonModule.БенчмаркПроба026СкоростьBSL</commonModules>
   <commonModules>CommonModule.БенчмаркПроба027БазоваяЦенаСерверногоВызова</commonModules>
   <commonModules>CommonModule.БенчмаркДиагностикиBSL</commonModules>
+  <commonTemplates>CommonTemplate.CpuFrequencyProbe</commonTemplates>
 </mdclass:Configuration>

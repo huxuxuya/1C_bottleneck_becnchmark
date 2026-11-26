@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="d8d2b3a4-6b55-45a8-9a8f-0d47f5e7c901">
+  <name>CpuFrequencyProbe</name>
+  <synonym>
+    <key>ru</key>
+    <value>Нативная проба CPU</value>
+  </synonym>
+  <comment>Пакет Native API CPU-пробы для клиентской обработки тестирования</comment>
+  <templateType>AddIn</templateType>
+</mdclass:CommonTemplate>
