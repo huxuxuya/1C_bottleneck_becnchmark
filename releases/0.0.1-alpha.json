@@ -1,0 +1,13 @@
+{
+  "manifestVersion": 1,
+  "project": "1C Bottleneck Benchmark",
+  "release": {
+    "version": "0.0.1-alpha",
+    "channel": "alpha",
+    "status": "draft"
+  },
+  "components": {
+    "configuration": "edt/benchmark",
+    "testExtension": "edt/BenchmarkTests"
+  }
+}

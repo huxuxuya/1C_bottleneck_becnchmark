@@ -26,6 +26,7 @@ jobs:
           json_files = sorted(
               glob.glob("tools/*.json")
               + glob.glob("benchmarks/**/*.json", recursive=True)
+              + glob.glob("releases/**/*.json", recursive=True)
               + [".bsl-language-server.json"]
           )
           for p in json_files:
