@@ -92,43 +92,43 @@ bool ToUnsignedInteger(const tVariant& value, std::uint64_t& destination) noexce
     const auto type = static_cast<TYPEVAR>(value.vt & VTYPE_TYPEMASK);
     switch (type) {
     case VTYPE_I1:
-        if (value.i8Val <= 0) return false;
+        if (value.i8Val < 0) return false;
         destination = static_cast<std::uint64_t>(value.i8Val);
         return true;
     case VTYPE_I2:
-        if (value.shortVal <= 0) return false;
+        if (value.shortVal < 0) return false;
         destination = static_cast<std::uint64_t>(value.shortVal);
         return true;
     case VTYPE_I4:
-        if (value.lVal <= 0) return false;
+        if (value.lVal < 0) return false;
         destination = static_cast<std::uint64_t>(value.lVal);
         return true;
     case VTYPE_I8:
-        if (value.llVal <= 0) return false;
+        if (value.llVal < 0) return false;
         destination = static_cast<std::uint64_t>(value.llVal);
         return true;
     case VTYPE_UI1:
         destination = value.ui8Val;
-        return destination > 0;
+        return true;
     case VTYPE_UI2:
         destination = value.ushortVal;
-        return destination > 0;
+        return true;
     case VTYPE_UI4:
         destination = value.ulVal;
-        return destination > 0;
+        return true;
     case VTYPE_UI8:
         destination = value.ullVal;
-        return destination > 0;
+        return true;
     case VTYPE_INT:
-        if (value.intVal <= 0) return false;
+        if (value.intVal < 0) return false;
         destination = static_cast<std::uint64_t>(value.intVal);
         return true;
     case VTYPE_UINT:
         destination = value.uintVal;
-        return destination > 0;
+        return true;
     case VTYPE_R4: {
         const auto number = static_cast<long double>(value.fltVal);
-        if (!std::isfinite(value.fltVal) || number < 1.0L ||
+        if (!std::isfinite(value.fltVal) || number < 0.0L ||
             number > static_cast<long double>(std::numeric_limits<std::uint64_t>::max()) ||
             std::floor(number) != number) return false;
         destination = static_cast<std::uint64_t>(number);
@@ -136,7 +136,7 @@ bool ToUnsignedInteger(const tVariant& value, std::uint64_t& destination) noexce
     }
     case VTYPE_R8: {
         const auto number = static_cast<long double>(value.dblVal);
-        if (!std::isfinite(value.dblVal) || number < 1.0L ||
+        if (!std::isfinite(value.dblVal) || number < 0.0L ||
             number > static_cast<long double>(std::numeric_limits<std::uint64_t>::max()) ||
             std::floor(number) != number) return false;
         destination = static_cast<std::uint64_t>(number);

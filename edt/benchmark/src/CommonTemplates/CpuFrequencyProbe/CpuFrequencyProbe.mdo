@@ -5,8 +5,8 @@
   <name>CpuFrequencyProbe</name>
   <synonym>
     <key>ru</key>
-    <value>Нативная проба CPU</value>
+    <value>Нативные пробы CPU: клиент и сервер</value>
   </synonym>
-  <comment>Пакет Native API CPU-пробы для клиентской обработки тестирования</comment>
+  <comment>Пакет Native API CPU-проб для клиентского приложения и сервера 1С</comment>
   <templateType>AddIn</templateType>
 </mdclass:CommonTemplate>

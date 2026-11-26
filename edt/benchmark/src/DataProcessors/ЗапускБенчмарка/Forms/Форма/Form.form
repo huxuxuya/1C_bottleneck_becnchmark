@@ -1571,7 +1571,7 @@
   </formCommands>
   <formCommands>
     <name>ВыполнитьНативнуюПробуCPU</name>
-    <title><key>ru</key><value>Нативная проба CPU</value></title>
+    <title><key>ru</key><value>CPU: клиент + сервер</value></title>
     <id>4</id>
     <use><common>true</common></use>
     <action xsi:type="form:FormCommandHandlerContainer">
