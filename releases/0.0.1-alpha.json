@@ -14,6 +14,7 @@
     "path": "releases/1C-Bottleneck-Benchmark-0.0.1-alpha.cf",
     "format": "cf",
     "builtWithPlatform": "8.5.1.1529",
-    "sha256": "c55c75c56a7a8a411a090a45d2a0a3e3034c1a4ef3d82bb1608b9ca7a337b6a5"
+    "sourceRevision": "e6dcb75",
+    "sha256": "a430bec92f0d906342b2477f0c0ecb65cbfde46d60e48e33f5a54ab20e3425c6"
   }
 }
