@@ -1,6 +1,6 @@
 # Проверки и запуск
 
-[Главная](../README.md) · [Команды Make](../Makefile) · [Настройки Docker](../.env.example)
+[Главная](../README.md) · [Команды Make](../Makefile) · [Настройки Docker](../.env.example) · [Практический runbook и решения проблем](runbook.md)
 
 ## Как устроен прогон
 

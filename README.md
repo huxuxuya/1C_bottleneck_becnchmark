@@ -2,7 +2,7 @@
 
 **90 диагностических проб для клиент-серверной 1С.** Каталог помогает обследовать установку до появления жалоб. Каждая проба меняет одно условие и показывает, где возникает задержка, при какой нагрузке она растёт и чем проверить её причину.
 
-[Каталог проб](docs/tests/README.md) · [Протокол измерений](docs/tests/protocol.md) · [Нативный замер CPU](docs/native-cpu-probe.md) · [Native API ZIP 0.1.0](releases/CpuFrequencyProbe-0.1.0.zip) · [Архитектура](docs/architecture.md) · [Сборка и запуск](docs/development.md) · [CF альфа-релиза 0.0.2](releases/1C-Bottleneck-Benchmark-0.0.2-alpha.cf) · [Манифест альфа-релиза 0.0.2](releases/0.0.2-alpha.json)
+[Каталог проб](docs/tests/README.md) · [Протокол измерений](docs/tests/protocol.md) · [Нативный замер CPU](docs/native-cpu-probe.md) · [Native API ZIP 0.1.0](releases/CpuFrequencyProbe-0.1.0.zip) · [Архитектура](docs/architecture.md) · [Сборка и запуск](docs/development.md) · [Практический runbook](docs/runbook.md) · [CF альфа-релиза 0.0.2](releases/1C-Bottleneck-Benchmark-0.0.2-alpha.cf) · [Манифест альфа-релиза 0.0.2](releases/0.0.2-alpha.json)
 
 ## Как выбрать пробу
 
