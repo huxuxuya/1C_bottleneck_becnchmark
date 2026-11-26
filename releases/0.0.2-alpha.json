@@ -1,0 +1,20 @@
+{
+  "manifestVersion": 1,
+  "project": "1C Bottleneck Benchmark",
+  "release": {
+    "version": "0.0.2-alpha",
+    "channel": "alpha",
+    "configurationVersion": "0.0.2"
+  },
+  "components": {
+    "configurationSource": "edt/benchmark",
+    "testExtensionSource": "edt/BenchmarkTests"
+  },
+  "artifact": {
+    "path": "releases/1C-Bottleneck-Benchmark-0.0.2-alpha.cf",
+    "format": "cf",
+    "builtWithPlatform": "8.5.1.1529",
+    "sourceRevision": "6aa549a",
+    "sha256": "2f5a345bbdbf87868e07b37fb488a0d90384cd7632bc83f047bc309f0c81c410"
+  }
+}
