@@ -2,7 +2,7 @@
 
 **90 диагностических проб для клиент-серверной 1С.** Каталог помогает обследовать установку до появления жалоб. Каждая проба меняет одно условие и показывает, где возникает задержка, при какой нагрузке она растёт и чем проверить её причину.
 
-[Каталог проб](docs/tests/README.md) · [Протокол измерений](docs/tests/protocol.md) · [Нативные CPU-пробы](docs/native-cpu-probe.md) · [Пакет Native API 0.6.0](releases/CpuFrequencyProbe-0.6.0.zip) · [Архитектура](docs/architecture.md) · [Сборка и запуск](docs/development.md) · [Практический runbook](docs/runbook.md) · [CF альфа-релиза 0.0.3](releases/1C-Bottleneck-Benchmark-0.0.3-alpha.cf) · [Манифест альфа-релиза 0.0.3](releases/0.0.3-alpha.json)
+[Каталог проб](docs/tests/README.md) · [Протокол измерений](docs/tests/protocol.md) · [Нативные CPU-пробы](docs/native-cpu-probe.md) · [Пакет Native API 0.6.0](releases/CpuFrequencyProbe-0.6.0.zip) · [Архитектура](docs/architecture.md) · [Сборка и запуск](docs/development.md) · [Практический runbook](docs/runbook.md) · [CF альфа-релиза 0.0.4](releases/1C-Bottleneck-Benchmark-0.0.4-alpha.cf) · [Манифест альфа-релиза 0.0.4](releases/0.0.4-alpha.json)
 
 ## Как выбрать пробу
 
@@ -18,7 +18,7 @@
 
 **Методики.** Описаны 90 экспериментов в 10 группах. Журналы карточек пока пусты. [Открыть каталог](docs/tests/README.md)
 
-**Код и проверки.** Реализованы BSL-пробы 001–011 и 026, клиентская проба 027, серверная файловая проба 042 и Native API `CpuFrequencyProbe` 0.6.0 с десятью CPU-диагностиками 002–011 и методом `GetSystemInfo()`. Полный пакет для семи платформ собран, встроен в `Template.addin` и проверен по SHA-256. CTest/JSON прошли на macOS ARM64 и Linux ARM64; YAxUnit на 1С 8.5.1.1621/macOS x86_64 прошёл 103 теста без ошибок, включая CPU_011 и клиентский/серверный вызовы в файловой ИБ. Runtime в Windows/Linux 1С и отдельном `rphost` ещё не проверен. [Статус проб](docs/tests/implementation-status.md) · [Сборка Native API](docs/native-cpu-probe.md) · [Сборка и запуск](docs/development.md)
+**Код и проверки.** Реализованы BSL-пробы 001–011 и 026, клиентская проба 027, серверная файловая проба 042 и Native API `CpuFrequencyProbe` 0.6.0 с десятью CPU-диагностиками 002–011 и методом `GetSystemInfo()`. Полный пакет для семи платформ собран, встроен в `Template.addin` и проверен по SHA-256. CTest/JSON прошли на macOS ARM64 и Linux ARM64; YAxUnit на 1С 8.5.1.1621/macOS x86_64 прошёл 103 теста без ошибок, включая CPU_011 и клиентский/серверный вызовы в файловой ИБ. Свежий `.cf` 0.0.4-alpha импортирован и применён через `ibcmd` 8.5.1.1529. Linux ARM64 YAxUnit-проверка в 1С не создала отчёты; отдельный `rphost` и Windows runtime не подтверждены. [Статус проб](docs/tests/implementation-status.md) · [Сборка Native API](docs/native-cpu-probe.md) · [Сборка и запуск](docs/development.md)
 
 **Стенд.** Предусмотрены файловая база через `ibcmd` и клиент-серверный вариант с PostgreSQL. Для запуска нужны дистрибутивы или подготовленные образы и лицензия 1С. Инструкция включает импорт в EDT, экспорт XML и команды Docker. [Подготовить стенд](docs/development.md)
 
