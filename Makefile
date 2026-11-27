@@ -1,4 +1,4 @@
-.PHONY: help download-yaxunit export-xml export-xml-docker build-edt build-ibcmd test-ibcmd test-local build-postgres up-postgres test-postgres native-core native-linux-i386 native-linux-x86_64 native-linux-arm64 native-windows-i386 native-windows-x86_64 native-macos-x86_64 native-macos-arm64 native-package down clean
+.PHONY: help download-yaxunit export-xml export-xml-docker build-edt build-ibcmd test-ibcmd test-local build-postgres up-postgres test-postgres native-core native-test native-linux-i386 native-linux-x86_64 native-linux-arm64 native-windows-i386 native-windows-x86_64 native-macos-x86_64 native-macos-arm64 native-package down clean
 
 COMPOSE := docker compose -f docker/docker-compose.yml
 
@@ -15,6 +15,7 @@ help:
 	@echo "  make up-postgres        - Поднять PostgreSQL и Сервер 1С в фоне"
 	@echo "  make test-postgres      - Создать ИБ в PostgreSQL и прогнать тесты YAxUnit"
 	@echo "  make native-core        - Собрать переносимое C++ ядро и CLI в Docker"
+	@echo "  make native-test        - Собрать и выполнить тесты всех нативных CPU-проб на текущей ОС"
 	@echo "  make native-linux-*     - Собрать Native API под Linux (нужен SDK 1С)"
 	@echo "  make native-windows-*   - Кросс-собрать Native API под Windows (нужен SDK 1С)"
 	@echo "  make native-macos-x86_64 - Собрать Native API под macOS x86_64 (нужны Xcode и SDK 1С)"
@@ -55,6 +56,12 @@ test-postgres: download-yaxunit
 
 native-core:
 	@./native/scripts/build-native.sh core
+
+native-test:
+	cmake -S native/cpu-frequency -B build/native/test -DBUILD_NATIVEAPI_COMPONENT=OFF -DBUILD_BENCHMARK_CLI=ON -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release
+	cmake --build build/native/test --config Release
+	ctest --test-dir build/native/test --output-on-failure
+	python3 native/cpu-frequency/tests/validate_diagnostics_json.py build/native/test/cpu-frequency
 
 native-linux-i386:
 	@./native/scripts/build-native.sh linux-i386

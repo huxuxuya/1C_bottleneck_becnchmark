@@ -1,4 +1,5 @@
 #include "cpu_frequency/benchmark.hpp"
+#include "cpu_frequency/diagnostics.hpp"
 
 #include "AddInDefBase.h"
 #include "ComponentBase.h"
@@ -28,7 +29,10 @@ constexpr char16_t kExtensionName[] = u"CpuProbe";
 constexpr char16_t kMethodNameEnglish[] = u"Measure";
 constexpr char16_t kMethodNameLocal[] = u"Измерить";
 constexpr char16_t kErrorSource[] = u"CpuFrequencyProbe";
-constexpr char16_t kInvalidArguments[] = u"Measure expects positive blocks, 0..20 warmups, 3..31 samples, and at most 15000000 total blocks.";
+constexpr char16_t kInvalidArguments[] = u"Measure expects positive blocks or a diagnostic selector from -1 through -9.";
+constexpr char16_t kUnknownDiagnostic[] = u"Unknown native CPU diagnostic selector.";
+constexpr char16_t kInvalidDiagnosticArguments[] = u"Native CPU diagnostic arguments must be non-negative integers.";
+constexpr char16_t kInvalidDiagnosticConfiguration[] = u"Native CPU diagnostic parameters are outside the supported range.";
 constexpr char16_t kMemoryError[] = u"The 1C memory manager could not allocate the result string.";
 constexpr char16_t kRuntimeError[] = u"The native CPU benchmark could not complete.";
 
@@ -147,6 +151,49 @@ bool ToUnsignedInteger(const tVariant& value, std::uint64_t& destination) noexce
     }
 }
 
+bool ToSignedInteger(const tVariant& value, std::int64_t& destination) noexcept {
+    const auto type = static_cast<TYPEVAR>(value.vt & VTYPE_TYPEMASK);
+    switch (type) {
+    case VTYPE_I1: destination = value.i8Val; return true;
+    case VTYPE_I2: destination = value.shortVal; return true;
+    case VTYPE_I4: destination = value.lVal; return true;
+    case VTYPE_I8: destination = value.llVal; return true;
+    case VTYPE_INT: destination = value.intVal; return true;
+    case VTYPE_R4: {
+        const auto number = static_cast<long double>(value.fltVal);
+        if (!std::isfinite(value.fltVal) || std::floor(number) != number ||
+            number < static_cast<long double>(std::numeric_limits<std::int64_t>::min()) ||
+            number > static_cast<long double>(std::numeric_limits<std::int64_t>::max())) return false;
+        destination = static_cast<std::int64_t>(number);
+        return true;
+    }
+    case VTYPE_R8: {
+        const auto number = static_cast<long double>(value.dblVal);
+        if (!std::isfinite(value.dblVal) || std::floor(number) != number ||
+            number < static_cast<long double>(std::numeric_limits<std::int64_t>::min()) ||
+            number > static_cast<long double>(std::numeric_limits<std::int64_t>::max())) return false;
+        destination = static_cast<std::int64_t>(number);
+        return true;
+    }
+    default:
+        return false;
+    }
+}
+
+const char* DiagnosticCodeForCommand(const std::int64_t command) noexcept {
+    switch (command) {
+    case -2: return "CPU_002_INDEPENDENT_INSTRUCTIONS";
+    case -3: return "CPU_003_WAKE_LATENCY";
+    case -4: return "CPU_004_READY_QUEUE";
+    case -5: return "CPU_005_CPU_QUOTA";
+    case -6: return "CPU_006_SMT_COMPETITION";
+    case -7: return "CPU_007_CORE_MIGRATION";
+    case -8: return "CPU_008_IDLE_RECOVERY";
+    case -9: return "CPU_009_SUSTAINED_SPEED";
+    default: return nullptr;
+    }
+}
+
 class CpuProbe final : public IComponentBase {
 public:
     bool ADDIN_API Init(void* interface_pointer) override {
@@ -244,6 +291,47 @@ public:
         }
 
         try {
+            std::int64_t diagnostic_command = 0;
+            if (ToSignedInteger(parameters[0], diagnostic_command) && diagnostic_command < 0) {
+                std::string json;
+                if (diagnostic_command == -1) {
+                    json = cpu_frequency::ToJson(cpu_frequency::RunAllDiagnostics());
+                } else {
+                    const auto* probe_code = DiagnosticCodeForCommand(diagnostic_command);
+                    if (probe_code == nullptr) {
+                        ReportError(kUnknownDiagnostic);
+                        return false;
+                    }
+
+                    cpu_frequency::DiagnosticConfig diagnostic_config;
+                    std::uint64_t argument1 = 0;
+                    std::uint64_t argument2 = 0;
+                    if (parameter_count > 1 && parameters[1].vt != VTYPE_EMPTY &&
+                        !ToUnsignedInteger(parameters[1], argument1)) {
+                        ReportError(kInvalidDiagnosticArguments);
+                        return false;
+                    }
+                    if (parameter_count > 2 && parameters[2].vt != VTYPE_EMPTY &&
+                        !ToUnsignedInteger(parameters[2], argument2)) {
+                        ReportError(kInvalidDiagnosticArguments);
+                        return false;
+                    }
+                    // The Native API may pass Measure's defaults when a diagnostic is called
+                    // without explicit settings. Treat that exact pair as omitted.
+                    if (argument1 != 2U || argument2 != 7U) {
+                        diagnostic_config.arg1 = argument1;
+                        diagnostic_config.arg2 = argument2;
+                    }
+                    json = cpu_frequency::ToJson(
+                        cpu_frequency::RunDiagnostic(probe_code, diagnostic_config));
+                }
+                if (!CopyAsciiText(memory_manager_, json, return_value)) {
+                    ReportError(kMemoryError);
+                    return false;
+                }
+                return true;
+            }
+
             cpu_frequency::Config config;
             std::uint64_t parsed = 0;
             if (!ToUnsignedInteger(parameters[0], parsed)) {
@@ -273,7 +361,7 @@ public:
             }
             return true;
         } catch (const std::invalid_argument&) {
-            ReportError(kInvalidArguments);
+            ReportError(kInvalidDiagnosticConfiguration);
             return false;
         } catch (...) {
             ReportError(kRuntimeError);

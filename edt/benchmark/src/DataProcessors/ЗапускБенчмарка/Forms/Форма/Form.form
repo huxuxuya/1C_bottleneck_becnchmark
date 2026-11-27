@@ -123,6 +123,23 @@
         <extInfo xsi:type="form:LabelDecorationExtInfo"><horizontalAlign>Left</horizontalAlign></extInfo>
       </extendedTooltip>
     </items>
+    <items xsi:type="form:Button">
+      <name>КнопкаВыполнитьНативныеДиагностикиCPU</name>
+      <id>147</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible><common>true</common></userVisible>
+      <type>UsualButton</type>
+      <commandName>Form.Command.ВыполнитьНативныеДиагностикиCPU</commandName>
+      <extendedTooltip>
+        <name>КнопкаВыполнитьНативныеДиагностикиCPUПодсказка</name>
+        <id>148</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo"><horizontalAlign>Left</horizontalAlign></extInfo>
+      </extendedTooltip>
+    </items>
   </items>
   <items xsi:type="form:FormGroup">
     <name>ГруппаИтоги</name>
@@ -1576,6 +1593,16 @@
     <use><common>true</common></use>
     <action xsi:type="form:FormCommandHandlerContainer">
       <handler><name>ВыполнитьНативнуюПробуCPU</name></handler>
+    </action>
+    <currentRowUse>Auto</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>ВыполнитьНативныеДиагностикиCPU</name>
+    <title><key>ru</key><value>CPU: нативные диагностики 002–009</value></title>
+    <id>5</id>
+    <use><common>true</common></use>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler><name>ВыполнитьНативныеДиагностикиCPU</name></handler>
     </action>
     <currentRowUse>Auto</currentRowUse>
   </formCommands>

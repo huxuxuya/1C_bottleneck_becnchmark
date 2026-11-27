@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 import zipfile
 from pathlib import Path
@@ -31,9 +32,22 @@ def main() -> int:
 
     root = args.root.resolve()
     output = args.output if args.output.is_absolute() else root / args.output
+    cmake = (root / "native/cpu-frequency/CMakeLists.txt").read_text(encoding="utf-8")
+    version_match = re.search(r"project\(CpuFrequencyProbe VERSION ([0-9]+\.[0-9]+\.[0-9]+)", cmake)
+    if version_match is None:
+        print("Could not read CpuFrequencyProbe version from CMakeLists.txt", file=sys.stderr)
+        return 2
+    component_version = version_match.group(1)
+
+    def versioned_filename(filename: str) -> str:
+        path = Path(filename)
+        version_suffix = component_version.replace(".", "_")
+        return f"{path.stem}_v{version_suffix}{path.suffix}"
+
     binaries: list[tuple[str, Path]] = []
     for target in args.target:
-        _, _, suffix, package_name = TARGETS[target]
+        _, _, suffix, base_package_name = TARGETS[target]
+        package_name = versioned_filename(base_package_name)
         binary = root / "build" / "native" / target / f"CpuFrequencyProbe{suffix}"
         if not binary.is_file():
             print(f"Missing built binary for {target}: {binary}", file=sys.stderr)
@@ -42,7 +56,8 @@ def main() -> int:
 
     manifest = Element("bundle", {"xmlns": "http://v8.1c.ru/8.2/addin/bundle", "name": "CpuFrequencyProbe"})
     for target in args.target:
-        os_name, arch, _, package_name = TARGETS[target]
+        os_name, arch, _, base_package_name = TARGETS[target]
+        package_name = versioned_filename(base_package_name)
         SubElement(manifest, "component", {"os": os_name, "path": package_name, "type": "native", "arch": arch})
 
     output.parent.mkdir(parents=True, exist_ok=True)
