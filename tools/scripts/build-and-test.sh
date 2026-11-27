@@ -200,7 +200,7 @@ if [[ -f "${REPORTS_DIR}/exitcode.txt" ]]; then
     exit "${TEST_CODE:-1}"
   fi
 
-  python3 - "${REPORTS_DIR}/junit.xml" "${REPORTS_DIR}/yaxunit.log" "${MIN_YAXUNIT_TESTS:-102}" <<'PY'
+python3 - "${REPORTS_DIR}/junit.xml" "${REPORTS_DIR}/yaxunit.log" "${MIN_YAXUNIT_TESTS:-111}" <<'PY'
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path

@@ -1,5 +1,6 @@
 # 1C build artifacts & local infobases
 build/
+/local/onec/
 *.1cd
 *.cf
 !releases/*.cf

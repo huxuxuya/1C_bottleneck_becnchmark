@@ -19,12 +19,12 @@
   <defaultRunMode>ManagedApplication</defaultRunMode>
   <usePurposes>PersonalComputer</usePurposes>
   <scriptVariant>Russian</scriptVariant>
-  <version>0.0.4</version>
+  <version>0.0.5</version>
   <defaultLanguage>Language.Русский</defaultLanguage>
   <dataLockControlMode>Managed</dataLockControlMode>
   <objectAutonumerationMode>NotAutoFree</objectAutonumerationMode>
   <modalityUseMode>DontUse</modalityUseMode>
-  <synchronousPlatformExtensionAndAddInCallUseMode>DontUse</synchronousPlatformExtensionAndAddInCallUseMode>
+  <synchronousPlatformExtensionAndAddInCallUseMode>Use</synchronousPlatformExtensionAndAddInCallUseMode>
   <interfaceCompatibilityMode>Taxi</interfaceCompatibilityMode>
   <compatibilityMode>8.3.24</compatibilityMode>
   <languages uuid="10000000-0000-4000-8000-000000000101">
