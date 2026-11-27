@@ -1,0 +1,26 @@
+{
+  "manifestVersion": 1,
+  "project": "1C Bottleneck Benchmark",
+  "release": {
+    "version": "0.0.3-alpha",
+    "channel": "alpha",
+    "configurationVersion": "0.0.3"
+  },
+  "components": {
+    "configurationSource": "edt/benchmark",
+    "testExtensionSource": "edt/BenchmarkTests"
+  },
+  "nativeComponent": {
+    "version": "0.3.0",
+    "path": "releases/CpuFrequencyProbe-0.3.0.zip",
+    "format": "zip",
+    "sha256": "0f74cb8b2835d908bca4a44e45385cb9966b16afb234477808c82b1bbfe1aa0b"
+  },
+  "artifact": {
+    "path": "releases/1C-Bottleneck-Benchmark-0.0.3-alpha.cf",
+    "format": "cf",
+    "builtWithPlatform": "8.5.1.1529",
+    "sourceRevision": "6c8c1dc",
+    "sha256": "ed691c314b15bb7440ab2fd565b4e124d1cdbd4e3e5c2285e8e9b749439ecc77"
+  }
+}
