@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="30000000-0000-4000-8000-000000000500">
+  <name>БенчмаркХранилищеПрогонов</name>
+  <synonym><key>ru</key><value>Бенчмарк хранилище прогонов</value></synonym>
+  <comment>Нормализованное хранение документов прогонов, попыток, рядов и агрегированных показателей</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <externalConnection>true</externalConnection>
+</mdclass:CommonModule>

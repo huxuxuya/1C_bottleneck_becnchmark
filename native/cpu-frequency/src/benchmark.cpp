@@ -6,7 +6,7 @@
 #include <stdexcept>
 
 #ifndef CPU_FREQUENCY_VERSION
-#define CPU_FREQUENCY_VERSION "0.3.0"
+#define CPU_FREQUENCY_VERSION "0.5.0"
 #endif
 
 namespace cpu_frequency {

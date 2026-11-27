@@ -22,6 +22,55 @@ def child_text(element: ET.Element, child_name: str) -> str | None:
 
 
 class BenchmarkFormCommandTests(unittest.TestCase):
+    def test_diagnosis_and_checks_are_separate_default_pages(self) -> None:
+        root = ET.parse(FORM_PATH).getroot()
+        pages = [
+            element
+            for element in root.findall("items")
+            if child_text(element, "name") == "ВкладкиПульта"
+        ]
+        self.assertEqual(len(pages), 1, "the form must have one pages container")
+        self.assertEqual(child_text(pages[0], "type"), "Pages")
+
+        page_items = pages[0].findall("items")
+        self.assertEqual(
+            [child_text(page, "name") for page in page_items],
+            ["СтраницаДиагноз", "СтраницаПроверки"],
+            "the diagnosis page must be the default first page",
+        )
+
+        diagnosis_names = {
+            child_text(element, "name")
+            for element in page_items[0].iter()
+            if child_text(element, "name")
+        }
+        checks_names = {
+            child_text(element, "name")
+            for element in page_items[1].iter()
+            if child_text(element, "name")
+        }
+        self.assertIn("КнопкаВыполнитьПрогон", diagnosis_names)
+        self.assertIn("ГлавноеУзкоеМесто", diagnosis_names)
+        self.assertIn("ОбщийБалл", diagnosis_names)
+        self.assertNotIn("ТаблицаРезультатов", diagnosis_names)
+        self.assertIn("ТаблицаРезультатов", checks_names)
+        self.assertIn("ТочкиПроб042", checks_names)
+        self.assertIn("ГруппаДополнительныеПроверки", checks_names)
+        self.assertIn("ТаблицаПокрытия", diagnosis_names)
+        self.assertIn("ГруппаФильтраРезультатов", checks_names)
+
+        attributes = {
+            child_text(element, "name"): element
+            for element in root.findall("attributes")
+            if child_text(element, "name")
+        }
+        self.assertIn("ПокрытиеПоЗвеньям", attributes)
+        result_columns = {
+            child_text(column, "name")
+            for column in attributes["Результаты"].findall("columns")
+        }
+        self.assertTrue({"Звено", "Ресурс", "ТипСвидетельства"} <= result_columns)
+
     def test_start_button_is_bound_to_exported_handler(self) -> None:
         root = ET.parse(FORM_PATH).getroot()
         buttons = [
@@ -108,6 +157,28 @@ class BenchmarkFormCommandTests(unittest.TestCase):
             "БенчмаркПроба042Хранилище.ВыполнитьПрогон()",
             module,
         )
+
+    def test_layer_resource_projection_and_filter_are_wired(self) -> None:
+        root = ET.parse(FORM_PATH).getroot()
+        commands = [
+            element
+            for element in root.iter()
+            if element.tag.rsplit("}", 1)[-1] == "formCommands"
+            and child_text(element, "name") == "ПрименитьФильтрРезультатов"
+        ]
+        self.assertEqual(len(commands), 1)
+        self.assertIn(
+            "ПрименитьФильтрРезультатов",
+            [child_text(element, "name") for element in commands[0].iter()],
+        )
+
+        module = MODULE_PATH.read_text(encoding="utf-8")
+        self.assertIn("КлассифицироватьРезультат", module)
+        self.assertIn("ОбновитьПокрытиеНаСервере", module)
+        self.assertIn("Элементы.ТаблицаРезультатов.ОтборСтрок", module)
+        self.assertIn('Новый ФиксированнаяСтруктура(ОтборСтрок)', module)
+        self.assertIn('"Сервер 1С ↔ СУБД"', module)
+        self.assertIn('"Запросы и чтение"', module)
 
 
 if __name__ == "__main__":

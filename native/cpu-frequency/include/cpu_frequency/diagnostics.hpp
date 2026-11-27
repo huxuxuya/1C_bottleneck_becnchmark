@@ -27,7 +27,8 @@ struct DiagnosticResult {
 
 // Codes: CPU_002_INDEPENDENT_INSTRUCTIONS, CPU_003_WAKE_LATENCY,
 // CPU_004_READY_QUEUE, CPU_005_CPU_QUOTA, CPU_006_SMT_COMPETITION,
-// CPU_007_CORE_MIGRATION, CPU_008_IDLE_RECOVERY, CPU_009_SUSTAINED_SPEED.
+// CPU_007_CORE_MIGRATION, CPU_008_IDLE_RECOVERY, CPU_009_SUSTAINED_SPEED,
+// CPU_010_INTERRUPT_JITTER, CPU_011_VCPU_WAIT.
 DiagnosticResult RunDiagnostic(const std::string& probe_code,
                                const DiagnosticConfig& config = {});
 std::vector<DiagnosticResult> RunAllDiagnostics();

@@ -50,17 +50,32 @@ int main() {
         CheckDiagnostic("CPU_007_CORE_MIGRATION", {50U, 1'000U, 0U}, "migrationCount");
         CheckDiagnostic("CPU_008_IDLE_RECOVERY", {1U, 10'000U, 3U}, "firstAfterIdleNsPerUpdate");
         CheckDiagnostic("CPU_009_SUSTAINED_SPEED", {50U, 10U, 0U}, "medianOpsPerSecond");
+        CheckDiagnostic("CPU_010_INTERRUPT_JITTER", {1'000U, 10U, 0U}, "p999BlockDurationNs");
+        const auto vcpu_wait = cpu_frequency::RunDiagnostic("CPU_011_VCPU_WAIT", {100U, 1'000U, 0U});
+        Require(vcpu_wait.measurements_json.find("\"chunkCount\":100") != std::string::npos,
+                "CPU_011 must report the configured number of CPU chunks");
+        Require(vcpu_wait.measurements_json.find("\"threadCpuElapsedNs\":") != std::string::npos &&
+                    vcpu_wait.measurements_json.find("\"p95SchedulingGapNs\":") != std::string::npos &&
+                    vcpu_wait.measurements_json.find("\"systemStealTimeDeltaNs\":") != std::string::npos,
+                "CPU_011 must report thread CPU time, scheduling gaps, and steal counter availability");
+        if (vcpu_wait.available) {
+            Require(vcpu_wait.primary_value > 0.0 && vcpu_wait.primary_value <= 100.0,
+                    "CPU_011 effective CPU percentage must be in (0, 100]");
+        }
+        Require(vcpu_wait.checksum != 0U, "CPU_011 must produce a nonzero work checksum");
+        CheckDiagnostic("CPU_011_VCPU_WAIT", {100U, 1'000U, 0U}, "effectiveCpuPercentOfWall");
 
         const auto all = cpu_frequency::RunAllDiagnostics();
-        Require(all.size() == 8U, "RunAllDiagnostics must return all eight probes");
+        Require(all.size() == 10U, "RunAllDiagnostics must return all ten probes");
         const auto all_json = cpu_frequency::ToJson(all);
         for (const auto* code : {
                  "CPU_002_INDEPENDENT_INSTRUCTIONS", "CPU_003_WAKE_LATENCY", "CPU_004_READY_QUEUE",
                  "CPU_005_CPU_QUOTA", "CPU_006_SMT_COMPETITION", "CPU_007_CORE_MIGRATION",
-                 "CPU_008_IDLE_RECOVERY", "CPU_009_SUSTAINED_SPEED"}) {
+                 "CPU_008_IDLE_RECOVERY", "CPU_009_SUSTAINED_SPEED", "CPU_010_INTERRUPT_JITTER",
+                 "CPU_011_VCPU_WAIT"}) {
             Require(all_json.find(code) != std::string::npos, std::string("suite missed ") + code);
         }
-        std::cout << "PASS: all eight native CPU diagnostics executed and serialized\n";
+        std::cout << "PASS: all ten native CPU diagnostics executed and serialized\n";
         return EXIT_SUCCESS;
     } catch (const std::exception& error) {
         std::cerr << "FAIL: " << error.what() << '\n';

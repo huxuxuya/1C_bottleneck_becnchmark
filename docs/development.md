@@ -177,7 +177,7 @@ make native-core
 make native-test
 ```
 
-Команда собирает диагностическое ядро и CLI, выполняет CTest для восьми кодов 002–009, затем проверяет, что `--all-diagnostics` выдаёт корректный JSON-контракт. Это не загружает Native API в 1С и не заменяет `make test-local`, который дополнительно проверяет BSL, кнопку обработки и исполнение в клиентском/серверном контекстах.
+Команда собирает диагностическое ядро и CLI, выполняет CTest для десяти кодов 002–011, затем проверяет JSON-контракты `--all-diagnostics` и `--system-info`. Это не загружает Native API в 1С и не заменяет `make test-local`, который дополнительно проверяет BSL, кнопку обработки и исполнение в клиентском/серверном контекстах.
 
 ```bash
 NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMPS/include" make native-linux-arm64
@@ -202,4 +202,4 @@ NATIVEAPI_INCLUDE_DIR="/путь/к/VNCOMPS/include" make native-macos-arm64
 make native-package NATIVE_TARGETS="linux-arm64 linux-i386 linux-x86_64 windows-i386 windows-x86_64 macos-x86_64 macos-arm64"
 ```
 
-Команда создаёт `build/native/CpuFrequencyProbe.zip`; релиз 0.3.0 сохранён в [`releases/CpuFrequencyProbe-0.3.0.zip`](../releases/CpuFrequencyProbe-0.3.0.zip), SHA-256 — рядом. Подробно о восьми диагностиках, формате JSON и вызове из BSL: [Нативные CPU-диагностики](native-cpu-probe.md).
+Команда создаёт `build/native/CpuFrequencyProbe.zip`; полный пакет 0.6.0 доступен в [`releases/CpuFrequencyProbe-0.6.0.zip`](../releases/CpuFrequencyProbe-0.6.0.zip), SHA-256 — рядом. Семь библиотек 0.6.0 собраны и встроены в `Template.addin`; `GetSystemInfo()` входит с версии 0.4.0. Подробно о CPU-диагностиках, паспорте системы, формате JSON и вызове из BSL: [Native API](native-cpu-probe.md).

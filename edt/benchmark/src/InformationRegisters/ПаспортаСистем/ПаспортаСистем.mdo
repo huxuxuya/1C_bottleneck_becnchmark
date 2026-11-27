@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:core="http://g5.1c.ru/v8/dt/mcore"
+    xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="30000000-0000-4000-8000-000000000101">
+  <producedTypes>
+    <selectionType typeId="30000000-0000-4000-8000-000000000102" valueTypeId="30000000-0000-4000-8000-000000000103"/>
+    <listType typeId="30000000-0000-4000-8000-000000000104" valueTypeId="30000000-0000-4000-8000-000000000105"/>
+    <recordSetType typeId="30000000-0000-4000-8000-000000000106" valueTypeId="30000000-0000-4000-8000-000000000107"/>
+    <recordKeyType typeId="30000000-0000-4000-8000-000000000108" valueTypeId="30000000-0000-4000-8000-000000000109"/>
+    <recordType typeId="30000000-0000-4000-8000-00000000010a" valueTypeId="30000000-0000-4000-8000-00000000010b"/>
+    <recordManagerType typeId="30000000-0000-4000-8000-00000000010c" valueTypeId="30000000-0000-4000-8000-00000000010d"/>
+  </producedTypes>
+  <name>ПаспортаСистем</name>
+  <synonym><key>ru</key><value>Паспорта оборудования</value></synonym>
+  <recordPresentation><key>ru</key><value>Паспорт оборудования</value></recordPresentation>
+  <listPresentation><key>ru</key><value>Паспорта оборудования</value></listPresentation>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <attributes uuid="30000000-0000-4000-8000-000000000121">
+    <name>ДатаСбора</name>
+    <synonym><key>ru</key><value>Дата сбора</value></synonym>
+    <type><types>Date</types><dateQualifiers><dateFractions>DateTime</dateFractions></dateQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000122">
+    <name>Статус</name>
+    <synonym><key>ru</key><value>Статус сбора</value></synonym>
+    <type><types>String</types><stringQualifiers><length>20</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000123">
+    <name>ДанныеJSON</name>
+    <synonym><key>ru</key><value>Системная информация JSON</value></synonym>
+    <type><types>String</types><stringQualifiers><length>1024</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000124">
+    <name>Причина</name>
+    <synonym><key>ru</key><value>Причина недоступности</value></synonym>
+    <type><types>String</types><stringQualifiers><length>500</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+  </attributes>
+  <dimensions uuid="30000000-0000-4000-8000-000000000131">
+    <name>ИдентификаторПрогона</name>
+    <synonym><key>ru</key><value>Идентификатор прогона</value></synonym>
+    <type><types>String</types><stringQualifiers><length>36</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000132">
+    <name>Контекст</name>
+    <synonym><key>ru</key><value>Контекст выполнения</value></synonym>
+    <type><types>String</types><stringQualifiers><length>10</length></stringQualifiers></type>
+    <minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:StringValue"><value></value></fillValue>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

@@ -73,4 +73,5 @@
   <commonModules>CommonModule.Тест_Проба027_БазоваяЦенаСерверногоВызова</commonModules>
   <commonModules>CommonModule.Тест_Проба042ФайловыйВводВывод</commonModules>
   <commonModules>CommonModule.Тест_ДиагностикиBSL_ИсполнениеПоКодам</commonModules>
+  <commonModules>CommonModule.Тест_ХранилищеПрогонов_Контракт</commonModules>
 </mdclass:Configuration>

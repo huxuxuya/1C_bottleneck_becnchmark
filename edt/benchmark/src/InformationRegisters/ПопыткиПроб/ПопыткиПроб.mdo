@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:core="http://g5.1c.ru/v8/dt/mcore"
+    xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="30000000-0000-4000-8000-000000000100">
+  <producedTypes>
+    <selectionType typeId="9bdfbbb1-10ad-43db-952e-a13825c3a43f" valueTypeId="b79f9a43-f0ab-4d0b-94de-5646cc8384fe"/>
+    <listType typeId="19d82266-1ec9-42bd-87ea-394b59c456fb" valueTypeId="0665f45f-9732-4360-91a4-3534d767e9b7"/>
+    <recordSetType typeId="5e26e82d-b613-438e-b6f8-13b3fe3f18b9" valueTypeId="0a7c1d79-d1df-4e9e-9079-4b40920d0730"/>
+    <recordKeyType typeId="997e7268-9275-4c3f-abf1-53492767591e" valueTypeId="d4dd382e-b893-416a-a7cf-20258b93e9ad"/>
+    <recordType typeId="6269be01-97ae-4777-923b-cb62bbb5db81" valueTypeId="bce5ccd9-1ecf-4e63-8347-e5333db15c5f"/>
+    <recordManagerType typeId="b990153a-bb14-48a9-82d0-67320f16bb0a" valueTypeId="01c18748-fe98-41d0-b934-2ecf88bf7f94"/>
+  </producedTypes>
+  <name>ПопыткиПроб</name>
+  <synonym><key>ru</key><value>Попытки проб</value></synonym>
+  <recordPresentation><key>ru</key><value>Попытки проб</value></recordPresentation>
+  <listPresentation><key>ru</key><value>Попытки проб</value></listPresentation>
+  <useStandardCommands>true</useStandardCommands><editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <attributes uuid="30000000-0000-4000-8000-000000000111">
+    <name>КодПробы</name><synonym><key>ru</key><value>Код методики</value></synonym>
+    <type><types>String</types><stringQualifiers><length>3</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000112">
+    <name>ИдентификаторРеализации</name><synonym><key>ru</key><value>ID реализации</value></synonym>
+    <type><types>String</types><stringQualifiers><length>40</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000113">
+    <name>Вариант</name><synonym><key>ru</key><value>Вариант</value></synonym>
+    <type><types>String</types><stringQualifiers><length>20</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000114">
+    <name>Состояние</name><synonym><key>ru</key><value>Состояние попытки</value></synonym>
+    <type><types>String</types><stringQualifiers><length>20</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000115">
+    <name>Причина</name><synonym><key>ru</key><value>Причина ошибки или пропуска</value></synonym>
+    <type><types>String</types><stringQualifiers><length>500</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000116">
+    <name>Исполнитель</name><synonym><key>ru</key><value>Исполнитель</value></synonym>
+    <type><types>String</types><stringQualifiers><length>100</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000117">
+    <name>ФактическиеПараметры</name><synonym><key>ru</key><value>Фактические параметры</value></synonym>
+    <type><types>String</types><stringQualifiers><length>0</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000118">
+    <name>ДатаНачалаUTC</name><synonym><key>ru</key><value>Начало (UTC)</value></synonym>
+    <type><types>Date</types><dateQualifiers/></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000119">
+    <name>ДатаЗавершенияUTC</name><synonym><key>ru</key><value>Окончание (UTC)</value></synonym>
+    <type><types>Date</types><dateQualifiers/></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-00000000011a">
+    <name>ПринятаДляСравнения</name><synonym><key>ru</key><value>Принята для сравнения</value></synonym>
+    <type><types>Boolean</types></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:BooleanValue"><value>false</value></fillValue>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-00000000011b">
+    <name>КонтрольнаяСумма</name><synonym><key>ru</key><value>Контрольная сумма</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>20</precision><scale>0</scale></numberQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <dimensions uuid="30000000-0000-4000-8000-00000000010c">
+    <name>Прогон</name><synonym><key>ru</key><value>Прогон</value></synonym>
+    <type><types>DocumentRef.ПрогонИспытаний</types></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000102">
+    <name>ИдентификаторТочки</name><synonym><key>ru</key><value>ID точки</value></synonym>
+    <type><types>String</types><stringQualifiers><length>50</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000103">
+    <name>НомерПовтора</name><synonym><key>ru</key><value>Номер независимого повтора</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>5</precision><scale>0</scale></numberQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000104">
+    <name>НомерПопытки</name><synonym><key>ru</key><value>Номер попытки</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>5</precision><scale>0</scale></numberQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+</mdclass:InformationRegister>

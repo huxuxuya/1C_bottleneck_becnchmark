@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:core="http://g5.1c.ru/v8/dt/mcore"
+    xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="30000000-0000-4000-8000-000000000300">
+  <producedTypes>
+    <selectionType typeId="d883daa5-1266-4287-b602-dffb9ea92f06" valueTypeId="1f22d361-e896-45e2-aab1-8f3e00a63ebb"/>
+    <listType typeId="5b23c5d3-bb80-4a18-9a81-2385c79efc51" valueTypeId="40e35fdf-afc7-4319-a8a4-277e38439a8a"/>
+    <recordSetType typeId="93212352-9d25-4561-a8df-e972c17cc91d" valueTypeId="ea9aaf0d-cd13-40ee-a210-4f6d8d09015e"/>
+    <recordKeyType typeId="a11531dc-a608-4c9b-a139-dce1962c0316" valueTypeId="9de418ce-8275-4b21-9a33-06f64b1917a5"/>
+    <recordType typeId="90791dd6-a7d8-4757-a471-1ca7fc39fe40" valueTypeId="40cdba26-b1ca-4ea8-8141-efe3d5c8a5c5"/>
+    <recordManagerType typeId="bf95e8f3-93de-4ac9-8141-26da4ebeb9a7" valueTypeId="1395b1db-ebf7-4475-9b44-e721ee733bd6"/>
+  </producedTypes>
+  <name>ПоказателиПопыток</name>
+  <synonym><key>ru</key><value>Показатели попыток</value></synonym>
+  <recordPresentation><key>ru</key><value>Показатели попыток</value></recordPresentation>
+  <listPresentation><key>ru</key><value>Показатели попыток</value></listPresentation>
+  <useStandardCommands>true</useStandardCommands><editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <resources uuid="30000000-0000-4000-8000-000000000321">
+    <name>Значение</name><synonym><key>ru</key><value>Значение</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>28</precision><scale>9</scale></numberQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="30000000-0000-4000-8000-000000000322">
+    <name>ЧислоНаблюдений</name><synonym><key>ru</key><value>Число наблюдений</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>20</precision><scale>0</scale></numberQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="30000000-0000-4000-8000-000000000323">
+    <name>Числитель</name><synonym><key>ru</key><value>Числитель отношения</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>28</precision><scale>9</scale></numberQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="30000000-0000-4000-8000-000000000324">
+    <name>Знаменатель</name><synonym><key>ru</key><value>Знаменатель отношения</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>28</precision><scale>9</scale></numberQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <attributes uuid="30000000-0000-4000-8000-000000000311">
+    <name>Наличие</name><synonym><key>ru</key><value>Статус наличия</value></synonym>
+    <type><types>String</types><stringQualifiers><length>50</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000312">
+    <name>ЕдиницаИзмерения</name><synonym><key>ru</key><value>Единица измерения</value></synonym>
+    <type><types>String</types><stringQualifiers><length>30</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000313">
+    <name>Причина</name><synonym><key>ru</key><value>Причина отсутствия или ошибки</value></synonym>
+    <type><types>String</types><stringQualifiers><length>500</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="30000000-0000-4000-8000-000000000314">
+    <name>ВерсияАгрегатора</name><synonym><key>ru</key><value>Версия агрегатора</value></synonym>
+    <type><types>String</types><stringQualifiers><length>20</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <dimensions uuid="30000000-0000-4000-8000-000000000301">
+    <name>Прогон</name><synonym><key>ru</key><value>Прогон</value></synonym>
+    <type><types>DocumentRef.ПрогонИспытаний</types></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000302">
+    <name>ИдентификаторТочки</name><synonym><key>ru</key><value>ID точки</value></synonym>
+    <type><types>String</types><stringQualifiers><length>50</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000303">
+    <name>НомерПовтора</name><synonym><key>ru</key><value>Номер независимого повтора</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>5</precision><scale>0</scale></numberQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000304">
+    <name>НомерПопытки</name><synonym><key>ru</key><value>Номер попытки</value></synonym>
+    <type><types>Number</types><numberQualifiers><precision>5</precision><scale>0</scale></numberQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000305">
+    <name>ИдентификаторРяда</name><synonym><key>ru</key><value>ID ряда</value></synonym>
+    <type><types>String</types><stringQualifiers><length>50</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000306">
+    <name>КодМетрики</name><synonym><key>ru</key><value>Код метрики</value></synonym>
+    <type><types>String</types><stringQualifiers><length>50</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000307">
+    <name>ВерсияМетрики</name><synonym><key>ru</key><value>Версия смысла метрики</value></synonym>
+    <type><types>String</types><stringQualifiers><length>20</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <dimensions uuid="30000000-0000-4000-8000-000000000308">
+    <name>Статистика</name><synonym><key>ru</key><value>Статистика</value></synonym>
+    <type><types>String</types><stringQualifiers><length>20</length></stringQualifiers></type><minValue xsi:type="core:UndefinedValue"/><maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch><dataHistory>Use</dataHistory><fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+</mdclass:InformationRegister>

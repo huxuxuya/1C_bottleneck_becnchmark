@@ -6,6 +6,7 @@
 #include <chrono>
 #include <cmath>
 #include <cstdint>
+#include <ctime>
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
@@ -25,14 +26,17 @@
 #include <windows.h>
 #include <processthreadsapi.h>
 #include <sysinfoapi.h>
-#elif defined(__linux__)
+#elif defined(__linux__) || defined(__APPLE__)
+#include <sys/resource.h>
+#if defined(__linux__)
 #include <pthread.h>
 #include <sched.h>
 #include <unistd.h>
 #endif
+#endif
 
 #ifndef CPU_FREQUENCY_VERSION
-#define CPU_FREQUENCY_VERSION "0.3.0"
+#define CPU_FREQUENCY_VERSION "0.5.0"
 #endif
 
 namespace cpu_frequency {
@@ -891,6 +895,282 @@ DiagnosticResult SustainedSpeed(const DiagnosticConfig& config) {
                       metrics.str());
 }
 
+struct ThreadContextSwitchCounters {
+    std::uint64_t voluntary = 0;
+    std::uint64_t involuntary = 0;
+};
+
+std::optional<ThreadContextSwitchCounters> ReadThreadContextSwitchCounters() {
+#if (defined(__linux__) || defined(__APPLE__)) && defined(RUSAGE_THREAD)
+    struct rusage usage{};
+    if (getrusage(RUSAGE_THREAD, &usage) != 0) return std::nullopt;
+    return ThreadContextSwitchCounters{
+        static_cast<std::uint64_t>(std::max<long>(0, usage.ru_nvcsw)),
+        static_cast<std::uint64_t>(std::max<long>(0, usage.ru_nivcsw))};
+#else
+    return std::nullopt;
+#endif
+}
+
+std::optional<std::uint64_t> ReadCurrentThreadCpuTimeNs() {
+#if defined(_WIN32)
+    FILETIME creation_time{};
+    FILETIME exit_time{};
+    FILETIME kernel_time{};
+    FILETIME user_time{};
+    if (GetThreadTimes(GetCurrentThread(), &creation_time, &exit_time, &kernel_time, &user_time) == 0) {
+        return std::nullopt;
+    }
+    ULARGE_INTEGER kernel_ticks{};
+    ULARGE_INTEGER user_ticks{};
+    kernel_ticks.LowPart = kernel_time.dwLowDateTime;
+    kernel_ticks.HighPart = kernel_time.dwHighDateTime;
+    user_ticks.LowPart = user_time.dwLowDateTime;
+    user_ticks.HighPart = user_time.dwHighDateTime;
+    return (kernel_ticks.QuadPart + user_ticks.QuadPart) * 100U;
+#elif (defined(__linux__) || defined(__APPLE__)) && defined(CLOCK_THREAD_CPUTIME_ID)
+    timespec cpu_time{};
+    if (clock_gettime(CLOCK_THREAD_CPUTIME_ID, &cpu_time) != 0 || cpu_time.tv_sec < 0 || cpu_time.tv_nsec < 0) {
+        return std::nullopt;
+    }
+    return static_cast<std::uint64_t>(cpu_time.tv_sec) * 1'000'000'000U +
+           static_cast<std::uint64_t>(cpu_time.tv_nsec);
+#else
+    return std::nullopt;
+#endif
+}
+
+std::optional<std::uint64_t> ReadSystemStealTimeNs() {
+#if defined(__linux__)
+    std::ifstream stat_file("/proc/stat");
+    std::string line;
+    if (!stat_file || !std::getline(stat_file, line)) return std::nullopt;
+    std::istringstream fields(line);
+    std::string label;
+    fields >> label;
+    if (label != "cpu") return std::nullopt;
+    std::vector<std::uint64_t> counters;
+    std::uint64_t counter = 0;
+    while (fields >> counter) counters.push_back(counter);
+    // Aggregate CPU line: user, nice, system, idle, iowait, irq, softirq, steal.
+    if (counters.size() < 8U) return std::nullopt;
+    const long ticks_per_second = sysconf(_SC_CLK_TCK);
+    if (ticks_per_second <= 0) return std::nullopt;
+    const auto ticks = counters[7U];
+    const auto frequency = static_cast<std::uint64_t>(ticks_per_second);
+    return (ticks / frequency) * 1'000'000'000U +
+           ((ticks % frequency) * 1'000'000'000U) / frequency;
+#else
+    return std::nullopt;
+#endif
+}
+
+std::uint64_t CalibrateShortWork(const std::uint64_t target_ns) {
+    constexpr std::uint64_t kMinimumUpdates = 1U;
+    constexpr std::uint64_t kMaximumUpdates = 1'000'000U;
+    constexpr std::uint32_t kCalibrationSamples = 5U;
+    constexpr std::uint32_t kCalibrationRounds = 8U;
+    std::uint64_t updates = 128U;
+
+    for (std::uint32_t round = 0; round < kCalibrationRounds; ++round) {
+        std::vector<std::uint64_t> elapsed_ns;
+        elapsed_ns.reserve(kCalibrationSamples);
+        for (std::uint32_t sample = 0; sample < kCalibrationSamples; ++sample) {
+            const auto start = Clock::now();
+            static_cast<void>(DependentWork(updates));
+            const auto end = Clock::now();
+            elapsed_ns.push_back(static_cast<std::uint64_t>(
+                std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()));
+        }
+
+        const auto median_ns = Percentile(elapsed_ns, 0.50);
+        if (median_ns == 0U) return updates;
+        const auto lower_bound = target_ns * 9U / 10U;
+        const auto upper_bound = target_ns + target_ns / 10U;
+        if (median_ns >= lower_bound && median_ns <= upper_bound) return updates;
+
+        const auto scale = std::clamp(static_cast<double>(target_ns) / static_cast<double>(median_ns),
+                                       0.25, 4.0);
+        const auto scaled_updates = static_cast<std::uint64_t>(
+            std::ceil(static_cast<double>(updates) * scale));
+        const auto next_updates = std::clamp(scaled_updates, kMinimumUpdates, kMaximumUpdates);
+        if (next_updates == updates) return updates;
+        updates = next_updates;
+    }
+    return updates;
+}
+
+DiagnosticResult InterruptJitter(const DiagnosticConfig& config) {
+    const auto sample_count = config.arg1 == 0U ? 10'000U : config.arg1;
+    const auto target_block_us = config.arg2 == 0U ? 10U : config.arg2;
+    if (sample_count < 1'000U || sample_count > 100'000U ||
+        target_block_us < 5U || target_block_us > 100U ||
+        sample_count * target_block_us > 10'000'000U) {
+        throw std::invalid_argument(
+            "CPU_010 expects 1000..100000 samples, 5..100 us blocks, and <=10 seconds nominal work");
+    }
+
+    const auto target_block_ns = target_block_us * 1'000U;
+    const auto updates_per_block = CalibrateShortWork(target_block_ns);
+    std::vector<std::uint64_t> block_duration_ns;
+    block_duration_ns.reserve(static_cast<std::size_t>(sample_count));
+    const auto counters_before = ReadThreadContextSwitchCounters();
+    std::uint64_t checksum = 0;
+    for (std::uint64_t sample = 0; sample < sample_count; ++sample) {
+        const auto start = Clock::now();
+        checksum ^= DependentWork(updates_per_block);
+        const auto end = Clock::now();
+        block_duration_ns.push_back(static_cast<std::uint64_t>(
+            std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()));
+    }
+    const auto counters_after = ReadThreadContextSwitchCounters();
+
+    const bool counters_available = counters_before.has_value() && counters_after.has_value() &&
+        counters_after->voluntary >= counters_before->voluntary &&
+        counters_after->involuntary >= counters_before->involuntary;
+    const auto voluntary_delta = counters_available
+        ? counters_after->voluntary - counters_before->voluntary : 0U;
+    const auto involuntary_delta = counters_available
+        ? counters_after->involuntary - counters_before->involuntary : 0U;
+    const auto minimum_ns = *std::min_element(block_duration_ns.begin(), block_duration_ns.end());
+    const auto maximum_ns = *std::max_element(block_duration_ns.begin(), block_duration_ns.end());
+    const auto p50_ns = Percentile(block_duration_ns, 0.50);
+    const auto p95_ns = Percentile(block_duration_ns, 0.95);
+    const auto p99_ns = Percentile(block_duration_ns, 0.99);
+    const auto p999_ns = Percentile(block_duration_ns, 0.999);
+
+    std::ostringstream metrics;
+    metrics << "{\"sampleCount\":" << sample_count
+            << ",\"targetBlockUs\":" << target_block_us
+            << ",\"updatesPerBlock\":" << updates_per_block
+            << ",\"minBlockDurationNs\":" << minimum_ns
+            << ",\"p50BlockDurationNs\":" << p50_ns
+            << ",\"p95BlockDurationNs\":" << p95_ns
+            << ",\"p99BlockDurationNs\":" << p99_ns
+            << ",\"p999BlockDurationNs\":" << p999_ns
+            << ",\"maxBlockDurationNs\":" << maximum_ns
+            << ",\"contextSwitchCountersAvailable\":" << (counters_available ? "true" : "false")
+            << ",\"contextSwitchCounterSource\":\""
+            << (counters_available ? "getrusage(RUSAGE_THREAD)" : "unavailable") << '\"'
+            << ",\"voluntaryContextSwitchesDelta\":";
+    if (counters_available) metrics << voluntary_delta;
+    else metrics << "null";
+    metrics << ",\"involuntaryContextSwitchesDelta\":";
+    if (counters_available) metrics << involuntary_delta;
+    else metrics << "null";
+    metrics << '}';
+
+    return MakeResult("CPU_010_INTERRUPT_JITTER", "010. Выбросы времени CPU-порций",
+                      "p999BlockDurationNs", "нс", static_cast<double>(p999_ns), checksum,
+                      "Распределение длительности коротких CPU-порций и доступные переключения контекста; не различает IRQ/softirq и вытеснение планировщиком",
+                      metrics.str());
+}
+
+DiagnosticResult VcpuWait(const DiagnosticConfig& config) {
+    const auto observation_window_ms = config.arg1 == 0U ? 500U : config.arg1;
+    const auto target_cpu_chunk_us = config.arg2 == 0U ? 1'000U : config.arg2;
+    if (observation_window_ms < 100U || observation_window_ms > 10'000U ||
+        target_cpu_chunk_us < 100U || target_cpu_chunk_us > 10'000U) {
+        throw std::invalid_argument(
+            "CPU_011 expects a 100..10000 ms CPU-work window and 100..10000 us chunks");
+    }
+    const auto nominal_cpu_window_us = observation_window_ms * 1'000U;
+    const auto chunk_count = nominal_cpu_window_us / target_cpu_chunk_us;
+    if (chunk_count < 100U || chunk_count > 20'000U) {
+        throw std::invalid_argument("CPU_011 expects 100..20000 measured CPU chunks");
+    }
+    const auto target_cpu_chunk_ns = target_cpu_chunk_us * 1'000U;
+    const auto updates_per_chunk = CalibrateShortWork(target_cpu_chunk_ns);
+    const auto steal_before = ReadSystemStealTimeNs();
+    const auto wall_start = Clock::now();
+    const auto thread_cpu_before = ReadCurrentThreadCpuTimeNs();
+    if (!thread_cpu_before) {
+        return Unavailable("CPU_011_VCPU_WAIT", "011. Ожидание vCPU", "effectiveCpuPercentOfWall",
+                           "ОС не предоставляет счётчик CPU-времени текущего потока");
+    }
+
+    std::vector<std::uint64_t> scheduling_gaps_ns;
+    scheduling_gaps_ns.reserve(static_cast<std::size_t>(chunk_count));
+    std::uint64_t checksum = 0;
+    for (std::uint64_t chunk = 0; chunk < chunk_count; ++chunk) {
+        const auto chunk_wall_start = Clock::now();
+        const auto chunk_cpu_start = ReadCurrentThreadCpuTimeNs();
+        const auto work_checksum = DependentWork(updates_per_chunk);
+        checksum = (checksum * 0x100000001B3ULL) ^ (work_checksum + chunk + 1U);
+        const auto chunk_cpu_end = ReadCurrentThreadCpuTimeNs();
+        const auto chunk_wall_end = Clock::now();
+        if (!chunk_cpu_start || !chunk_cpu_end || *chunk_cpu_end < *chunk_cpu_start) {
+            return Unavailable("CPU_011_VCPU_WAIT", "011. Ожидание vCPU", "effectiveCpuPercentOfWall",
+                               "Не удалось измерить CPU-время текущего потока во время пробы");
+        }
+        const auto wall_ns = static_cast<std::uint64_t>(
+            std::chrono::duration_cast<std::chrono::nanoseconds>(chunk_wall_end - chunk_wall_start).count());
+        const auto cpu_ns = *chunk_cpu_end - *chunk_cpu_start;
+        scheduling_gaps_ns.push_back(wall_ns > cpu_ns ? wall_ns - cpu_ns : 0U);
+    }
+    const auto thread_cpu_after = ReadCurrentThreadCpuTimeNs();
+    const auto wall_end = Clock::now();
+    const auto steal_after = ReadSystemStealTimeNs();
+    if (!thread_cpu_after || *thread_cpu_after < *thread_cpu_before) {
+        return Unavailable("CPU_011_VCPU_WAIT", "011. Ожидание vCPU", "effectiveCpuPercentOfWall",
+                           "Не удалось получить итоговое CPU-время текущего потока");
+    }
+
+    const auto wall_elapsed_ns = static_cast<std::uint64_t>(
+        std::chrono::duration_cast<std::chrono::nanoseconds>(wall_end - wall_start).count());
+    const auto thread_cpu_elapsed_ns = *thread_cpu_after - *thread_cpu_before;
+    if (wall_elapsed_ns == 0U || thread_cpu_elapsed_ns == 0U) {
+        return Unavailable("CPU_011_VCPU_WAIT", "011. Ожидание vCPU", "effectiveCpuPercentOfWall",
+                           "Окно измерения слишком короткое для часов текущего потока");
+    }
+
+    const auto p50_gap_ns = Percentile(scheduling_gaps_ns, 0.50);
+    const auto p95_gap_ns = Percentile(scheduling_gaps_ns, 0.95);
+    const auto p99_gap_ns = Percentile(scheduling_gaps_ns, 0.99);
+    const auto max_gap_ns = *std::max_element(scheduling_gaps_ns.begin(), scheduling_gaps_ns.end());
+    const auto pause_threshold_ns = std::max<std::uint64_t>(target_cpu_chunk_ns * 4U, 1'000'000U);
+    const auto pause_count = static_cast<std::uint64_t>(std::count_if(
+        scheduling_gaps_ns.begin(), scheduling_gaps_ns.end(),
+        [pause_threshold_ns](const std::uint64_t gap_ns) { return gap_ns >= pause_threshold_ns; }));
+    const auto effective_cpu_percent = std::min(
+        100.0, static_cast<double>(thread_cpu_elapsed_ns) * 100.0 / static_cast<double>(wall_elapsed_ns));
+    const auto work_updates = chunk_count * updates_per_chunk;
+    const auto work_per_second = static_cast<double>(work_updates) * 1'000'000'000.0 /
+                                 static_cast<double>(wall_elapsed_ns);
+    const bool steal_available = steal_before && steal_after && *steal_after >= *steal_before;
+    const auto steal_delta_ns = steal_available ? *steal_after - *steal_before : 0U;
+
+    std::ostringstream metrics;
+    metrics.imbue(std::locale::classic());
+    metrics << std::setprecision(12)
+            << "{\"observationWindowMs\":" << observation_window_ms
+            << ",\"targetCpuChunkUs\":" << target_cpu_chunk_us
+            << ",\"chunkCount\":" << chunk_count
+            << ",\"updatesPerChunk\":" << updates_per_chunk
+            << ",\"workUpdatesPerSecond\":" << work_per_second
+            << ",\"wallElapsedNs\":" << wall_elapsed_ns
+            << ",\"threadCpuElapsedNs\":" << thread_cpu_elapsed_ns
+            << ",\"effectiveCpuPercentOfWall\":" << effective_cpu_percent
+            << ",\"p50SchedulingGapNs\":" << p50_gap_ns
+            << ",\"p95SchedulingGapNs\":" << p95_gap_ns
+            << ",\"p99SchedulingGapNs\":" << p99_gap_ns
+            << ",\"maxSchedulingGapNs\":" << max_gap_ns
+            << ",\"pauseThresholdNs\":" << pause_threshold_ns
+            << ",\"suspectedPauseCount\":" << pause_count
+            << ",\"systemStealTimeCountersAvailable\":" << (steal_available ? "true" : "false")
+            << ",\"systemStealTimeSource\":\""
+            << (steal_available ? "proc_stat_cpu_steal" : "unavailable") << '\"'
+            << ",\"systemStealTimeDeltaNs\":";
+    if (steal_available) metrics << steal_delta_ns;
+    else metrics << "null";
+    metrics << '}';
+
+    return MakeResult("CPU_011_VCPU_WAIT", "011. Ожидание vCPU", "effectiveCpuPercentOfWall", "%",
+                      effective_cpu_percent, checksum,
+                      "Доля CPU-времени вычислительного потока в wall time и интервалы без исполнения; Linux steal читается как агрегат ОС, host ready напрямую недоступен",
+                      metrics.str());
+}
+
 } // namespace
 
 DiagnosticResult RunDiagnostic(const std::string& probe_code, const DiagnosticConfig& config) {
@@ -902,6 +1182,8 @@ DiagnosticResult RunDiagnostic(const std::string& probe_code, const DiagnosticCo
     if (probe_code == "CPU_007_CORE_MIGRATION") return CoreMigration(config);
     if (probe_code == "CPU_008_IDLE_RECOVERY") return IdleRecovery(config);
     if (probe_code == "CPU_009_SUSTAINED_SPEED") return SustainedSpeed(config);
+    if (probe_code == "CPU_010_INTERRUPT_JITTER") return InterruptJitter(config);
+    if (probe_code == "CPU_011_VCPU_WAIT") return VcpuWait(config);
     throw std::invalid_argument("unknown CPU native diagnostic code: " + probe_code);
 }
 
@@ -914,7 +1196,9 @@ std::vector<DiagnosticResult> RunAllDiagnostics() {
         RunDiagnostic("CPU_006_SMT_COMPETITION", {250U, 0U, 0U}),
         RunDiagnostic("CPU_007_CORE_MIGRATION", {250U, 50'000U, 0U}),
         RunDiagnostic("CPU_008_IDLE_RECOVERY", {100U, 200'000U, 5U}),
-        RunDiagnostic("CPU_009_SUSTAINED_SPEED", {3'000U, 250U, 0U})};
+        RunDiagnostic("CPU_009_SUSTAINED_SPEED", {3'000U, 250U, 0U}),
+        RunDiagnostic("CPU_010_INTERRUPT_JITTER", {10'000U, 10U, 0U}),
+        RunDiagnostic("CPU_011_VCPU_WAIT", {500U, 1'000U, 0U})};
 }
 
 std::string ToJson(const DiagnosticResult& result) {

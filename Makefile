@@ -62,6 +62,7 @@ native-test:
 	cmake --build build/native/test --config Release
 	ctest --test-dir build/native/test --output-on-failure
 	python3 native/cpu-frequency/tests/validate_diagnostics_json.py build/native/test/cpu-frequency
+	python3 native/cpu-frequency/tests/validate_system_info_json.py build/native/test/cpu-frequency
 
 native-linux-i386:
 	@./native/scripts/build-native.sh linux-i386

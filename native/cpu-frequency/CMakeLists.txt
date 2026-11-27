@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(CpuFrequencyProbe VERSION 0.3.0 LANGUAGES CXX)
+project(CpuFrequencyProbe VERSION 0.6.0 LANGUAGES CXX)
 
 option(BUILD_NATIVEAPI_COMPONENT "Build the 1C Native API shared library" OFF)
 option(BUILD_BENCHMARK_CLI "Build the standalone benchmark runner" ON)
@@ -9,7 +9,8 @@ set(ONEC_NATIVEAPI_INCLUDE_DIR "" CACHE PATH "Path to the official 1C Native API
 add_library(cpu_frequency_core STATIC
     src/benchmark.cpp
     src/diagnostics.cpp
-    src/json.cpp)
+    src/json.cpp
+    src/system_info.cpp)
 target_include_directories(cpu_frequency_core PUBLIC include)
 target_compile_features(cpu_frequency_core PUBLIC cxx_std_17)
 target_compile_definitions(cpu_frequency_core PRIVATE CPU_FREQUENCY_VERSION="${PROJECT_VERSION}")
@@ -25,6 +26,11 @@ if(MSVC)
     target_compile_options(cpu_frequency_core PRIVATE /W4 /permissive- /EHsc)
 else()
     target_compile_options(cpu_frequency_core PRIVATE -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion)
+endif()
+
+if(WIN32)
+    target_link_libraries(cpu_frequency_core PUBLIC advapi32)
+    target_compile_definitions(cpu_frequency_core PRIVATE _WIN32_WINNT=0x0601)
 endif()
 
 if(BUILD_BENCHMARK_CLI)

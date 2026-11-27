@@ -36,6 +36,7 @@
     <languageCode>ru</languageCode>
   </languages>
   <commonModules>CommonModule.БенчмаркЯдро</commonModules>
+  <commonModules>CommonModule.БенчмаркХранилищеПрогонов</commonModules>
   <commonModules>CommonModule.БенчмаркГенераторДанных</commonModules>
   <commonModules>CommonModule.БенчмаркПробы</commonModules>
   <commonModules>CommonModule.БенчмаркПроба002НезависимыеИнструкции</commonModules>
@@ -54,10 +55,15 @@
   <catalogs>Catalog.Товары</catalogs>
   <catalogs>Catalog.Склады</catalogs>
   <documents>Document.ДвижениеТоваров</documents>
+  <documents>Document.ПрогонИспытаний</documents>
   <dataProcessors>DataProcessor.ЗапускБенчмарка</dataProcessors>
   <informationRegisters>InformationRegister.РезультатыПрогонов</informationRegisters>
+  <informationRegisters>InformationRegister.ПопыткиПроб</informationRegisters>
+  <informationRegisters>InformationRegister.РядыИзмерений</informationRegisters>
+  <informationRegisters>InformationRegister.ПоказателиПопыток</informationRegisters>
   <informationRegisters>InformationRegister.РезультатыПроб042</informationRegisters>
   <informationRegisters>InformationRegister.РезультатыФайловойПроб042</informationRegisters>
+  <informationRegisters>InformationRegister.ПаспортаСистем</informationRegisters>
   <accumulationRegisters>AccumulationRegister.ОстаткиТоваров</accumulationRegisters>
   <commonModules>CommonModule.БенчмаркПроба012CoStopESXi</commonModules>
   <commonModules>CommonModule.БенчмаркПроба013АсимметрияvCPU</commonModules>

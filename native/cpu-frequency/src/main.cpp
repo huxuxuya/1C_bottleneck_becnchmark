@@ -1,5 +1,6 @@
 #include "cpu_frequency/benchmark.hpp"
 #include "cpu_frequency/diagnostics.hpp"
+#include "cpu_frequency/system_info.hpp"
 
 #include <charconv>
 #include <iostream>
@@ -26,16 +27,22 @@ int main(int argc, char** argv) {
         cpu_frequency::DiagnosticConfig diagnostic_config;
         std::string diagnostic_code;
         bool all_diagnostics = false;
+        bool system_info = false;
         for (int index = 1; index < argc; ++index) {
             const std::string_view option(argv[index]);
             if (option == "--help" || option == "-h") {
                 std::cout << "cpu-frequency [--blocks N] [--warmups N] [--samples N]\n"
                              "cpu-frequency --diagnostic CODE [--arg1 N] [--arg2 N] [--arg3 N]\n"
-                             "cpu-frequency --all-diagnostics\n";
+                             "cpu-frequency --all-diagnostics\n"
+                             "cpu-frequency --system-info\n";
                 return 0;
             }
             if (option == "--all-diagnostics") {
                 all_diagnostics = true;
+                continue;
+            }
+            if (option == "--system-info") {
+                system_info = true;
                 continue;
             }
             if (index + 1 >= argc) {
@@ -62,6 +69,13 @@ int main(int argc, char** argv) {
         }
         if (all_diagnostics && !diagnostic_code.empty()) {
             throw std::invalid_argument("--all-diagnostics and --diagnostic cannot be combined");
+        }
+        if (system_info && (all_diagnostics || !diagnostic_code.empty())) {
+            throw std::invalid_argument("--system-info cannot be combined with diagnostic options");
+        }
+        if (system_info) {
+            std::cout << cpu_frequency::GetSystemInfoJson() << '\n';
+            return 0;
         }
         if (all_diagnostics) {
             std::cout << cpu_frequency::ToJson(cpu_frequency::RunAllDiagnostics()) << '\n';

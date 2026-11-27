@@ -1,5 +1,6 @@
 #include "cpu_frequency/benchmark.hpp"
 #include "cpu_frequency/diagnostics.hpp"
+#include "cpu_frequency/system_info.hpp"
 
 #include "AddInDefBase.h"
 #include "ComponentBase.h"
@@ -28,8 +29,10 @@ constexpr WCHAR_T kClassName[] = {'C', 'p', 'u', 'P', 'r', 'o', 'b', 'e', 0};
 constexpr char16_t kExtensionName[] = u"CpuProbe";
 constexpr char16_t kMethodNameEnglish[] = u"Measure";
 constexpr char16_t kMethodNameLocal[] = u"Измерить";
+constexpr char16_t kSystemInfoMethodNameEnglish[] = u"GetSystemInfo";
+constexpr char16_t kSystemInfoMethodNameLocal[] = u"ПолучитьИнформациюОСистеме";
 constexpr char16_t kErrorSource[] = u"CpuFrequencyProbe";
-constexpr char16_t kInvalidArguments[] = u"Measure expects positive blocks or a diagnostic selector from -1 through -9.";
+constexpr char16_t kInvalidArguments[] = u"Measure expects positive blocks or a diagnostic selector from -1 through -11.";
 constexpr char16_t kUnknownDiagnostic[] = u"Unknown native CPU diagnostic selector.";
 constexpr char16_t kInvalidDiagnosticArguments[] = u"Native CPU diagnostic arguments must be non-negative integers.";
 constexpr char16_t kInvalidDiagnosticConfiguration[] = u"Native CPU diagnostic parameters are outside the supported range.";
@@ -190,6 +193,8 @@ const char* DiagnosticCodeForCommand(const std::int64_t command) noexcept {
     case -7: return "CPU_007_CORE_MIGRATION";
     case -8: return "CPU_008_IDLE_RECOVERY";
     case -9: return "CPU_009_SUSTAINED_SPEED";
+    case -10: return "CPU_010_INTERRUPT_JITTER";
+    case -11: return "CPU_011_VCPU_WAIT";
     default: return nullptr;
     }
 }
@@ -226,7 +231,7 @@ public:
     bool ADDIN_API SetPropVal(const long, tVariant*) override { return false; }
     bool ADDIN_API IsPropReadable(const long) override { return false; }
     bool ADDIN_API IsPropWritable(const long) override { return false; }
-    long ADDIN_API GetNMethods() override { return 1; }
+    long ADDIN_API GetNMethods() override { return 2; }
 
     long ADDIN_API FindMethod(const WCHAR_T* method_name) override {
         if (method_name == nullptr) {
@@ -238,18 +243,42 @@ public:
             static_cast<WCHAR_T>(0x043C), static_cast<WCHAR_T>(0x0435),
             static_cast<WCHAR_T>(0x0440), static_cast<WCHAR_T>(0x0438),
             static_cast<WCHAR_T>(0x0442), static_cast<WCHAR_T>(0x044C), 0};
-        return (SameName(method_name, method_english) || SameName(method_name, method_local)) ? 0 : -1;
+        constexpr WCHAR_T system_info_english[] = {
+            'G', 'e', 't', 'S', 'y', 's', 't', 'e', 'm', 'I', 'n', 'f', 'o', 0};
+        constexpr WCHAR_T system_info_local[] = {
+            static_cast<WCHAR_T>(0x041F), static_cast<WCHAR_T>(0x043E),
+            static_cast<WCHAR_T>(0x043B), static_cast<WCHAR_T>(0x0443),
+            static_cast<WCHAR_T>(0x0447), static_cast<WCHAR_T>(0x0438),
+            static_cast<WCHAR_T>(0x0442), static_cast<WCHAR_T>(0x044C),
+            static_cast<WCHAR_T>(0x0418), static_cast<WCHAR_T>(0x043D),
+            static_cast<WCHAR_T>(0x0444), static_cast<WCHAR_T>(0x043E),
+            static_cast<WCHAR_T>(0x0440), static_cast<WCHAR_T>(0x043C),
+            static_cast<WCHAR_T>(0x0430), static_cast<WCHAR_T>(0x0446),
+            static_cast<WCHAR_T>(0x0438), static_cast<WCHAR_T>(0x044E),
+            static_cast<WCHAR_T>(0x041E), static_cast<WCHAR_T>(0x0421),
+            static_cast<WCHAR_T>(0x0438), static_cast<WCHAR_T>(0x0441),
+            static_cast<WCHAR_T>(0x0442), static_cast<WCHAR_T>(0x0435),
+            static_cast<WCHAR_T>(0x043C), static_cast<WCHAR_T>(0x0435), 0};
+        if (SameName(method_name, method_english) || SameName(method_name, method_local)) return 0;
+        if (SameName(method_name, system_info_english) || SameName(method_name, system_info_local)) return 1;
+        return -1;
     }
 
     const WCHAR_T* ADDIN_API GetMethodName(const long method_number, const long alias) override {
-        if (method_number != 0 || (alias != 0 && alias != 1)) {
+        if ((method_number != 0 && method_number != 1) || (alias != 0 && alias != 1)) {
             return nullptr;
         }
         WCHAR_T* method_name = nullptr;
-        const auto* source = alias == 0 ? kMethodNameEnglish : kMethodNameLocal;
-        const auto size = alias == 0
-            ? sizeof(kMethodNameEnglish) / sizeof(kMethodNameEnglish[0]) - 1U
-            : sizeof(kMethodNameLocal) / sizeof(kMethodNameLocal[0]) - 1U;
+        const auto* source = method_number == 0
+            ? (alias == 0 ? kMethodNameEnglish : kMethodNameLocal)
+            : (alias == 0 ? kSystemInfoMethodNameEnglish : kSystemInfoMethodNameLocal);
+        const auto size = method_number == 0
+            ? (alias == 0
+                ? sizeof(kMethodNameEnglish) / sizeof(kMethodNameEnglish[0]) - 1U
+                : sizeof(kMethodNameLocal) / sizeof(kMethodNameLocal[0]) - 1U)
+            : (alias == 0
+                ? sizeof(kSystemInfoMethodNameEnglish) / sizeof(kSystemInfoMethodNameEnglish[0]) - 1U
+                : sizeof(kSystemInfoMethodNameLocal) / sizeof(kSystemInfoMethodNameLocal[0]) - 1U);
         if (!CopyWideText(memory_manager_, source, size, &method_name)) {
             return nullptr;
         }
@@ -277,13 +306,30 @@ public:
         return true;
     }
 
-    bool ADDIN_API HasRetVal(const long method_number) override { return method_number == 0; }
+    bool ADDIN_API HasRetVal(const long method_number) override { return method_number == 0 || method_number == 1; }
     bool ADDIN_API CallAsProc(const long, tVariant*, const long) override { return false; }
 
     bool ADDIN_API CallAsFunc(const long method_number,
                               tVariant* return_value,
                               tVariant* parameters,
                               const long parameter_count) override {
+        if (method_number == 1) {
+            if (return_value == nullptr || parameter_count != 0) {
+                ReportError(kInvalidArguments);
+                return false;
+            }
+            try {
+                if (!CopyAsciiText(memory_manager_, cpu_frequency::GetSystemInfoJson(), return_value)) {
+                    ReportError(kMemoryError);
+                    return false;
+                }
+                return true;
+            } catch (...) {
+                ReportError(kRuntimeError);
+                return false;
+            }
+        }
+
         if (method_number != 0 || return_value == nullptr || parameters == nullptr ||
             parameter_count < 1 || parameter_count > 3) {
             ReportError(kInvalidArguments);
