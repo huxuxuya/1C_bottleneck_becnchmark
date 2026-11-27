@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="5c205fc9-bd55-4c6c-9ff0-8c07ad05845a">
+  <name>Тест_CPU_005_CPUQuota</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_CPU_005_CPUQuota</value>
+  </synonym>
+  <comment>Клиентская YAxUnit-проверка Native API-диагностики CPU_005_CPU_QUOTA</comment>
+  <clientManagedApplication>true</clientManagedApplication>
+</mdclass:CommonModule>

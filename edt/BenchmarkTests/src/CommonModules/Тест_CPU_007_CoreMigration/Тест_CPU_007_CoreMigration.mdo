@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="630b12eb-0d3e-4062-9585-a49dbe18ba2a">
+  <name>Тест_CPU_007_CoreMigration</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_CPU_007_CoreMigration</value>
+  </synonym>
+  <comment>Клиентская YAxUnit-проверка Native API-диагностики CPU_007_CORE_MIGRATION</comment>
+  <clientManagedApplication>true</clientManagedApplication>
+</mdclass:CommonModule>

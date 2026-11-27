@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="660774ac-38f2-4147-979e-b0faa1ea9680">
+  <name>Тест_CPU_008_IdleRecovery</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_CPU_008_IdleRecovery</value>
+  </synonym>
+  <comment>Клиентская YAxUnit-проверка Native API-диагностики CPU_008_IDLE_RECOVERY</comment>
+  <clientManagedApplication>true</clientManagedApplication>
+</mdclass:CommonModule>

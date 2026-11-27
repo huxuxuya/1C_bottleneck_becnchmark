@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="96742b0b-31cb-4ca9-bc69-e54e24d7d7a4">
+  <name>Тест_CPU_004_ReadyQueue</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тест_CPU_004_ReadyQueue</value>
+  </synonym>
+  <comment>Клиентская YAxUnit-проверка Native API-диагностики CPU_004_READY_QUEUE</comment>
+  <clientManagedApplication>true</clientManagedApplication>
+</mdclass:CommonModule>

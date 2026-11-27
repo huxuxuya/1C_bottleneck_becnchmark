@@ -47,6 +47,14 @@
   <commonModules>CommonModule.Тест_Раннер_ОценкаПоказателяИБаллы</commonModules>
   <commonModules>CommonModule.Тест_Раннер_ПолныйПрогонСЗаписьюВРегистр</commonModules>
   <commonModules>CommonModule.Тест_ФормаЗапускБенчмарка_ОткрытиеИЗапуск</commonModules>
+  <commonModules>CommonModule.Тест_CPU_002_НезависимыеИнструкции</commonModules>
+  <commonModules>CommonModule.Тест_CPU_003_WakeLatency</commonModules>
+  <commonModules>CommonModule.Тест_CPU_004_ReadyQueue</commonModules>
+  <commonModules>CommonModule.Тест_CPU_005_CPUQuota</commonModules>
+  <commonModules>CommonModule.Тест_CPU_006_SMTCompetition</commonModules>
+  <commonModules>CommonModule.Тест_CPU_007_CoreMigration</commonModules>
+  <commonModules>CommonModule.Тест_CPU_008_IdleRecovery</commonModules>
+  <commonModules>CommonModule.Тест_CPU_009_SustainedSpeed</commonModules>
   <commonModules>CommonModule.Тест_Проба012_CoStopESXi</commonModules>
   <commonModules>CommonModule.Тест_Проба013_АсимметрияvCPU</commonModules>
   <commonModules>CommonModule.Тест_Проба014_УдаленнаяNUMAПамять</commonModules>
