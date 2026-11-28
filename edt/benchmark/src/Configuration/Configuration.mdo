@@ -19,7 +19,7 @@
   <defaultRunMode>ManagedApplication</defaultRunMode>
   <usePurposes>PersonalComputer</usePurposes>
   <scriptVariant>Russian</scriptVariant>
-  <version>0.0.5</version>
+  <version>0.0.6</version>
   <defaultLanguage>Language.Русский</defaultLanguage>
   <dataLockControlMode>Managed</dataLockControlMode>
   <objectAutonumerationMode>NotAutoFree</objectAutonumerationMode>
@@ -81,6 +81,7 @@
   <commonModules>CommonModule.БенчмаркПроба025ВозвратИзSwap</commonModules>
   <commonModules>CommonModule.БенчмаркПроба026СкоростьBSL</commonModules>
   <commonModules>CommonModule.БенчмаркПроба027БазоваяЦенаСерверногоВызова</commonModules>
+  <commonModules>CommonModule.БенчмаркПроба078СерияСерверныхВызовов</commonModules>
   <commonModules>CommonModule.БенчмаркДиагностикиBSL</commonModules>
   <commonTemplates>CommonTemplate.CpuFrequencyProbe</commonTemplates>
 </mdclass:Configuration>

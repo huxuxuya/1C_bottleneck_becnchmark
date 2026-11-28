@@ -322,7 +322,7 @@ rg 'CPU_NATIVE_VALUES' build/reports/platform.log
    ```bash
    make export-xml
 
-   RELEASE_VERSION=0.0.5-alpha
+   RELEASE_VERSION=0.0.6-alpha
    IBCMD=/opt/1cv8/8.5.1.1529/ibcmd
    RELEASE_IB="$PWD/build/ib-release-$RELEASE_VERSION"
    RELEASE_CF="$PWD/releases/1C-Bottleneck-Benchmark-$RELEASE_VERSION.cf"
@@ -363,6 +363,15 @@ rg 'CPU_NATIVE_VALUES' build/reports/platform.log
 - Манифест: `releases/0.0.5-alpha.json`. `sourceRevision` опущен, поскольку исходники не были закоммичены.
 - Native API ZIP 0.6.0 использован без пересборки; его SHA-256 совпадает с существующим sidecar-файлом.
 - Автотесты в ходе этой сборки релиза не запускались. Последний полный YAxUnit-прогон на исходном коде и 1С 8.5.1.1529 прошёл 111/111 без failures/errors; релизная операция отдельно подтвердила импорт и применение конфигурации в свежей ИБ.
+
+### Собранный релиз 0.0.6-alpha (28.11.2026)
+
+- Версия конфигурации: `0.0.6`; Native API: `0.6.0` (без изменений в этом релизе).
+- Проба 078 покрыта двумя YAxUnit-тестами: серверная арифметика и клиентский прогон формы с проверкой сохранённых строк. Целевой прогон прошёл `2/2`, failures/errors — `0/0`; полный пакет из 113 тестов не запускался.
+- EDT экспортирован в `build/xml`; из него создана и применена конфигурация в `build/ib-release-0.0.6-alpha` платформой `ibcmd` 8.5.1.1529.
+- Основной файл: `releases/1C-Bottleneck-Benchmark-0.0.6-alpha.cf`; SHA-256 находится рядом в `.cf.sha256`.
+- Манифест: `releases/0.0.6-alpha.json`; `sourceRevision` указывает на коммит исходников до добавления артефактов релиза.
+- Native API ZIP 0.6.0 использован без пересборки.
 
 ## Как пополнять runbook
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass"
+    uuid="1087e772-cd79-41a2-9c2e-55805a432980">
+  <name>БенчмаркПроба078СерияСерверныхВызовов</name>
+  <synonym>
+    <key>ru</key>
+    <value>БенчмаркПроба078СерияСерверныхВызовов</value>
+  </synonym>
+  <comment>Серверные операции для сравнения пакетных и последовательных клиентских вызовов</comment>
+  <clientManagedApplication>false</clientManagedApplication>
+  <clientOrdinaryApplication>false</clientOrdinaryApplication>
+  <server>true</server>
+  <serverCall>true</serverCall>
+</mdclass:CommonModule>

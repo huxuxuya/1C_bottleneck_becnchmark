@@ -40,6 +40,8 @@
   <commonModules>CommonModule.Тест_Проба009_УстойчиваяСкорость</commonModules>
   <commonModules>CommonModule.Тест_Проба010_ВыбросыВремениПорций</commonModules>
   <commonModules>CommonModule.Тест_Проба011_РасчетнаяЭффективностьvCPU</commonModules>
+  <commonModules>CommonModule.Тест_Проба078_ПакетнаяИОдиночнаяОбработка</commonModules>
+  <commonModules>CommonModule.Тест_Проба078_КлиентскоеИзмерение</commonModules>
   <commonModules>CommonModule.Тест_ПробаОдинПотокBSL_ДетерминированныйРезультат</commonModules>
   <commonModules>CommonModule.Тест_ПробаРабочийНаборКоллекции_КорректныеМетрики</commonModules>
   <commonModules>CommonModule.Тест_ПробаФиксацияТранзакции_ПакетИРаздельно</commonModules>
